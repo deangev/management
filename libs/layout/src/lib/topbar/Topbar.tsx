@@ -12,18 +12,18 @@ export function Topbar({ open, handleDrawer }: TopbarProps) {
     <AppBar position="fixed">
       <Toolbar>
         <Box sx={{ flexGrow: 1 }}>
-          <LogoContainer>
-            <Logo />
-          </LogoContainer>
+          <IconButton
+            color="inherit"
+            edge="end"
+            onClick={handleDrawer}
+            sx={{ ...(open && { display: 'none' }) }}
+          >
+            <BiMenu />
+          </IconButton>
         </Box>
-        <IconButton
-          color="inherit"
-          edge="end"
-          onClick={handleDrawer}
-          sx={{ ...(open && { display: 'none' }) }}
-        >
-          <BiMenu />
-        </IconButton>
+        <LogoContainer>
+          <Logo />
+        </LogoContainer>
       </Toolbar>
     </AppBar>
   );

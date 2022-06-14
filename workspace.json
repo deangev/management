@@ -3,6 +3,9 @@
   "version": 2,
   "projects": {
     "core-assets": "libs/core/assets",
+    "core-components": "libs/core/components",
+    "core-theme": "libs/core/theme",
+    "core-types": "libs/core/types",
     "frontend": "apps/frontend",
     "frontend-e2e": "apps/frontend-e2e",
     "layout": "libs/layout"

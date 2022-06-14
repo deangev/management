@@ -1,14 +1,15 @@
 import {
   Divider,
   Drawer as MuiDrawer,
-  List,
-  ListItem,
   ListItemIcon,
   ListItemText,
   IconButton,
+  MenuList,
+  MenuItem,
 } from '@mui/material';
-import { BiChevronLeft, BiMenu } from 'react-icons/bi';
+import { Icon, IconType } from '@sagi/core/components';
 import DrawerHeader from './drawer-header/DrawerHeader';
+import drawerItems from './drawerItems';
 
 export interface DrawerProps {
   open: boolean;
@@ -32,31 +33,21 @@ export function Drawer({ open, drawerWidth, handleDrawer }: DrawerProps) {
     >
       <DrawerHeader>
         <IconButton onClick={handleDrawer}>
-          <BiChevronLeft />
+          <Icon icon="close" size={20} />
         </IconButton>
       </DrawerHeader>
       <Divider />
-      <List>
-        {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-          <ListItem button key={text}>
+      <MenuList>
+        {drawerItems.map((item) => (
+          <MenuItem key={item.label}>
             <ListItemIcon>
-              {index % 2 === 0 ? <BiChevronLeft /> : <BiMenu />}
+              <Icon icon={item.icon as IconType} />
             </ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItem>
+            <ListItemText primary={item.label} />
+          </MenuItem>
         ))}
-      </List>
+      </MenuList>
       <Divider />
-      <List>
-        {['All mail', 'Trash', 'Spam'].map((text, index) => (
-          <ListItem button key={text}>
-            <ListItemIcon>
-              {index % 2 === 0 ? <BiChevronLeft /> : <BiMenu />}
-            </ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItem>
-        ))}
-      </List>
     </MuiDrawer>
   );
 }
