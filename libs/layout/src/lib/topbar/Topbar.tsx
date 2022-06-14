@@ -1,37 +1,62 @@
-import { AppBar, Box, IconButton, styled, Toolbar } from '@mui/material';
+import { AppBar as MuiAppBar, Box, IconButton, Toolbar } from '@mui/material';
+import { styled } from '@mui/material';
 import { Logo } from '@sagi/core/assets';
-import { BiMenu } from 'react-icons/bi';
+import { Icon } from '@sagi/core/components';
 
-export interface TopbarProps {
+interface TopbarProps {
   open: boolean;
   handleDrawer: () => void;
+  drawerWidth: number;
 }
 
-export function Topbar({ open, handleDrawer }: TopbarProps) {
+export default function Topbar({
+  open,
+  handleDrawer,
+  drawerWidth,
+}: TopbarProps) {
   return (
-    <AppBar position="fixed">
+    <AppBar position="fixed" open={open} drawerWidth={drawerWidth}>
       <Toolbar>
         <Box sx={{ flexGrow: 1 }}>
-          <IconButton
-            color="inherit"
-            edge="end"
-            onClick={handleDrawer}
-            sx={{ ...(open && { display: 'none' }) }}
-          >
-            <BiMenu />
-          </IconButton>
+          <LogoContainer>
+            <Logo />
+          </LogoContainer>
         </Box>
-        <LogoContainer>
-          <Logo />
-        </LogoContainer>
+        <IconButton
+          color="inherit"
+          onClick={handleDrawer}
+          edge="end"
+          sx={{
+            ...(open && { display: 'none' }),
+          }}
+        >
+          <Icon icon="menu" size={19} />
+        </IconButton>
       </Toolbar>
     </AppBar>
   );
 }
 
+const AppBar = styled(MuiAppBar, {
+  shouldForwardProp: (prop) => prop !== 'open' && prop !== 'drawerWidth',
+})<{ open: boolean; drawerWidth: number }>(({ theme, open, drawerWidth }) => ({
+  zIndex: theme.zIndex.drawer + 1,
+  color: theme.palette.text.primary,
+  transition: theme.transitions.create(['width', 'margin'], {
+    easing: theme.transitions.easing.sharp,
+    duration: theme.transitions.duration.leavingScreen,
+  }),
+  ...(open && {
+    marginRight: drawerWidth,
+    width: `calc(100% - ${drawerWidth}px)`,
+    transition: theme.transitions.create(['width', 'margin'], {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.enteringScreen,
+    }),
+  }),
+}));
+
 const LogoContainer = styled('div')({
-  width: '80px',
-  display: 'grid',
-  placeItems: 'center',
+  width: '75px',
+  display: 'flex',
 });
-export default Topbar;

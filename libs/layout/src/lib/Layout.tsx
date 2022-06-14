@@ -1,5 +1,5 @@
 import { Box } from '@mui/material';
-import { ReactNode, useCallback, useState } from 'react';
+import { ReactNode, useCallback, useMemo, useState } from 'react';
 import Content from './content/Content';
 import Drawer from './drawer/Drawer';
 import Topbar from './topbar/Topbar';
@@ -16,19 +16,20 @@ export function Layout({ children }: LayoutProps) {
     setOpen((prevState) => !prevState);
   }, []);
 
+  const props = useMemo(
+    () => ({
+      open,
+      handleDrawer,
+      drawerWidth: DRAWER_WIDTH,
+    }),
+    [open, handleDrawer]
+  );
+
   return (
     <Box sx={{ display: 'flex' }}>
-      <Topbar open={open} handleDrawer={handleDrawer} />
-
-      <Content open={open} drawerWidth={DRAWER_WIDTH}>
-        {children}
-      </Content>
-
-      <Drawer
-        drawerWidth={DRAWER_WIDTH}
-        open={open}
-        handleDrawer={handleDrawer}
-      />
+      <Topbar {...props} />
+      <Content>{children}</Content>
+      <Drawer {...props} />
     </Box>
   );
 }

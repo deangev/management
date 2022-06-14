@@ -1,42 +1,18 @@
 import { ReactNode } from 'react';
-import { styled } from '@mui/material/styles';
 import DrawerHeader from '../drawer/drawer-header/DrawerHeader';
+import { Box } from '@mui/material';
 
 export interface ContentProps {
-  open: boolean;
   children: ReactNode;
-  drawerWidth: number;
 }
 
-export function Content({ open, children, drawerWidth }: ContentProps) {
+export function Content({ children }: ContentProps) {
   return (
-    <Main open={open} drawerWidth={drawerWidth}>
+    <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
       <DrawerHeader />
       {children}
-    </Main>
+    </Box>
   );
 }
-
-const Main = styled('main', {
-  shouldForwardProp: (prop) => prop !== 'open' && prop !== 'drawerWidth',
-})<{
-  open?: boolean;
-  drawerWidth: number;
-}>(({ theme, open, drawerWidth }) => ({
-  flexGrow: 1,
-  padding: theme.spacing(3),
-  transition: theme.transitions.create('margin', {
-    easing: theme.transitions.easing.sharp,
-    duration: theme.transitions.duration.leavingScreen,
-  }),
-  marginRight: -drawerWidth,
-  ...(open && {
-    transition: theme.transitions.create('margin', {
-      easing: theme.transitions.easing.easeOut,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
-    marginRight: 0,
-  }),
-}));
 
 export default Content;
