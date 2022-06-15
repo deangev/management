@@ -16,22 +16,22 @@ export default function Topbar({
 }: TopbarProps) {
   return (
     <AppBar position="fixed" open={open} drawerWidth={drawerWidth}>
-      <Toolbar>
+      <Toolbar style={{ paddingRight: '13px'}}>
         <Box sx={{ flexGrow: 1 }}>
-          <LogoContainer>
-            <Logo />
-          </LogoContainer>
+          <IconButton
+            color="inherit"
+            onClick={handleDrawer}
+            edge="end"
+            sx={{
+              ...(open && { display: 'none' }),
+            }}
+          >
+            <Icon icon="menu" size={19} />
+          </IconButton>
         </Box>
-        <IconButton
-          color="inherit"
-          onClick={handleDrawer}
-          edge="end"
-          sx={{
-            ...(open && { display: 'none' }),
-          }}
-        >
-          <Icon icon="menu" size={19} />
-        </IconButton>
+        <LogoContainer>
+          <Logo />
+        </LogoContainer>
       </Toolbar>
     </AppBar>
   );
@@ -47,7 +47,7 @@ const AppBar = styled(MuiAppBar, {
     duration: theme.transitions.duration.leavingScreen,
   }),
   ...(open && {
-    marginRight: drawerWidth,
+    marginLeft: drawerWidth,
     width: `calc(100% - ${drawerWidth}px)`,
     transition: theme.transitions.create(['width', 'margin'], {
       easing: theme.transitions.easing.sharp,

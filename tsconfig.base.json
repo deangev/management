@@ -17,6 +17,8 @@
     "paths": {
       "@sagi/core/assets": ["libs/core/assets/src/index.ts"],
       "@sagi/core/components": ["libs/core/components/src/index.ts"],
+      "@sagi/core/pages": ["libs/core/pages/src/index.ts"],
+      "@sagi/core/routes": ["libs/core/routes/src/index.ts"],
       "@sagi/core/theme": ["libs/core/theme/src/index.ts"],
       "@sagi/core/types": ["libs/core/types/src/index.ts"],
       "@sagi/layout": ["libs/layout/src/index.ts"]

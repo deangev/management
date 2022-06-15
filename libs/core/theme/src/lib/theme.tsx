@@ -7,6 +7,7 @@ export type CoreThemeProps = {
 };
 
 const Theme = createTheme({
+  direction: 'rtl',
   palette: {
     primary: {
       main: '#FF9800',

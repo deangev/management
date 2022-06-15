@@ -1,20 +1,16 @@
 import {
   Divider,
   Drawer as MuiDrawer,
-  ListItemIcon,
   IconButton,
   List,
-  ListItem,
-  ListItemButton,
   styled,
   CSSObject,
-  Box,
-  Tooltip,
 } from '@mui/material';
 import Theme from '@sagi/core/theme';
-import { Icon, IconType } from '@sagi/core/components';
+import { Icon } from '@sagi/core/components';
 import DrawerHeader from './drawer-header/DrawerHeader';
-import drawerItems from './drawerItems';
+import DrawerItem from './drawer-item/DrawerItem';
+import { routes } from '@sagi/core/routes';
 
 export interface DrawerProps {
   open: boolean;
@@ -26,7 +22,6 @@ export function Drawer({ open, drawerWidth, handleDrawer }: DrawerProps) {
   return (
     <StyledDrawer
       variant="permanent"
-      anchor="right"
       open={open}
       drawerWidth={drawerWidth}
     >
@@ -37,27 +32,8 @@ export function Drawer({ open, drawerWidth, handleDrawer }: DrawerProps) {
       </DrawerHeader>
       <Divider />
       <List>
-        {drawerItems.map((item) => (
-          <Tooltip title={open ? '' : item.label} placement='left' arrow>
-            <ListItem key={item.label} disablePadding>
-              <ListItemButton
-                sx={{
-                  minHeight: 48,
-                  px: 2.5,
-                }}
-              >
-                <ListItemIcon
-                  sx={{
-                    minWidth: 0,
-                    justifyContent: 'end',
-                  }}
-                >
-                  <Icon icon={item.icon as IconType} size={19} />
-                </ListItemIcon>
-                <Box sx={{ opacity: open ? 1 : 0, mr: 1 }}>{item.label}</Box>
-              </ListItemButton>
-            </ListItem>
-          </Tooltip>
+        {routes.map((item) => (
+          <DrawerItem key={item.path} item={item} open={open} />
         ))}
       </List>
       <Divider />
@@ -72,7 +48,6 @@ const StyledDrawer = styled(MuiDrawer, {
   flexShrink: 0,
   whiteSpace: 'nowrap',
   boxSizing: 'border-box',
-  direction: 'rtl',
   ...(open && {
     ...openedMixin(theme, drawerWidth),
     '& .MuiDrawer-paper': openedMixin(theme, drawerWidth),

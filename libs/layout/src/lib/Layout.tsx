@@ -28,8 +28,8 @@ export function Layout({ children }: LayoutProps) {
   return (
     <Box sx={{ display: 'flex' }}>
       <Topbar {...props} />
-      <Content>{children}</Content>
       <Drawer {...props} />
+      <Content>{children}</Content>
     </Box>
   );
 }
