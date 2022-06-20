@@ -1,4 +1,4 @@
-interface ElevatorData {
+export interface ElevatorData {
   estateId: string;
   room_location: string;
   switch_location: string;
