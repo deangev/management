@@ -17,6 +17,7 @@
     "paths": {
       "@sagi/core/assets": ["libs/core/assets/src/index.ts"],
       "@sagi/core/types": ["libs/core/types/src/index.ts"],
+      "@sagi/core/utils": ["libs/core/utils/src/index.ts"],
       "@sagi/layout": ["libs/layout/src/index.ts"]
     }
   },

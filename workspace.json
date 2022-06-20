@@ -3,8 +3,10 @@
   "version": 2,
   "projects": {
     "be": "apps/be",
+    "be-maintenance": "apps/be-maintenance",
     "core-assets": "libs/core/assets",
     "core-types": "libs/core/types",
+    "core-utils": "libs/core/utils",
     "frontend": "apps/frontend",
     "frontend-e2e": "apps/frontend-e2e",
     "layout": "libs/layout"
