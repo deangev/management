@@ -8,7 +8,7 @@
       "outputs": ["{options.outputPath}"],
       "options": {
         "outputPath": "dist/apps/be-estate",
-        "main": "apps/be-estate/src/main.ts",
+        "main": "apps/be-estate/src/server.ts",
         "tsConfig": "apps/be-estate/tsconfig.app.json",
         "assets": ["apps/be-estate/src/assets"]
       },
