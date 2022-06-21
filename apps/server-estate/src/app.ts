@@ -1,7 +1,7 @@
 import express from 'express';
 import { config as dotenv_config } from 'dotenv';
 import cors from 'cors';
-import estateRouter from './app/estateRouter';
+import estateRouter from './app/routers/estateRouter';
 
 const app = express()
 
