@@ -1,30 +1,20 @@
-import * as express from 'express';
-import * as mongoose from 'mongoose';
-import * as dotenv from 'dotenv';
-import * as cors from 'cors';
-import estateRouter from './app/estateRouter';
+import app from './app'
+import { connect as mongoConnect } from 'mongoose'
 
-dotenv.config();
+const port = 9200
 
-const app = express();
+const MONGO_URI = process.env.MONGO_URI.replace('<password>', process.env.MONGO_PASSWORD)
+const MONGO_CONNECTION_SUCCESS = `Estate service is connected with the MongoDB cluster!`
+const MONGO_CONNECTION_FAIL = `Connection error - Estate service failed to connect with the MongoDB cluster...`
+const SERVER_SUCCESS = `${process.env.NODE_ENV} - Estate service is listening on port ${port}`
+const SERVER_FAIL = `${process.env.NODE} = Estate service failed on port ${port}...`
 
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-app.use(cors());
+mongoConnect(MONGO_URI)
+    .then((): void => {console.log(MONGO_CONNECTION_SUCCESS)})
+    .catch((): void => {console.log(MONGO_CONNECTION_FAIL)})
 
-mongoose.connect(process.env['MONGODB_CONNECTION_STRING'] as string, (err) => {
-  if (err) throw err;
-  console.log('MongoDB connection established!');
-});
 
-app.use('/api', estateRouter);
+app.listen(port, (): void => {console.log(SERVER_SUCCESS)})
+    .on('error', (): void => {console.log(SERVER_FAIL)})
 
-app.get('/api', (req, res) => {
-  res.send({ message: 'Welcome to server-estate!' });
-});
-
-const port = process.env.port || 3002;
-const server = app.listen(port, () => {
-  console.log(`Listening at http://localhost:${port}/api`);
-});
-server.on('error', console.error);
+// We might need to stop listening to requests on unexpected exceptions

@@ -1,6 +1,6 @@
-import * as mongoose from 'mongoose';
+import { Schema, model } from 'mongoose';
 
-const articleSchema = new mongoose.Schema({
+const articleSchema = new Schema({
   slug: {
     type: String,
     required: true,
@@ -28,8 +28,8 @@ const articleSchema = new mongoose.Schema({
   favorites: {
     type: [String],
   }
-}, { timestamps: true});
+}, { timestamps: true });
 
-const Article = mongoose.model('Article', articleSchema);
+const Article = model('Article', articleSchema);
 
 export default Article;
