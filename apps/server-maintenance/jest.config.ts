@@ -1,6 +1,6 @@
 /* eslint-disable */
 export default {
-  displayName: 'be-maintenance',
+  displayName: 'server-maintenance',
   preset: '../../jest.preset.js',
   globals: {
     'ts-jest': {
@@ -12,5 +12,5 @@ export default {
     '^.+\\.[tj]s$': 'ts-jest',
   },
   moduleFileExtensions: ['ts', 'js', 'html'],
-  coverageDirectory: '../../coverage/apps/be-maintenance',
+  coverageDirectory: '../../coverage/apps/server-maintenance',
 };

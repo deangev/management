@@ -20,7 +20,7 @@ mongoose.connect(process.env['MONGODB_CONNECTION_STRING'] as string, (err) => {
 app.use('/api', estateRouter);
 
 app.get('/api', (req, res) => {
-  res.send({ message: 'Welcome to be-estate!' });
+  res.send({ message: 'Welcome to server-estate!' });
 });
 
 const port = process.env.port || 3002;

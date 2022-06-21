@@ -8,7 +8,7 @@ import { loadFilesSync } from '@graphql-tools/load-files';
 import { AxiosError } from 'axios';
 
 const typesArray = loadFilesSync(
-  path.join(__dirname, '../../../apps/be/src/app/**/*.graphql')
+  path.join(__dirname, '../../../apps/server/src/app/**/*.graphql')
 );
 const typeDefs = mergeTypeDefs(typesArray);
 

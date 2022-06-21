@@ -1,16 +1,16 @@
 {
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "apps/be/src",
+  "sourceRoot": "apps/server-maintenance/src",
   "projectType": "application",
   "targets": {
     "build": {
       "executor": "@nrwl/node:webpack",
       "outputs": ["{options.outputPath}"],
       "options": {
-        "outputPath": "dist/apps/be",
-        "main": "apps/be/src/main.ts",
-        "tsConfig": "apps/be/tsconfig.app.json",
-        "assets": ["apps/be/src/assets"]
+        "outputPath": "dist/apps/server-maintenance",
+        "main": "apps/server-maintenance/src/main.ts",
+        "tsConfig": "apps/server-maintenance/tsconfig.app.json",
+        "assets": ["apps/server-maintenance/src/assets"]
       },
       "configurations": {
         "production": {
@@ -19,8 +19,8 @@
           "inspect": false,
           "fileReplacements": [
             {
-              "replace": "apps/be/src/environments/environment.ts",
-              "with": "apps/be/src/environments/environment.prod.ts"
+              "replace": "apps/server-maintenance/src/environments/environment.ts",
+              "with": "apps/server-maintenance/src/environments/environment.prod.ts"
             }
           ]
         }
@@ -29,21 +29,21 @@
     "serve": {
       "executor": "@nrwl/node:node",
       "options": {
-        "buildTarget": "be:build"
+        "buildTarget": "server-maintenance:build"
       }
     },
     "lint": {
       "executor": "@nrwl/linter:eslint",
       "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": ["apps/be/**/*.ts"]
+        "lintFilePatterns": ["apps/server-maintenance/**/*.ts"]
       }
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/apps/be"],
+      "outputs": ["coverage/apps/server-maintenance"],
       "options": {
-        "jestConfig": "apps/be/jest.config.ts",
+        "jestConfig": "apps/server-maintenance/jest.config.ts",
         "passWithNoTests": true
       }
     }

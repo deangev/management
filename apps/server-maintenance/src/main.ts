@@ -19,7 +19,7 @@ mongoose.connect(process.env['MONGODB_CONNECTION_STRING'] as string, (err) => {
 // app.use('/api/articles', articlesRouter)
 
 app.get('/api', (req, res) => {
-  res.send({ message: 'Welcome to be-maintenance!' });
+  res.send({ message: 'Welcome to server-maintenance!' });
 });
 
 const port = process.env.port || 3001;
