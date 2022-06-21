@@ -1,3 +1,1 @@
-import Logo from './lib/Logo';
-
-export { Logo };
+export { default as Logo } from './lib/Logo'

@@ -1,5 +1,3 @@
-import catchAsync from './lib/catchAsync';
-import { getErrorResponse } from './lib/getErrorResponse';
-import { getOptionalAuthHeader } from './lib/getOptionalHeader';
-
-export { catchAsync, getErrorResponse, getOptionalAuthHeader };
+export { default as catchAsync } from './lib/catchAsync'
+export { getErrorResponse } from './lib/getErrorResponse'
+export { getOptionalAuthHeader } from './lib/getOptionalHeader'
