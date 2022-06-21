@@ -3,8 +3,7 @@ import { makeExecutableSchema } from '@graphql-tools/schema';
 import { mergeResolvers, mergeTypeDefs } from '@graphql-tools/merge';
 import * as path from 'path';
 import { loadFilesSync } from '@graphql-tools/load-files';
-// import articleResolver from './app/resolvers/article.resolvers';
-// import authResolver from './app/resolvers/auth.resolvers';
+import EstateResolver from './app/resolvers/estate.resolvers';
 import { AxiosError } from 'axios';
 
 const typesArray = loadFilesSync(
@@ -12,10 +11,7 @@ const typesArray = loadFilesSync(
 );
 const typeDefs = mergeTypeDefs(typesArray);
 
-const resolversArray = [
-  // articleResolver,
-  // authResolver,
-];
+const resolversArray = [EstateResolver];
 const resolvers = mergeResolvers(resolversArray);
 
 const schema = makeExecutableSchema({
@@ -58,4 +54,3 @@ const server = new ApolloServer({
 server
   .listen({ port: 3000 })
   .then(({ url }) => console.log(`Server running at ${url}`));
-

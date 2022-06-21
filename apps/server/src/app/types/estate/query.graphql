@@ -1,0 +1,9 @@
+type Query {
+  estates: EstatesResponse!
+  estate(estateId: String!): Estate
+}
+
+type EstatesResponse {
+  estates: [Estate]!
+  estatesCount: Int
+}

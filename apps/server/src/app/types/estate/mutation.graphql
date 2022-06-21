@@ -1,0 +1,5 @@
+type Mutation {
+  createEstate(estateData: EstateCreateInput!): Estate!
+  updateEstate(estateData: EstateUpdateInput!): Estate!
+  deleteEstate(estateId: String!): String
+}
