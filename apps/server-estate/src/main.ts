@@ -1,7 +1,7 @@
 import app from './app'
 import { connect as mongoConnect } from 'mongoose'
 
-const port = 9200
+const port = process.env.port || 3001
 
 const MONGO_URI = process.env.MONGO_URI.replace('<password>', process.env.MONGO_PASSWORD)
 const MONGO_CONNECTION_SUCCESS = `Estate service is connected with the MongoDB cluster!`
@@ -17,4 +17,4 @@ mongoConnect(MONGO_URI)
 app.listen(port, (): void => {console.log(SERVER_SUCCESS)})
     .on('error', (): void => {console.log(SERVER_FAIL)})
 
-// We might need to stop listening to requests on unexpected exceptions
+// We might need to stop listening to requests on unexpected exceptions`~
