@@ -2,9 +2,9 @@
   "$schema": "./node_modules/nx/schemas/workspace-schema.json",
   "version": 2,
   "projects": {
-    "be": "apps/be",
-    "be-estate": "apps/be-estate",
-    "be-maintenance": "apps/be-maintenance",
+    "server": "apps/server",
+    "server-estate": "apps/server-estate",
+    "server-maintenance": "apps/server-maintenance",
     "core-assets": "libs/core/assets",
     "core-constants": "libs/core/constants",
     "core-middleware": "libs/core/middleware",

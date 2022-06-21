@@ -1,16 +1,16 @@
 {
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "apps/be-maintenance/src",
+  "sourceRoot": "apps/server-estate/src",
   "projectType": "application",
   "targets": {
     "build": {
       "executor": "@nrwl/node:webpack",
       "outputs": ["{options.outputPath}"],
       "options": {
-        "outputPath": "dist/apps/be-maintenance",
-        "main": "apps/be-maintenance/src/main.ts",
-        "tsConfig": "apps/be-maintenance/tsconfig.app.json",
-        "assets": ["apps/be-maintenance/src/assets"]
+        "outputPath": "dist/apps/server-estate",
+        "main": "apps/server-estate/src/main.ts",
+        "tsConfig": "apps/server-estate/tsconfig.app.json",
+        "assets": ["apps/server-estate/src/assets"]
       },
       "configurations": {
         "production": {
@@ -19,8 +19,8 @@
           "inspect": false,
           "fileReplacements": [
             {
-              "replace": "apps/be-maintenance/src/environments/environment.ts",
-              "with": "apps/be-maintenance/src/environments/environment.prod.ts"
+              "replace": "apps/server-estate/src/environments/environment.ts",
+              "with": "apps/server-estate/src/environments/environment.prod.ts"
             }
           ]
         }
@@ -29,21 +29,21 @@
     "serve": {
       "executor": "@nrwl/node:node",
       "options": {
-        "buildTarget": "be-maintenance:build"
+        "buildTarget": "server-estate:build"
       }
     },
     "lint": {
       "executor": "@nrwl/linter:eslint",
       "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": ["apps/be-maintenance/**/*.ts"]
+        "lintFilePatterns": ["apps/server-estate/**/*.ts"]
       }
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/apps/be-maintenance"],
+      "outputs": ["coverage/apps/server-estate"],
       "options": {
-        "jestConfig": "apps/be-maintenance/jest.config.ts",
+        "jestConfig": "apps/server-estate/jest.config.ts",
         "passWithNoTests": true
       }
     }

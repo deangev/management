@@ -1,16 +1,16 @@
 {
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "apps/be-estate/src",
+  "sourceRoot": "apps/server-maintenance/src",
   "projectType": "application",
   "targets": {
     "build": {
       "executor": "@nrwl/node:webpack",
       "outputs": ["{options.outputPath}"],
       "options": {
-        "outputPath": "dist/apps/be-estate",
-        "main": "apps/be-estate/src/server.ts",
-        "tsConfig": "apps/be-estate/tsconfig.app.json",
-        "assets": ["apps/be-estate/src/assets"]
+        "outputPath": "dist/apps/server-maintenance",
+        "main": "apps/server-maintenance/src/main.ts",
+        "tsConfig": "apps/server-maintenance/tsconfig.app.json",
+        "assets": ["apps/server-maintenance/src/assets"]
       },
       "configurations": {
         "production": {
@@ -19,8 +19,8 @@
           "inspect": false,
           "fileReplacements": [
             {
-              "replace": "apps/be-estate/src/environments/environment.ts",
-              "with": "apps/be-estate/src/environments/environment.prod.ts"
+              "replace": "apps/server-maintenance/src/environments/environment.ts",
+              "with": "apps/server-maintenance/src/environments/environment.prod.ts"
             }
           ]
         }
@@ -29,21 +29,21 @@
     "serve": {
       "executor": "@nrwl/node:node",
       "options": {
-        "buildTarget": "be-estate:build"
+        "buildTarget": "server-maintenance:build"
       }
     },
     "lint": {
       "executor": "@nrwl/linter:eslint",
       "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": ["apps/be-estate/**/*.ts"]
+        "lintFilePatterns": ["apps/server-maintenance/**/*.ts"]
       }
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/apps/be-estate"],
+      "outputs": ["coverage/apps/server-maintenance"],
       "options": {
-        "jestConfig": "apps/be-estate/jest.config.ts",
+        "jestConfig": "apps/server-maintenance/jest.config.ts",
         "passWithNoTests": true
       }
     }
