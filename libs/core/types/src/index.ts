@@ -1,4 +1,4 @@
-export { Estate } from './lib/estate';
+export { Estate, Address } from './lib/estate';
 export { AirConditioning } from './lib/maintenance/airConditioning';
 export { Cleaning } from './lib/maintenance/cleaning';
 export { ElevatorData } from './lib/maintenance/elevator';
