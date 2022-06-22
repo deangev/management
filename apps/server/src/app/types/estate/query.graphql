@@ -1,6 +1,6 @@
 type Query {
-  estates: EstatesResponse!
-  estate(estateId: String!): Estate
+  estatesData: EstatesResponse!
+  estateData(estateId: String!): Estate
 }
 
 type EstatesResponse {

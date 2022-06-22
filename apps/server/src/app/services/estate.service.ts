@@ -12,7 +12,7 @@ export const getEstates = async (_, _authHeader) => {
   // const { data } = await http.get('/');
   // return data;
 
-  return { estates: EstatesMock, estatesCount: 2 };
+  return { estates: EstatesMock, estatesCount: EstatesMock.length };
 };
 
 export const getEstate = async (estateId: string, _authHeader) => {
@@ -24,8 +24,10 @@ export const getEstate = async (estateId: string, _authHeader) => {
 };
 
 export const createEstate = async (estateData, _authHeader) => {
-  const { data } = await http.post('/', estateData);
-  return data;
+  console.log(estateData);
+
+  // const { data } = await http.post('/', estateData);
+  // return data;
 };
 
 export const updateEstate = async (estateData, _authHeader) => {
@@ -37,7 +39,6 @@ export const deleteEstate = async (estateId: string, _authHeader) => {
   const { data } = await http.put('/', estateId);
   return data;
 };
-
 
 // TODO - remove after estate service implementation
 const EstatesMock = [

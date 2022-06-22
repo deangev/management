@@ -1,9 +1,12 @@
 import { Layout } from '@sagi/layout';
+import { PagesHome } from '@sagi/pages/home';
 
 export function App() {
   return (
     <div>
-      <Layout>asdasd</Layout>
+      <Layout>
+        <PagesHome />
+      </Layout>
     </div>
   );
 }
