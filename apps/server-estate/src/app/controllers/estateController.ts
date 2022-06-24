@@ -1,47 +1,58 @@
-import { catchAsync, restrictUpdate } from '@sagi/core/utils';
-import { Response, Request } from 'express';
 import Estate from '../models/EstateModel'
-import { Estate as EstateType } from '@sagi/core/types'
+import { catchAsync, restrictUpdate } from '@sagi/core/utils';
+import { Request, Response } from 'express';
+import {
+  CreateEstateRequestType,
+  DeleteEstateRequestType,
+  GetEstateRequestType,
+  UpdateEstateRequestType
+} from '@sagi/core/types'
 
-interface RDbyIDRequestType extends Request {
-  params: { id: EstateType['_id'] }
-}
-interface CreateEstateRequestType extends Request {
-  body: EstateType
-}
+export const searchEstates = catchAsync(async (req: Request, res: Response) => {
+  const estates = await Estate.find()
+  if (!estates) return res.status(400).json({ message: 'estates not found' })
 
-interface EditEstateRequestType extends Request {
-  params: { id: EstateType['_id'] }
-  body: EstateType
-}
+  res.status(200).json({ hits: estates.length, estates })
+})
 
-const getEstate = catchAsync(async (req: RDbyIDRequestType, res: Response) => {
-  const { id: estateID } = req.params
-  const estate = await Estate.findById(estateID)
-  if (!estate) return res.status(400).json({ message: 'estate not found' })
-  res.status(200).json({ estate })
-});
-
-const createEstate = catchAsync(async (req: CreateEstateRequestType, res: Response): Promise<void> => {
+export const createEstate = catchAsync(async (req: CreateEstateRequestType, res: Response) => {
   const { address, apartments, floors } = req.body
-  if (!address) res.status(400).json({ message: 'please provide an address' })
-  if (!apartments) res.status(400).json({ message: 'please provide an address' })
-  if (!floors) res.status(400).json({ message: 'please provide an address' })
+
+  if (!address) return res.status(400).json({ message: 'please provide an address' })
+  if (!apartments) return res.status(400).json({ message: 'please provide an address' })
+  if (!floors) return res.status(400).json({ message: 'please provide an address' })
+
+  const existingAddressEstate = await Estate.findOne({ address })
+  if (existingAddressEstate) return res.status(400).json({ message: 'Address is unique to each estate' })
 
   const newEstate = await Estate.create({ address, apartments, floors })
+
   res.status(201).json({ estate: newEstate })
 })
 
-const deleteEstate = catchAsync(async (req: RDbyIDRequestType, res: Response): Promise<void> => {
+export const getEstate = catchAsync(async (req: GetEstateRequestType, res: Response) => {
   const { id: estateID } = req.params
-  await Estate.findByIdAndDelete(estateID)
-  res.status(204).json()
-})
 
-const updateEstate = catchAsync(async (req: EditEstateRequestType, res: Response): Promise<void> => {
+  const estate = await Estate.findById(estateID)
+  if (!estate) return res.status(400).json({ message: 'estate not found' })
+
+  res.status(200).json({ estate })
+});
+
+export const updateEstate = catchAsync(async (req: UpdateEstateRequestType, res: Response) => {
   const { id: estateID } = req.params
-  const updatedEstate = await Estate.findByIdAndUpdate(estateID, restrictUpdate({ ...req.body }, ['contacts', 'address']), { new: true, runValidators: true })
+  const restrictedBody = restrictUpdate({ ...req.body }, ['contacts', 'address'])
+
+  const updatedEstate = await Estate.findByIdAndUpdate(estateID, restrictedBody, { new: true, runValidators: true })
+  if (!updatedEstate) return res.status(400).json({ message: 'could not update document with the provided id' })
+
   res.status(200).json({ updatedEstate })
 })
 
-export { getEstate, createEstate, deleteEstate, updateEstate };
+export const deleteEstate = catchAsync(async (req: DeleteEstateRequestType, res: Response) => {
+  const { id: estateID } = req.params
+
+  await Estate.findByIdAndDelete(estateID)
+
+  res.status(204).json()
+})
