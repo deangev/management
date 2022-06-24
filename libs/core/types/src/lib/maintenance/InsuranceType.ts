@@ -1,7 +1,7 @@
-export interface Insurance {
-  type: string; //
-  insurance_agency: string; //
-  insurance_company: string; //
+export interface InsuranceType {
+  type: string;
+  insurance_agency: string;
+  insurance_company: string;
   price: number;
   policyholder_participation: number;
   policy_validity_start: string;

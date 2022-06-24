@@ -1,37 +1,37 @@
-export interface Gardening {
+export interface GardeningType {
   description: string;
   note: string;
-  irrigation_system: Irrigation_system[];
-  fertilizing_machine: Fertilizing_machine[];
-  irrigation_taps: Irrigation_tap[];
-  period: Period[];
-  jug: Jug[]
+  irrigation_system: IrrigationSystemType[];
+  fertilizing_machine: FertilizingMachineType[];
+  irrigation_taps: IrrigationTapType[];
+  period: PeriodType[];
+  jug: JugType[]
 }
 
-interface Irrigation_system {
+interface IrrigationSystemType {
   type: string; //
   location: string;
 }
 
-interface Fertilizing_machine {
+interface FertilizingMachineType {
   type: string;
   location: string;
   note: string;
 }
 
-interface Irrigation_tap {
+interface IrrigationTapType {
   tap: string;
   route: string;
   note: string;
 }
 
-interface Period {
+interface PeriodType {
   day: number;
   from_time: number;
   to_time: number;
 }
 
-interface Jug {
+interface JugType {
     type: string
     location: string
     note: string

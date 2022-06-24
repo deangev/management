@@ -1,13 +1,13 @@
-export interface ElevatorData {
+export interface ElevatorDataType {
   estateId: string;
   room_location: string;
   switch_location: string;
-  engineer: Engineer;
+  engineer: EngineerType;
   description: string;
-  elevators: Elevator[];
+  elevators: ElevatorType[];
 }
 
-interface Elevator {
+interface ElevatorType {
   type: string;
   control_panel_type: string;
   serial: string;
@@ -17,7 +17,7 @@ interface Elevator {
   note: string;
 }
 
-interface Engineer {
+interface EngineerType {
   name: string;
   number: string;
 }

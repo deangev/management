@@ -1,12 +1,12 @@
-export interface Security {
+export interface SecurityType {
   note: string;
   server_name: string;
   account: string;
   password?: string;
-  cameras: Camera[];
+  cameras: CameraType[];
 }
 
-interface Camera {
+interface CameraType {
   type: string;
   location: string;
   note: string;

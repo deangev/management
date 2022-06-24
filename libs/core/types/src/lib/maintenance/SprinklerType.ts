@@ -1,4 +1,4 @@
-export interface SprinklerData {
+export interface SprinklerDataType {
   location: string;
   tap: string;
   generator_type: string;
@@ -8,10 +8,10 @@ export interface SprinklerData {
   horsepower: number;
   volume_liter: number;
   generator_room_location: string;
-  sprinkler: Sprinkler;
+  sprinkler: SprinklerType;
 }
 
-interface Sprinkler {
+interface SprinklerType {
   model: string;
   manufacturer: string;
   pumps: number;

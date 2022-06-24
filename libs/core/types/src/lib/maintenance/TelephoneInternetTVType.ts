@@ -1,5 +1,5 @@
-export interface Telephone {
-  supplier: string; //
+export interface TelephoneType {
+  supplier: string;
   number: string;
   usage: string;
   line_owner_name: string;
@@ -8,35 +8,35 @@ export interface Telephone {
   note: string;
 }
 
-export interface Internet {
+export interface InternetType {
   infrastructure_supplier: string;
   internet_supplier: string;
   ip_address: string;
   username: string;
   password: string;
-  wifi: Wifi;
-  supplier_details: Supplier_details;
+  wifi: WifiType;
+  supplier_details: SupplierDetailsType;
   owner_name: string;
   note: string;
 }
 
-export interface TV {
-  supplier: string; //
+export interface TVType {
+  supplier: string;
   username: string;
   password: string;
-  owner_name: string; //
-  supplier_details: Supplier_details;
+  owner_name: string;
+  supplier_details: SupplierDetailsType;
   note: string;
 }
 
-interface Wifi {
+interface WifiType {
   router_address: string;
   management_username: string;
   management_password: string;
   wifi_password: string;
 }
 
-interface Supplier_details {
+interface SupplierDetailsType {
   name: string;
   telephone: string;
 }
