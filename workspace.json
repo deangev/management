@@ -13,6 +13,8 @@
     "frontend-e2e": "apps/frontend-e2e",
     "graphql-services": "libs/graphql-services",
     "layout": "libs/layout",
+    "mobile": "apps/mobile",
+    "mobile-e2e": "apps/mobile-e2e",
     "pages-home": "libs/pages/home",
     "server": "apps/server",
     "server-estate": "apps/server-estate",
