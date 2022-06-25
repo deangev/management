@@ -4,16 +4,22 @@ export const EstatesQuery = gql`
   query Estates {
     estatesData {
       estates {
-        id
-        city
-        street
-        number
+        _id
+        address {
+          city
+          street
+          number
+          entry
+        }
         floors
         apartments
-        contacts
-        elevators
+        contacts {
+          _id
+          name
+          phoneNumber
+        }
       }
-      estatesCount
+      hits
     }
   }
 `;
@@ -21,14 +27,20 @@ export const EstatesQuery = gql`
 export const EstateQuery = gql`
   query Estate($estateId: String!) {
     estateData(estateId: $estateId) {
-      id
-      city
-      street
-      number
+      _id
+      address {
+        city
+        street
+        number
+        entry
+      }
       floors
       apartments
-      contacts
-      elevators
+      contacts {
+        _id
+        name
+        phoneNumber
+      }
     }
   }
 `;
