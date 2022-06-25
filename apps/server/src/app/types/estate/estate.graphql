@@ -1,10 +1,20 @@
 type Estate {
-  id: String!
+  _id: String!
+  address: Address!
+  floors: Int!
+  apartments: Int!
+  contacts: [Contact]!
+}
+
+type Address {
   city: String!
   street: String!
-  number: String
-  floors: Int
-  apartments: Int
-  contacts: [String]!
-  elevators: Int!
+  number: String!
+  entry: Int
+}
+
+type Contact {
+  _id: String!
+  name: String!
+  phoneNumber: Int!
 }

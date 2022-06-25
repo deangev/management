@@ -13,7 +13,7 @@ app.use(express.json({ limit: '10mb' }))
 app.use(express.urlencoded({ extended: false }));
 
 // ROUTERS
-app.use('/estate', estateRouter);
+app.use('/api', estateRouter);
 
 // ERROR CLUSTER
 // app.use(errorCluster)
