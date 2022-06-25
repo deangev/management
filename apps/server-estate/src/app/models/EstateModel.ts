@@ -1,41 +1,36 @@
-import { model, Schema, Types as mongooseTypes } from "mongoose"
-import { Estate } from '@sagi/core/types'
+import { model, Schema } from "mongoose"
+import validator from 'validator'
+import { EstateType } from '@sagi/core/types'
 
-const estateSchema = new Schema<Estate>({
+const estateSchema = new Schema<EstateType>({
     address: {
-        city: {
-            type: String,
-            required: [true, 'אנא ציינ/י עיר']
+        type: {
+            city: { type: String, required: [true, 'city is a required value'] },
+            street: { type: String, required: [true, 'street is a required value'] },
+            number: { type: Number, required: [true, 'house number is a required value'] },
+            entry: Number,
         },
-        street: {
-            type: String,
-            required: [true, 'אנא ציינ/י רחוב'],
-        },
-        number: {
-            type: Number,
-            required: [true, 'אנא ציינ/י את מספר הבית']
-        },
-        entry: Number,
-        unique: true
+        required: true,
+        _id: false,
     },
-    floors: {
-        type: Number,
-        required: [true, 'אנא ציינ/י את מספר הקומות']
-    },
-    apartments: {
-        type: Number,
-        required: [true, 'אנא ציינ/י את מספר הדירות']
-    },
+    floors: { type: Number, required: [true, 'please state number of floors'] },
+    apartments: { type: Number, required: [true, 'please state number of apartments'] },
     contacts: [{
-        type: mongooseTypes.ObjectId,
-        ref: 'Resident',
-    }],
-    elevators: [{
-        type: mongooseTypes.ObjectId,
-        ref: 'Elevator',
-    }],
+        type: {
+            name: { type: String, required: [true, 'contact must have a name'] },
+            phoneNumber: {
+                type: String, required: [true, 'contact must have a phone number'],
+                validate: { validator: (value: string) => {
+                        return validator.isMobilePhone(value, ['he-IL'])
+                    },
+                    message: 'phone number is invalid',
+                }
+            }
+        },
+        _id: false
+    }]
 })
 
-const estate = model('Estate', estateSchema)
+const Estate = model('Estate', estateSchema)
 
-export default estate
+export default Estate

@@ -1,7 +1,18 @@
-import { auth } from '@sagi/core/middleware';
-import * as express from 'express';
-const router = express.Router();
+import { Router } from 'express'
+import {
+    createEstate,
+    deleteEstate,
+    getEstate,
+    searchEstates,
+    updateEstate
+} from '../controllers/estateController'
 
-// router.get('/', getEstates);
+const estateRouter = Router()
 
-export default router;
+estateRouter.get('/search', searchEstates)
+estateRouter.post('/', createEstate)
+estateRouter.get('/:id', getEstate)
+estateRouter.put('/:id', updateEstate)
+estateRouter.delete('/:id', deleteEstate)
+
+export default estateRouter;

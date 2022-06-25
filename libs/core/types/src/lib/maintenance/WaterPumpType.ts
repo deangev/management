@@ -1,11 +1,11 @@
-export interface Water_pump {
+export interface WaterPumpType {
   note: string;
   room_location: string;
   distribution_board_location: string;
-  pumps: Pump[];
+  pumps: PumpType[];
 }
 
-interface Pump {
+interface PumpType {
   model: string;
   activated_by: string;
   controller_model: string;

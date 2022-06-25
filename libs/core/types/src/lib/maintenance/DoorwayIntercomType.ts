@@ -1,27 +1,27 @@
-export interface Intercom {
+export interface IntercomType {
   model: string;
   camera: string;
   note: string;
 }
 
-export interface Mailbox {
+export interface MailboxType {
   resident_location: string;
   committee_location: string;
-  label_type: string; //
+  label_type: string;
   installed_by: string;
   note: string;
 }
 
-export interface Doorway {
+export interface DoorwayType {
   type: string;
-  retainer: string; //
+  retainer: string;
   access_control_type: string;
   code: number;
   location: string;
 }
 
-export interface Bulletin_board {
-  type: string; //
+export interface BulletinBoardType {
+  type: string;
   location: string;
   installed_by: string;
 }

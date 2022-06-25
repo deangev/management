@@ -1,5 +1,5 @@
-export interface Fire_cabinet {
-  location: string; //
+export interface FireCabinetType {
+  location: string;
   extinguisher: boolean;
   cabinet: boolean;
   roller: boolean;

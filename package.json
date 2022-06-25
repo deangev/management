@@ -17,6 +17,7 @@
     "@graphql-tools/merge": "^8.2.14",
     "@graphql-tools/schema": "^8.3.14",
     "@mui/material": "^5.8.3",
+    "@types/validator": "^13.7.3",
     "apollo-server": "^3.9.0",
     "axios": "^0.27.2",
     "core-js": "^3.6.5",
@@ -31,7 +32,8 @@
     "react-icons": "^4.4.0",
     "react-native": "0.68.2",
     "regenerator-runtime": "0.13.7",
-    "tslib": "^2.3.0"
+    "tslib": "^2.3.0",
+    "validator": "^13.7.0"
   },
   "devDependencies": {
     "@nrwl/cli": "14.3.1",

@@ -13,8 +13,7 @@ app.use(express.json({ limit: '10mb' }))
 app.use(express.urlencoded({ extended: false }));
 
 // ROUTERS
-app.use('/api', estateRouter);
-app.get('/api', (req, res) => res.send({ message: 'Welcome to be-estate!' }));
+app.use('/estate', estateRouter);
 
 // ERROR CLUSTER
 // app.use(errorCluster)

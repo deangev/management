@@ -1,4 +1,4 @@
-export interface AirConditioning {
+export interface AirConditioningType {
   code: string;
   location: string;
   type: string;

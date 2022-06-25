@@ -1,9 +1,9 @@
-export interface Parking_lot {
+export interface ParkingLotType {
   total_parking_lots: number;
-  type: string; //
+  type: string;
   floor: string;
   gate: boolean;
-  open_by: string; //
+  open_by: string;
   shared: boolean;
   note: string;
 //   פירוט חניות /// TODO

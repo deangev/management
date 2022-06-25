@@ -1,4 +1,4 @@
-export interface Housing_culture {
+export interface HousingCultureType {
   branch: number;
   member_number: number;
 }

@@ -1,4 +1,4 @@
-export interface Generator {
+export interface GeneratorType {
   type: string;
   motor_number: number;
   motor_type: string;

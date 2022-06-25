@@ -1,4 +1,4 @@
-export interface Bellows {
+export interface BellowsType {
   model: string;
   activatedBy: string; // timer | manual | auto | sensor
   CO_gas_sensors: number;
