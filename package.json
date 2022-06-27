@@ -6,7 +6,9 @@
     "start": "nx serve",
     "start-server": "nx run-many --target=serve --projects=server,server-estate",
     "build": "nx build",
-    "test": "nx test"
+    "test": "nx test",
+    "mobile": "nx run mobile:run-android",
+    "debug": "open 'rndebugger://set-debugger-loc?host=localhost&port=19001'"
   },
   "private": true,
   "dependencies": {
@@ -31,7 +33,8 @@
     "react": "18.1.0",
     "react-dom": "18.1.0",
     "react-icons": "^4.4.0",
-    "react-native": "0.68.2",
+    "react-native": "^0.69.0",
+    "redux-devtools-extension": "^2.13.9",
     "regenerator-runtime": "0.13.7",
     "tslib": "^2.3.0",
     "validator": "^13.7.0"
