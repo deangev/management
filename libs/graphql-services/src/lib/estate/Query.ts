@@ -38,8 +38,8 @@ export const EstateQuery = gql`
       apartments
       contacts {
         _id
-        name
         phoneNumber
+        name
       }
     }
   }
