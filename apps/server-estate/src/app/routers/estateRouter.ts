@@ -15,4 +15,4 @@ estateRouter.get('/:id', getEstate)
 estateRouter.put('/:id', updateEstate)
 estateRouter.delete('/:id', deleteEstate)
 
-export default estateRouter;
+export default estateRouter
