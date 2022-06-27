@@ -22,14 +22,7 @@ export function CreateEstate({ getEstates }: CreateEstateProps) {
   const [entry, setEntry] = useState('');
   const [floors, setFloors] = useState('');
   const [apartments, setApartments] = useState('');
-  const [createEstate, { loading, data }] = useMutation(createEstateMutation);
-
-  useEffect(() => {
-    const getEstatesData = async () => {
-      if (!loading && data) await getEstates();
-    };
-    getEstatesData();
-  }, [loading, data, getEstates]);
+  const [createEstate, { loading }] = useMutation(createEstateMutation);
 
   const handleCreateEstate = async () => {
     try {
@@ -45,6 +38,7 @@ export function CreateEstate({ getEstates }: CreateEstateProps) {
       await createEstate({
         variables: payload,
       });
+      await getEstates();
     } catch (err) {
       console.log(err);
     }
