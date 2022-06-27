@@ -1,6 +1,6 @@
 import { EstatesQuery } from '@sagi/graphql-services';
 import { useQuery } from '@apollo/client';
-import { Estate } from '@sagi/core/types';
+import { EstateType } from '@sagi/core/types';
 /* eslint-disable-next-line */
 export interface PagesHomeProps {}
 
@@ -11,13 +11,12 @@ export function PagesHome(props: PagesHomeProps) {
     error,
   } = useQuery(EstatesQuery);
   // TODO - Example of usage
-  console.log(loading);
-  console.log(error);
+  console.log(data);
 
   return (
     <div>
-      {data?.estatesData.estates.map((building: Estate) => (
-        <div>{building.street}</div>
+      {data?.estatesData.estates.map((building: EstateType) => (
+        <div>{building.address.city}</div>
       ))}
     </div>
   );
