@@ -9,8 +9,6 @@
     "core-models": "libs/core/models",
     "core-types": "libs/core/types",
     "core-utils": "libs/core/utils",
-    "frontend": "apps/frontend",
-    "frontend-e2e": "apps/frontend-e2e",
     "graphql-services": "libs/graphql-services",
     "mobile": "apps/mobile",
     "mobile-e2e": "apps/mobile-e2e",
