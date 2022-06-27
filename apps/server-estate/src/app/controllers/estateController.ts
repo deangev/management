@@ -45,7 +45,7 @@ export const updateEstate = catchAsync(async (req: UpdateEstateRequestType, res:
   const { id: estateID } = req.params
   const restrictedBody = restrictUpdate({ ...req.body }, ['address', 'floors', 'apartments'])
 
-  const buildAddressQuery = () => {
+  const getUpdateQuery = () => {
     const query = { '$set': {} }
 
     if (restrictedBody.address) {
@@ -62,7 +62,7 @@ export const updateEstate = catchAsync(async (req: UpdateEstateRequestType, res:
     return query
   }
 
-  const updatedEstate = await Estate.findOneAndUpdate({ '_id': estateID }, buildAddressQuery(), { new: true, runValidators: true })
+  const updatedEstate = await Estate.findOneAndUpdate({ '_id': estateID }, getUpdateQuery(), { new: true, runValidators: true })
   return res.status(200).json({updatedEstate})
 })
 
