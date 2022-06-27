@@ -1,5 +1,10 @@
 import { ESTATE_API_URL } from '@sagi/core/constants';
-import { AddressType, CreateEstateRequestType } from '@sagi/core/types';
+import {
+  AddressType,
+  CreateEstateRequestType,
+  EstateType,
+  GetEstateRequestType,
+} from '@sagi/core/types';
 import axios from 'axios';
 
 const http = axios.create({
@@ -12,10 +17,11 @@ export const getEstates = async (_, _authHeader) => {
   return data;
 };
 
-export const getEstate = async (estateId: string, _authHeader) => {
-  // TODO
-  // const { data } = await http.get(`/${estateId}`);
-  // return data;
+export const getEstate = async (
+  estateId: GetEstateRequestType['params']['id']
+) => {
+  const { data } = await http.get(`/${estateId}`);
+  return data?.estate;
 };
 
 export const createEstate = async (

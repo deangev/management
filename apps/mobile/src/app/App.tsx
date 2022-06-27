@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect } from 'react';
 import { useLazyQuery, useQuery } from '@apollo/client';
-import { EstatesQuery } from '@sagi/graphql-services';
+import { EstateQuery, EstatesQuery } from '@sagi/graphql-services';
 import {
   SafeAreaView,
   ScrollView,
@@ -14,12 +14,25 @@ import CreateEstate from './create-estate/create-estate';
 
 export const App = () => {
   const { data, refetch: getEstates } = useQuery(EstatesQuery);
+  const [getEstate, { data: estateData }] = useLazyQuery(EstateQuery);
+
+  useEffect(() => {
+    const getEstateData = async () => {
+      if (!data?.estatesData.hits) return;
+
+      await getEstate({
+        variables: { estateId: data?.estatesData.estates?.[0]._id },
+      });
+    };
+    getEstateData();
+  }, [data, getEstate]);
 
   return (
     <>
       <StatusBar barStyle="dark-content" />
       <SafeAreaView>
         <ScrollView contentInsetAdjustmentBehavior="automatic">
+          <Text>First Estate City: {estateData?.estateData?.address.city}</Text>
           <CreateEstate getEstates={getEstates} />
           <Text>
             {data?.estatesData.estates.map((estate: EstateType) => (
