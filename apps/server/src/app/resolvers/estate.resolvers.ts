@@ -12,7 +12,7 @@ const resolvers = {
     estateData: (_, args, ctx) => getEstate(args.estateId, ctx.authHeader),
   },
   Mutation: {
-    createEstate: (_, args, ctx) => createEstate(args.estateData, ctx.authHeader),
+    createEstate: (_, args, ctx) => createEstate(args.estateData),
     updateEstate: (_, args, ctx) => updateEstate(args.estateData, ctx.authHeader),
     deleteEstate: (_, args, ctx) => deleteEstate(args.estateId, ctx.authHeader),
   },

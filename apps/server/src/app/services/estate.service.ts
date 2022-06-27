@@ -1,4 +1,5 @@
 import { ESTATE_API_URL } from '@sagi/core/constants';
+import { AddressType, CreateEstateRequestType } from '@sagi/core/types';
 import axios from 'axios';
 
 const http = axios.create({
@@ -7,7 +8,7 @@ const http = axios.create({
 
 export const getEstates = async (_, _authHeader) => {
   const { data } = await http.get('/search');
-  
+
   return data;
 };
 
@@ -17,11 +18,25 @@ export const getEstate = async (estateId: string, _authHeader) => {
   // return data;
 };
 
-export const createEstate = async (estateData, _authHeader) => {
-  console.log(estateData);
+export const createEstate = async (
+  estateData: Pick<CreateEstateRequestType['body'], 'apartments' | 'floors'> &
+    AddressType
+) => {
+  const { city, street, number, entry, floors, apartments } = estateData || {};
+  const createPayload = {
+    address: {
+      city,
+      street,
+      number,
+      entry,
+    },
+    floors,
+    apartments,
+  };
 
-  // const { data } = await http.post('/', estateData);
-  // return data;
+  const { data } = await http.post('/', createPayload);
+
+  return data?.estate;
 };
 
 export const updateEstate = async (estateData, _authHeader) => {

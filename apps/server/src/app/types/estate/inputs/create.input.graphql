@@ -1,10 +1,8 @@
 input EstateCreateInput {
-  id: String!
   city: String!
   street: String!
-  number: String
-  floors: Int
-  apartments: Int
-  contacts: [String]
-  elevators: Int
+  number: Int!
+  entry: Int
+  floors: Int!
+  apartments: Int!
 }

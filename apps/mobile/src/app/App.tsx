@@ -1,5 +1,5 @@
-import React from 'react';
-import { useQuery } from '@apollo/client';
+import React, { useCallback, useEffect } from 'react';
+import { useLazyQuery, useQuery } from '@apollo/client';
 import { EstatesQuery } from '@sagi/graphql-services';
 import {
   SafeAreaView,
@@ -10,18 +10,20 @@ import {
   StyleSheet,
 } from 'react-native';
 import { EstateType } from '@sagi/core/types';
+import CreateEstate from './create-estate/create-estate';
 
 export const App = () => {
-  const { data } = useQuery(EstatesQuery);
+  const { data, refetch: getEstates } = useQuery(EstatesQuery);
 
   return (
     <>
       <StatusBar barStyle="dark-content" />
       <SafeAreaView>
         <ScrollView contentInsetAdjustmentBehavior="automatic">
+          <CreateEstate getEstates={getEstates} />
           <Text>
             {data?.estatesData.estates.map((estate: EstateType) => (
-              <View style={styles.estateContainer}>
+              <View key={estate._id} style={styles.estateContainer}>
                 <Text>{estate.address.city}</Text>
                 <Text>{estate.address.street}</Text>
                 <Text>{estate.address.number}</Text>
