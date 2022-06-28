@@ -11,6 +11,7 @@ import {
 } from 'react-native';
 import { EstateType } from '@sagi/core/types';
 import CreateEstate from './create-estate/create-estate';
+import UpdateEstate from './update-estate/update-estate';
 
 export const App = () => {
   const { data, refetch: getEstates } = useQuery(EstatesQuery);
@@ -34,6 +35,9 @@ export const App = () => {
         <ScrollView contentInsetAdjustmentBehavior="automatic">
           <Text>First Estate City: {estateData?.estateData?.address.city}</Text>
           <CreateEstate getEstates={getEstates} />
+          {data?.estatesData.estates[0] && (
+            <UpdateEstate getEstates={getEstates} estateId={data?.estatesData.estates[0]._id} />
+          )}
           <Text>
             {data?.estatesData.estates.map((estate: EstateType) => (
               <View key={estate._id} style={styles.estateContainer}>
