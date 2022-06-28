@@ -1,10 +1,9 @@
 input EstateUpdateInput {
-  id: String!
+  _id: String!
   city: String
   street: String
-  number: String
+  number: Int
+  entry: Int
   floors: Int
   apartments: Int
-  contacts: [String]
-  elevators: Int
 }
