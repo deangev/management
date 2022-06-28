@@ -2,8 +2,10 @@ import Estate from '../models/EstateModel'
 import { catchAsync, restrictUpdate } from '@sagi/core/utils';
 import { Request, Response } from 'express';
 import {
+  AddressType,
   CreateEstateRequestType,
   DeleteEstateRequestType,
+
   GetEstateRequestType,
   UpdateEstateRequestType
 } from '@sagi/core/types'
@@ -41,12 +43,27 @@ export const getEstate = catchAsync(async (req: GetEstateRequestType, res: Respo
 
 export const updateEstate = catchAsync(async (req: UpdateEstateRequestType, res: Response) => {
   const { id: estateID } = req.params
-  const restrictedBody = restrictUpdate({ ...req.body }, ['contacts', 'address', 'floors', 'apartments'])
+  const restrictedBody = restrictUpdate({ ...req.body }, ['address', 'floors', 'apartments'])
 
-  const updatedEstate = await Estate.findByIdAndUpdate(estateID, restrictedBody, { new: true, runValidators: true })
-  if (!updatedEstate) return res.status(400).json({ message: 'could not update document with the provided id' })
+  const getUpdateQuery = () => {
+    const query = { '$set': {} }
 
-  res.status(200).json({ updatedEstate })
+    if (restrictedBody.address) {
+      const address: any = restrictedBody.address
+      for (const k in address) {
+        const key = `address.${k}`
+        query['$set'] = { ...query['$set'], [key]: address[k] }
+      }
+    }
+
+    if (restrictedBody.apartments) query['$set'] = { ...query['$set'], 'apartments': restrictedBody.apartments }
+    if (restrictedBody.floors) query['$set'] = { ...query['$set'], 'floors': restrictedBody.floors }
+
+    return query
+  }
+
+  const updatedEstate = await Estate.findOneAndUpdate({ '_id': estateID }, getUpdateQuery(), { new: true, runValidators: true })
+  return res.status(200).json({updatedEstate})
 })
 
 export const deleteEstate = catchAsync(async (req: DeleteEstateRequestType, res: Response) => {
