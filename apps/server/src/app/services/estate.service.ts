@@ -4,7 +4,9 @@ import {
   CreateEstateRequestType,
   EstateType,
   GetEstateRequestType,
+  UpdateEstateRequestType,
 } from '@sagi/core/types';
+import { deleteEmptyKeys, isEmpty } from '@sagi/core/utils';
 import axios from 'axios';
 
 const http = axios.create({
@@ -45,12 +47,30 @@ export const createEstate = async (
   return data?.estate;
 };
 
-export const updateEstate = async (estateData, _authHeader) => {
-  const { data } = await http.put('/', estateData);
-  return data;
+export const updateEstate = async (estateData: UpdateEstateType) => {
+  const { floors, apartments, contacts, _id, city, number, street, entry } =
+    estateData || {};
+  const updatePayload: Partial<UpdateEstateRequestType['body']> = {};
+
+  if (!isEmpty(floors)) updatePayload.floors = floors;
+  if (!isEmpty(apartments)) updatePayload.apartments = apartments;
+  if (!isEmpty(contacts)) updatePayload.contacts = contacts;
+
+  const address = deleteEmptyKeys({ city, number, street, entry });
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  //@ts-ignore
+  if (!isEmpty(address)) updatePayload.address = address;
+
+  const { data } = await http.put(`/${_id}`, updatePayload);
+  return data.updatedEstate;
 };
 
-export const deleteEstate = async (estateId: string, _authHeader) => {
+export const deleteEstate = async (estateId: string) => {
   const { data } = await http.put('/', estateId);
   return data;
 };
+
+type UpdateEstateType = Pick<
+  UpdateEstateRequestType['body'],
+  'apartments' | 'floors' | 'contacts'
+> & { _id: string } & AddressType;

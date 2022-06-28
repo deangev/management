@@ -41,7 +41,7 @@ export const getEstate = catchAsync(async (req: GetEstateRequestType, res: Respo
 
 export const updateEstate = catchAsync(async (req: UpdateEstateRequestType, res: Response) => {
   const { id: estateID } = req.params
-  const restrictedBody = restrictUpdate({ ...req.body }, ['contacts', 'address'])
+  const restrictedBody = restrictUpdate({ ...req.body }, ['contacts', 'address', 'floors', 'apartments'])
 
   const updatedEstate = await Estate.findByIdAndUpdate(estateID, restrictedBody, { new: true, runValidators: true })
   if (!updatedEstate) return res.status(400).json({ message: 'could not update document with the provided id' })

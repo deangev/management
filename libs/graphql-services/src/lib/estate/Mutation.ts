@@ -34,33 +34,34 @@ export const createEstateMutation = gql`
 
 export const updateEstateMutation = gql`
   mutation UpdateEstate(
-    $city: String!
-    $street: String!
-    $number: String
+    $_id: String!
+    $city: String
+    $street: String
+    $number: Int
+    $entry: Int
     $floors: Int
     $apartments: Int
-    $contacts: [String]
-    $elevators: Int
   ) {
     updateEstate(
       estateData: {
+        _id: $_id
         city: $city
         street: $street
         number: $number
+        entry: $entry
         floors: $floors
         apartments: $apartments
-        contacts: $contacts
-        elevators: $elevators
       }
     ) {
-      id
-      city
-      street
-      number
+      _id
+      address {
+        city
+        street
+        number
+        entry
+      }
       floors
       apartments
-      contacts
-      elevators
     }
   }
 `;
