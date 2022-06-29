@@ -1,6 +1,8 @@
 import React from 'react';
-import { Estate, Estates, Home } from '@sagi/pages';
 import { routes } from '@sagi/core/routes';
+import { Home } from '@sagi/pages/home';
+import { Estates } from '@sagi/pages/estates';
+import { Estate } from '@sagi/pages/estate';
 
 const routesComponentsDictinary = {
   home: Home,

@@ -14,7 +14,9 @@
     "graphql-services": "libs/graphql-services",
     "mobile": "apps/mobile",
     "mobile-e2e": "apps/mobile-e2e",
-    "pages": "libs/pages",
+    "pages-estate": "libs/pages/estate",
+    "pages-estates": "libs/pages/estates",
+    "pages-home": "libs/pages/home",
     "server": "apps/server",
     "server-estate": "apps/server-estate",
     "server-maintenance": "apps/server-maintenance"
