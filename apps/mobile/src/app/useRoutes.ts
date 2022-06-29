@@ -1,16 +1,28 @@
 import React from 'react';
 import { Estate, Estates, Home } from '@sagi/pages';
+import { routes } from '@sagi/core/routes';
 
-const routes = [
-  { name: 'Home', component: Home },
-  { name: 'Estates', component: Estates },
-  { name: 'Estate', component: Estate },
-];
-
-// maybe later the routes will come from distinct lib, and we should do ingestion to the routes from here
+const routesComponentsDictinary = {
+  home: Home,
+  estates: Estates,
+  estate: Estate,
+  maintenance: Estate,
+  'service-calls': Estate,
+  reports: Estate,
+  employees: Estate,
+  suppliers: Estate,
+  'daily-schedule': Estate,
+};
 
 const useRoutes = () => {
-  return routes;
+  const ingestedRoutes = routes.map((route) => ({
+    ...route,
+    component:
+      routesComponentsDictinary[
+        route.name as keyof typeof routesComponentsDictinary
+      ],
+  }));
+  return ingestedRoutes;
 };
 
 export default useRoutes;

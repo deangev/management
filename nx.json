@@ -15,12 +15,7 @@
     "default": {
       "runner": "@nrwl/nx-cloud",
       "options": {
-        "cacheableOperations": [
-          "build",
-          "lint",
-          "test",
-          "e2e"
-        ],
+        "cacheableOperations": ["build", "lint", "test", "e2e"],
         "accessToken": "OWY1OTYwNzAtYTI3Zi00MDE3LTgyMWEtMDkyZTE1MzYxYjVlfHJlYWQtd3JpdGU="
       }
     }
@@ -47,6 +42,12 @@
       "library": {
         "style": "none",
         "linter": "eslint"
+      }
+    },
+    "@nrwl/react-native": {
+      "component": {
+        "style": "none",
+        "pascalCaseFiles": true
       }
     }
   },

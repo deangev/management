@@ -1,6 +1,6 @@
 import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { StatusBar } from 'react-native';
+import { StatusBar, StyleSheet, View } from 'react-native';
 import useRoutes from './useRoutes';
 
 const Stack = createNativeStackNavigator();
@@ -11,12 +11,13 @@ export const App = () => {
   return (
     <>
       <StatusBar barStyle="dark-content" />
-      <Stack.Navigator initialRouteName={'Estates'}>
+      <Stack.Navigator initialRouteName={'home'}>
         {routes.map((route) => (
           <Stack.Screen
             key={route.name}
             name={route.name}
             component={route.component}
+            options={{ title: route.title }}
           />
         ))}
       </Stack.Navigator>

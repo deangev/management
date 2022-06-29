@@ -1,6 +1,6 @@
 {
   "$schema": "../../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "libs/core/components/src",
+  "sourceRoot": "libs/core/routes/src",
   "projectType": "library",
   "tags": [],
   "targets": {
@@ -8,14 +8,14 @@
       "executor": "@nrwl/linter:eslint",
       "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": ["libs/core/components/**/*.{ts,tsx,js,jsx}"]
+        "lintFilePatterns": ["libs/core/routes/**/*.{ts,tsx,js,jsx}"]
       }
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/libs/core/components"],
+      "outputs": ["coverage/libs/core/routes"],
       "options": {
-        "jestConfig": "libs/core/components/jest.config.ts",
+        "jestConfig": "libs/core/routes/jest.config.ts",
         "passWithNoTests": true
       }
     }
