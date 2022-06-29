@@ -1,61 +1,27 @@
-import React, { useCallback, useEffect } from 'react';
-import { useLazyQuery, useQuery } from '@apollo/client';
-import { EstateQuery, EstatesQuery } from '@sagi/graphql-services';
-import {
-  SafeAreaView,
-  ScrollView,
-  Text,
-  StatusBar,
-  View,
-  StyleSheet,
-} from 'react-native';
-import { EstateType } from '@sagi/core/types';
-import CreateEstate from './create-estate/create-estate';
-import UpdateEstate from './update-estate/update-estate';
+import React from 'react';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { StatusBar } from 'react-native';
+import useRoutes from './useRoutes';
+
+const Stack = createNativeStackNavigator();
 
 export const App = () => {
-  const { data, refetch: getEstates } = useQuery(EstatesQuery);
-  const [getEstate, { data: estateData }] = useLazyQuery(EstateQuery);
-
-  useEffect(() => {
-    const getEstateData = async () => {
-      if (!data?.estatesData.hits) return;
-
-      await getEstate({
-        variables: { estateId: data?.estatesData.estates?.[0]._id },
-      });
-    };
-    getEstateData();
-  }, [data, getEstate]);
+  const routes = useRoutes();
 
   return (
     <>
       <StatusBar barStyle="dark-content" />
-      <SafeAreaView>
-        <ScrollView contentInsetAdjustmentBehavior="automatic">
-          <Text>First Estate City: {estateData?.estateData?.address.city}</Text>
-          <CreateEstate getEstates={getEstates} />
-          {data?.estatesData.estates[0] && (
-            <UpdateEstate getEstates={getEstates} estateId={data?.estatesData.estates[0]._id} />
-          )}
-          <Text>
-            {data?.estatesData.estates.map((estate: EstateType) => (
-              <View key={estate._id} style={styles.estateContainer}>
-                <Text>{estate.address.city}</Text>
-                <Text>{estate.address.street}</Text>
-                <Text>{estate.address.number}</Text>
-              </View>
-            ))}
-          </Text>
-        </ScrollView>
-      </SafeAreaView>
+      <Stack.Navigator initialRouteName={'Estates'}>
+        {routes.map((route) => (
+          <Stack.Screen
+            key={route.name}
+            name={route.name}
+            component={route.component}
+          />
+        ))}
+      </Stack.Navigator>
     </>
   );
 };
 
-const styles = StyleSheet.create({
-  estateContainer: {
-    padding: 20,
-  },
-});
 export default App;

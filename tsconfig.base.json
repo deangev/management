@@ -22,7 +22,8 @@
       "@sagi/core/models": ["libs/core/models/src/index.ts"],
       "@sagi/core/types": ["libs/core/types/src/index.ts"],
       "@sagi/core/utils": ["libs/core/utils/src/index.ts"],
-      "@sagi/graphql-services": ["libs/graphql-services/src/index.ts"]
+      "@sagi/graphql-services": ["libs/graphql-services/src/index.ts"],
+      "@sagi/pages": ["libs/pages/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

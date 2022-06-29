@@ -11,6 +11,10 @@
     "react-native-svg": "*",
     "@react-native-async-storage/async-storage": "*",
     "@apollo/client": "*",
-    "express": "*"
+    "express": "*",
+    "@react-navigation/native-stack": "*",
+    "@react-navigation/native": "*",
+    "react-native-screens": "*",
+    "react-native-safe-area-context": "*"
   }
 }
