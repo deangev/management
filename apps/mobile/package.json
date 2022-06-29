@@ -15,6 +15,7 @@
     "@react-navigation/native-stack": "*",
     "@react-navigation/native": "*",
     "react-native-screens": "*",
-    "react-native-safe-area-context": "*"
+    "react-native-safe-area-context": "*",
+    "react-native-vector-icons": "*"
   }
 }

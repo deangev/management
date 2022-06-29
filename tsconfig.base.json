@@ -16,14 +16,18 @@
     "baseUrl": ".",
     "paths": {
       "@sagi/core/assets": ["libs/core/assets/src/index.ts"],
-      "@sagi/core/components": ["libs/core/components/src/index.ts"],
       "@sagi/core/constants": ["libs/core/constants/src/index.ts"],
+      "@sagi/core/icons": ["libs/core/icons/src/index.ts"],
       "@sagi/core/middleware": ["libs/core/middleware/src/index.ts"],
       "@sagi/core/models": ["libs/core/models/src/index.ts"],
+      "@sagi/core/routes": ["libs/core/routes/src/index.ts"],
       "@sagi/core/types": ["libs/core/types/src/index.ts"],
+      "@sagi/core/ui-components": ["libs/core/ui-components/src/index.ts"],
       "@sagi/core/utils": ["libs/core/utils/src/index.ts"],
       "@sagi/graphql-services": ["libs/graphql-services/src/index.ts"],
-      "@sagi/pages": ["libs/pages/src/index.ts"]
+      "@sagi/pages/estate": ["libs/pages/estate/src/index.ts"],
+      "@sagi/pages/estates": ["libs/pages/estates/src/index.ts"],
+      "@sagi/pages/home": ["libs/pages/home/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
