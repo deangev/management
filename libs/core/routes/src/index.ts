@@ -15,7 +15,6 @@ const routes = [
   {
     name: 'maintenance',
     title: 'תחזוקה',
-    icon: 'maintenance',
   },
   {
     name: 'service-calls',

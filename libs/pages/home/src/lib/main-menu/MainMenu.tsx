@@ -15,7 +15,7 @@ export function MainMenu(props: MainMenuProps) {
   return (
     <View style={style.container}>
       {navigationRoutes.map(({ name, title, icon }) => (
-        <MainMenuItem key={name} title={title} icon={icon} />
+        <MainMenuItem key={name} name={name} title={title} icon={icon} />
       ))}
     </View>
   );

@@ -1,16 +1,23 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { IconType } from '@sagi/core/icons';
 import { Icon } from '@sagi/core/ui-components';
+import { useNavigation } from '@react-navigation/native';
 
 export interface MainMenuItemProps {
+  name: any;
   title: string;
   icon: IconType;
 }
 
-export function MainMenuItem({ title, icon }: MainMenuItemProps) {
+export function MainMenuItem({ name, title, icon }: MainMenuItemProps) {
+  const navigation = useNavigation();
+  const handlePress = useCallback(() => {
+    navigation.navigate(name);
+  }, []);
+
   return (
-    <TouchableOpacity style={style.container}>
+    <TouchableOpacity style={style.container} onPress={handlePress}>
       <Text>
         <Icon icon={icon} size={40} />
       </Text>
