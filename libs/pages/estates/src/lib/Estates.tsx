@@ -1,47 +1,55 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useEffect, useLayoutEffect } from 'react';
 import { useQuery } from '@apollo/client';
 import { EstateType } from '@sagi/core/types';
 import { EstatesQuery } from '@sagi/graphql-services';
-import { NavigationProp, ParamListBase } from '@react-navigation/native';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import { View, VirtualizedList, Button } from 'react-native';
+import EstatesItem from './estates-item/EstatesItem';
 
-export interface EstatesProps {
-  navigation: NavigationProp<ParamListBase>;
-}
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+interface EstatesProps {}
 
-export function Estates({ navigation }: EstatesProps) {
-  const { data } = useQuery(EstatesQuery);
+export function Estates(props: EstatesProps) {
+  const { data, refetch } = useQuery(EstatesQuery, { fetchPolicy: 'no-cache' });
+  const navigation = useNavigation();
 
-  const handleEstatePress = useCallback(
-    (estateId: string) => {
-      navigation.navigate('Estate', {
-        estateId,
-      });
-    },
-    [navigation]
-  );
+  const handleAddPress = useCallback(() => {
+    //@ts-ignore
+    navigation.navigate('estate-form');
+  }, [navigation]);
+
+  useEffect(() => {
+    const unsubscribe = navigation.addListener('focus', () => {
+      if (refetch) {
+        refetch();
+      }
+    });
+
+    return unsubscribe;
+  }, [navigation, refetch]);
 
   return (
     <View>
-      {data?.estatesData.estates.map((estate: EstateType) => (
-        <TouchableOpacity
-          key={estate._id}
-          onPress={() => handleEstatePress(estate._id)}
-          style={styles.estateContainer}
-        >
-          <Text>{estate.address.city}</Text>
-          <Text>{estate.address.street}</Text>
-          <Text>{estate.address.number}</Text>
-        </TouchableOpacity>
-      ))}
+      <Button onPress={handleAddPress} title="הוסף בניין חדש" />
+      {!!data?.estatesData.estates && (
+        <VirtualizedList
+          data={data.estatesData.estates as EstateType[]}
+          initialNumToRender={4}
+          renderItem={({ item, index }) => (
+            <EstatesItem item={item} index={index} />
+          )}
+          keyExtractor={(item) => item.key}
+          getItemCount={(data) => data.length}
+          getItem={getItem}
+        />
+      )}
     </View>
   );
 }
 
-const styles = StyleSheet.create({
-  estateContainer: {
-    padding: 20,
-  },
+const getItem = (data: EstateType[], index: number) => ({
+  key: Math.random().toString(12).substring(0),
+  estate: data[index],
 });
 
 export default Estates;

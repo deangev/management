@@ -1,11 +1,11 @@
 import React from 'react';
 import { render } from '@testing-library/react-native';
 
-import CreateEstate from './create-estate';
+import EstateForm from './EstateForm';
 
-describe('CreateEstate', () => {
+describe('EstateForm', () => {
   it('should render successfully', () => {
-    const { container } = render(<CreateEstate />);
+    const { container } = render(<EstateForm />);
     expect(container).toBeTruthy();
   });
 });

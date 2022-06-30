@@ -2,12 +2,13 @@ import React from 'react';
 import { routes } from '@sagi/core/routes';
 import { Home } from '@sagi/pages/home';
 import { Estates } from '@sagi/pages/estates';
-import { Estate } from '@sagi/pages/estate';
+import { Estate, EstateForm } from '@sagi/pages/estate';
 
 const routesComponentsDictinary = {
   home: Home,
   estates: Estates,
   estate: Estate,
+  'estate-form': EstateForm,
   maintenance: Estate,
   'service-calls': Estate,
   reports: Estate,

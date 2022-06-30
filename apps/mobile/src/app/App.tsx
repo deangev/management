@@ -1,6 +1,6 @@
 import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { StatusBar, StyleSheet, View } from 'react-native';
+import { StatusBar } from 'react-native';
 import useRoutes from './useRoutes';
 
 const Stack = createNativeStackNavigator();
