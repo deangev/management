@@ -18,6 +18,7 @@
     "react-native-safe-area-context": "*",
     "react-native-vector-icons": "*",
     "@testing-library/react": "*",
-    "native-base": "*"
+    "native-base": "*",
+    "react-native-gesture-handler": "*"
   }
 }
