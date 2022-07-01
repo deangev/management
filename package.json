@@ -11,6 +11,9 @@
     "ios": "nx run mobile:run-ios",
     "debug": "open 'rndebugger://set-debugger-loc?host=localhost&port=19001'"
   },
+  "resolutions": {
+    "react-devtools-core": "4.14.0"
+  },
   "private": true,
   "dependencies": {
     "@apollo/client": "^3.6.8",
