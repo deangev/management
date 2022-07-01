@@ -4,17 +4,19 @@ import { Home } from '@sagi/pages/home';
 import { Estates } from '@sagi/pages/estates';
 import { Estate, EstateForm } from '@sagi/pages/estate';
 import { ServiceCalls } from '@sagi/pages/service-calls';
+import { ServiceCallCreateForm } from '@sagi/pages/service-calls'
 
-const routesComponentsDictinary = {
-  home: Home,
-  estates: Estates,
-  estate: Estate,
+const routesComponentsDictionary = {
+  'home': Home,
+  'estates': Estates,
+  'estate': Estate,
   'estate-form': EstateForm,
-  maintenance: EstateForm,
+  'maintenance': EstateForm,
   'service-calls': ServiceCalls,
-  reports: EstateForm,
-  employees: EstateForm,
-  suppliers: EstateForm,
+  'service-call-create-form': ServiceCallCreateForm,
+  'reports': EstateForm,
+  'employees': EstateForm,
+  'suppliers': EstateForm,
   'daily-schedule': EstateForm,
 };
 
@@ -22,8 +24,8 @@ const useRoutes = () => {
   const ingestedRoutes = routes.map((route) => ({
     ...route,
     component:
-      routesComponentsDictinary[
-        route.name as keyof typeof routesComponentsDictinary
+      routesComponentsDictionary[
+      route.name as keyof typeof routesComponentsDictionary
       ],
   }));
   return ingestedRoutes;
