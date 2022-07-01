@@ -4,7 +4,7 @@
   "license": "MIT",
   "scripts": {
     "start": "nx serve",
-    "start-server": "nx run-many --target=serve --projects=server,server-estate",
+    "start-server": "nx run-many --target=serve --projects=server,server-estate,server-service-calls",
     "build": "nx build",
     "test": "nx test",
     "mobile": "nx run mobile:run-android",

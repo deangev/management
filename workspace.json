@@ -17,8 +17,10 @@
     "pages-estate": "libs/pages/estate",
     "pages-estates": "libs/pages/estates",
     "pages-home": "libs/pages/home",
+    "pages-service-calls": "libs/pages/service-calls",
     "server": "apps/server",
     "server-estate": "apps/server-estate",
-    "server-maintenance": "apps/server-maintenance"
+    "server-maintenance": "apps/server-maintenance",
+    "server-service-calls": "apps/server-service-calls"
   }
 }

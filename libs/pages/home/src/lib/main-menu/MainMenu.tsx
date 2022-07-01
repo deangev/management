@@ -9,7 +9,7 @@ export interface MainMenuProps {}
 
 export function MainMenu(props: MainMenuProps) {
   const navigationRoutes = routes.filter(
-    (route) => !!route.icon
+    (route) => route.enableMainMenu
   ) as MainMenuType[];
 
   return (

@@ -27,7 +27,8 @@
       "@sagi/graphql-services": ["libs/graphql-services/src/index.ts"],
       "@sagi/pages/estate": ["libs/pages/estate/src/index.ts"],
       "@sagi/pages/estates": ["libs/pages/estates/src/index.ts"],
-      "@sagi/pages/home": ["libs/pages/home/src/index.ts"]
+      "@sagi/pages/home": ["libs/pages/home/src/index.ts"],
+      "@sagi/pages/service-calls": ["libs/pages/service-calls/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
