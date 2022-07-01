@@ -18,6 +18,7 @@ export const createServiceCall = async (serviceCallData: ServiceCallDataType) =>
         destination
     }
 
-    const { data } = await http.post('/', createPayload)
-    return data?.serviceCall
+    const {data} = await http.post('/', createPayload)
+    return data?.ServiceCall
+    
 };
