@@ -1,7 +1,7 @@
 export interface ServiceCallType {
   _id: string;
   estateId: string;
-  apartment: number;
+  apartment?: number;
   description: string;
   destination: string;
   priority: 'medium' | 'high';
