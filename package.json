@@ -7,7 +7,8 @@
     "start-server": "nx run-many --target=serve --projects=server,server-estate,server-service-calls",
     "build": "nx build",
     "test": "nx test",
-    "mobile": "nx run mobile:run-android",
+    "android": "nx run mobile:run-android",
+    "ios": "nx run mobile:run-ios",
     "debug": "open 'rndebugger://set-debugger-loc?host=localhost&port=19001'"
   },
   "private": true,
