@@ -36,20 +36,9 @@ export const createServiceCall = catchAsync(
       type,
     } = req.body;
 
-    if (!estateId) {
-      return res.status(400).json({ message: 'please provide an assignee' });
-    }
-    if (!apartment) {
-      return res.status(400).json({ message: 'please provide an assignee' });
-    }
-
-    if (!description) {
-      return res.status(400).json({ message: 'please provide a description' });
-    }
-
-    if (!destination) {
-      return res.status(400).json({ message: 'please provide a destination' });
-    }
+    if (!estateId) return res.status(400).json({ message: 'please provide an estate ID' });
+    if (!description) return res.status(400).json({ message: 'please provide a description' });
+    if (!destination) return res.status(400).json({ message: 'please provide a destination' });
 
     const newServiceCall = await ServiceCall.create({
       estateId,
