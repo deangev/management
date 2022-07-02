@@ -14,7 +14,7 @@ import EstateMenu from './estate-menu/EstateMenu';
 /* eslint-disable-next-line */
 export interface EstateProps {
   route: {
-    params: { estateId: string };
+    params: { estateID: string };
   };
 }
 
@@ -24,7 +24,7 @@ interface QueryType {
 
 export function Estate({ route }: EstateProps) {
   const { data } = useQuery<QueryType>(EstateQuery, {
-    variables: { estateId: route.params.estateId },
+    variables: { estateID: route.params.estateID },
   });
   const navigation = useNavigation();
 

@@ -67,7 +67,7 @@ export const updateEstateMutation = gql`
 `;
 
 export const deleteEstateMutation = gql`
-  mutation DeleteEstate($estateId: String!) {
-    deleteEstate(estateId: $estateId)
+  mutation DeleteEstate($estateID: String!) {
+    deleteEstate(estateID: $estateID)
   }
 `;

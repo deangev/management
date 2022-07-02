@@ -12,16 +12,16 @@ import {
 
 /* eslint-disable-next-line */
 export interface UpdateEstateProps {
-  estateId: string;
+  estateID: string;
   getEstates: () => void;
 }
 
-export function UpdateEstate({ estateId, getEstates }: UpdateEstateProps) {
+export function UpdateEstate({ estateID, getEstates }: UpdateEstateProps) {
   const [updateEstate] = useMutation(updateEstateMutation);
   const [city, setCity] = useState('');
 
   const handleUpdateEstate = async () => {
-    await updateEstate({ variables: { _id: estateId, city } });
+    await updateEstate({ variables: { _id: estateID, city } });
     await getEstates();
   };
 
