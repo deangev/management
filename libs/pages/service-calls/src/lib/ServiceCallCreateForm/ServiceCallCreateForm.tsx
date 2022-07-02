@@ -20,7 +20,6 @@ export default function ServiceCallCreateForm(props: ServiceCallCreateFormProps)
     try {
       const payload = {
         estateId: '62b5f51b4360c66ccd4b860e',
-        type: '',
         description,
         destination
       }
