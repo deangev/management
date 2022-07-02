@@ -20,10 +20,10 @@ export function EstatesItem({
 }: EstatesItemProps) {
   const navigation = useNavigation();
   const handleEstatePress = useCallback(
-    (estateId: string) => {
+    (estateID: string) => {
       //@ts-ignore
       navigation.navigate('estate', {
-        estateId,
+        estateID,
       });
     },
     [navigation]

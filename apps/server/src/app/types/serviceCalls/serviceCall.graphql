@@ -1,6 +1,6 @@
 type ServiceCall {
   _id: String!
-  estateId: String!
+  estateID: String!
   apartment: Int
   description: String!
   destination: String!

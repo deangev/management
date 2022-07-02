@@ -1,5 +1,5 @@
 export interface ElevatorDataType {
-  estateId: string;
+  estateID: string;
   room_location: string;
   switch_location: string;
   engineer: EngineerType;

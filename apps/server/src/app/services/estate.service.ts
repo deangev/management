@@ -23,9 +23,9 @@ export const getEstates = async (_, _authHeader) => {
 };
 
 export const getEstate = async (
-  estateId: GetEstateRequestType['params']['id']
+  estateID: GetEstateRequestType['params']['id']
 ) => {
-  const { data } = await http.get(`/${estateId}`);
+  const { data } = await http.get(`/${estateID}`);
   return data?.estate;
 };
 
@@ -68,8 +68,8 @@ export const updateEstate = async (estateData: UpdateEstateType) => {
   return data.updatedEstate;
 };
 
-export const deleteEstate = async (estateId: string) => {
-  const { data } = await http.put('/', estateId);
+export const deleteEstate = async (estateID: string) => {
+  const { data } = await http.put('/', estateID);
   return data;
 };
 
