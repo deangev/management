@@ -1,11 +1,11 @@
 import React from 'react';
-import { routes } from '@sagi/core/routes';
-import { Home } from '@sagi/pages/home';
-import { Estates } from '@sagi/pages/estates';
-import { Estate, EstateForm } from '@sagi/pages/estate';
-import { ServiceCalls } from '@sagi/pages/service-calls';
+import { routes } from '@management/core/routes';
+import { Home } from '@management/pages/home';
+import { Estates } from '@management/pages/estates';
+import { Estate, EstateForm } from '@management/pages/estate';
+import { ServiceCalls } from '@management/pages/service-calls';
 
-const routesComponentsDictinary = {
+const routesComponentsDictionary = {
   home: Home,
   estates: Estates,
   estate: Estate,
@@ -22,8 +22,8 @@ const useRoutes = () => {
   const ingestedRoutes = routes.map((route) => ({
     ...route,
     component:
-      routesComponentsDictinary[
-        route.name as keyof typeof routesComponentsDictinary
+      routesComponentsDictionary[
+        route.name as keyof typeof routesComponentsDictionary
       ],
   }));
   return ingestedRoutes;

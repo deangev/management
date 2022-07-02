@@ -1,11 +1,11 @@
 import { useMutation } from '@apollo/client';
 import { useNavigation } from '@react-navigation/native';
-import { EstateType } from '@sagi/core/types';
-import { getChangedFields } from '@sagi/core/utils';
+import { EstateType } from '@management/core/types';
+import { getChangedFields } from '@management/core/utils';
 import {
   createEstateMutation,
   updateEstateMutation,
-} from '@sagi/graphql-services';
+} from '@management/graphql-services';
 import React, { useLayoutEffect, useReducer, useState } from 'react';
 
 import {

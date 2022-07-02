@@ -1,5 +1,5 @@
 import { useMutation } from '@apollo/client';
-import { updateEstateMutation } from '@sagi/graphql-services';
+import { updateEstateMutation } from '@management/graphql-services';
 import React, { useCallback, useState } from 'react';
 
 import {

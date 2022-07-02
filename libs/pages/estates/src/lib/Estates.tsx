@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useLayoutEffect } from 'react';
 import { useQuery } from '@apollo/client';
-import { EstateType } from '@sagi/core/types';
-import { EstatesQuery } from '@sagi/graphql-services';
+import { EstateType } from '@management/core/types';
+import { EstatesQuery } from '@management/graphql-services';
 import { useNavigation } from '@react-navigation/native';
 import { View, VirtualizedList, Button } from 'react-native';
 import EstatesItem from './estates-item/EstatesItem';

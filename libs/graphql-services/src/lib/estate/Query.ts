@@ -1,8 +1,8 @@
 import { gql } from '@apollo/client';
 
 export const EstatesQuery = gql`
-  query Estates {
-    estatesData {
+  query Estates($dsa: String!) {
+    estatesData(dsa: $dsa) {
       estates {
         _id
         address {

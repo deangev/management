@@ -1,11 +1,11 @@
-import { ESTATE_API_URL } from '@sagi/core/constants';
+import { ESTATE_API_URL } from '@management/core/constants';
 import {
   AddressType,
   CreateEstateRequestType,
   GetEstateRequestType,
   UpdateEstateRequestType,
-} from '@sagi/core/types';
-import { deleteEmptyKeys, isEmpty } from '@sagi/core/utils';
+} from '@management/core/types';
+import { deleteEmptyKeys, isEmpty } from '@management/core/utils';
 import axios from 'axios';
 
 const http = axios.create({
@@ -13,9 +13,13 @@ const http = axios.create({
 });
 
 export const getEstates = async (_, _authHeader) => {
-  const { data } = await http.get('/search');
+  try {
+    const { data } = await http.get('/search');
 
-  return data;
+    return data;
+  } catch (err) {
+    console.log(err);
+  }
 };
 
 export const getEstate = async (

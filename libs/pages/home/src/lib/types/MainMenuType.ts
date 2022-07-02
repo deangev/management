@@ -1,4 +1,4 @@
-import { IconType } from '@sagi/core/icons';
+import { IconType } from '@management/core/icons';
 
 export interface MainMenuType {
   name: string;

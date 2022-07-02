@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react';
-import { IconType } from '@sagi/core/icons';
-import { MenuIconItem } from '@sagi/core/ui-components';
+import { IconType } from '@management/core/icons';
+import { MenuIconItem } from '@management/core/ui-components';
 import { useNavigation } from '@react-navigation/native';
 
 export interface MainMenuItemProps {

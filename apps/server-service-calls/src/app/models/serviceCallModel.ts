@@ -1,16 +1,11 @@
-import { model, Schema, Types } from 'mongoose';
-import { Modify, ServiceCallType } from '@sagi/core/types';
+import { model, Schema } from 'mongoose';
+import { ServiceCallType } from '@management/core/types';
 
-type ServiceCall = Modify<ServiceCallType, {
-    estateId: Types.ObjectId;
-}>;
-
-const serviceCallSchema = new Schema<ServiceCall>(
+const serviceCallSchema = new Schema<ServiceCallType>(
   {
-    estateId: {
-      type: Schema.Types.ObjectId,
+    estateID: {
+      type: String,
       required: [true, 'Estate must be provided'],
-      ref: 'Estate'
     },
     apartment: {
       type: Number,
@@ -29,7 +24,7 @@ const serviceCallSchema = new Schema<ServiceCall>(
     },
     assignee: {
       type: String,
-      default: 'שגיא'
+      default: 'שגיא',
     },
     note: { type: String },
     type: { type: String, default: 'maintenance' },
