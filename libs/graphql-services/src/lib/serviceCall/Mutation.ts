@@ -24,5 +24,4 @@ export const createServiceCallMutation = gql`
       type
       images
     }
-  }
-`;
+  }`

@@ -8,5 +8,7 @@ type ServiceCall {
   assignee: String
   note: String
   type: String
-  images: [String]
+  images: [String!]
+  updatedAt: String
+  createdAt: String
 }
