@@ -10,7 +10,12 @@ import {
 } from '@sagi/core/types';
 
 export const searchEstates = catchAsync(async (req: Request, res: Response) => {
-  const estates = await Estate.find();
+  const requestQuery = { ...req.query }
+  const excludeFields = ['page', 'sort', 'limit', 'fields']
+  excludeFields.forEach(f => delete requestQuery[f])
+
+  const estates = await Estate.find(requestQuery);
+
   if (!estates) throw getErrorResponse(400, 'estates not found');
 
   res.status(200).json({ hits: estates.length, estates });
