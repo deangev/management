@@ -1,7 +1,7 @@
+import React from 'react';
 import { ServiceCallType } from '@management/core/types';
 import { Icon } from '@management/core/ui-components';
 import { Box } from 'native-base';
-import React from 'react';
 
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 
@@ -12,8 +12,9 @@ export interface ServiceCallListItemProps {
 }
 
 export function ServiceCallListItem(props: ServiceCallListItemProps) {
-  const { item: { serviceCall: { _id, type, description } }, index } = props
+  const { item: { serviceCall }, index } = props
   return (
+    serviceCall &&
     <TouchableOpacity
       key={index}
       onPress={() => { }}
@@ -38,7 +39,7 @@ export function ServiceCallListItem(props: ServiceCallListItemProps) {
       >
         <Icon icon="service" size={30} />
         <Text style={{ paddingLeft: 10 }}>
-          {type} {description}
+          {serviceCall.type} {serviceCall.description}
         </Text>
       </Box>
     </TouchableOpacity>

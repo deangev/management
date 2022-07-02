@@ -38,17 +38,19 @@ export default function ServiceCalls(props: ServiceCallsProps) {
 
   return (
     <View>
-      <VirtualizedList
-        data={data.serviceCallsData.serviceCalls as ServiceCallType[]}
-        initialNumToRender={4}
-        renderItem={({ item, index }) => (
-          <ServiceCallListItem item={item} index={index} />
-        )}
-        keyExtractor={(item) => item.key}
-        getItemCount={(data) => data.length}
-        getItem={getItem}
-      />
       <Button onPress={handleCreateServiceCallPress} title="צור קריאת שירות" />
+      {!!data?.serviceCallsData.serviceCalls && (
+        <VirtualizedList
+          data={data.serviceCallsData.serviceCalls as ServiceCallType[]}
+          initialNumToRender={4}
+          renderItem={({ item, index }) => (
+            <ServiceCallListItem item={item} index={index} />
+          )}
+          keyExtractor={(item) => item.key}
+          getItemCount={(data) => data.length}
+          getItem={getItem}
+        />
+      )}
     </View>
   )
 }

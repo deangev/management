@@ -13,8 +13,6 @@ export const ServiceCallsQuery = gql`
         assignee
         note
         type
-        updatedAt
-        createdAt
       }
       hits
     }
