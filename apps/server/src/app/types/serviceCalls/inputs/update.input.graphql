@@ -1,0 +1,12 @@
+input ServiceCallUpdateInput {
+    _id: String!
+    estateID: String
+    apartment: Int
+    assignee: String
+    description: String
+    destination: String
+    images: [String!]
+    note: String
+    priority: String
+    type: String
+}
