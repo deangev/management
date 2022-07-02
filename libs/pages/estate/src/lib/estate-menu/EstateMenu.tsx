@@ -7,12 +7,16 @@ import React, { useCallback, useMemo } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 
 /* eslint-disable-next-line */
-export interface EstateMenuProps {}
+export interface EstateMenuProps {
+  estateID: string
+}
 
 const MENU_ITEMS: string[] = ['service-calls', 'maintenance'];
 
 export function EstateMenu(props: EstateMenuProps) {
   const navigation = useNavigation();
+
+  const { estateID } = props
 
   const formattedFeatures = useMemo(
     () =>
@@ -29,7 +33,8 @@ export function EstateMenu(props: EstateMenuProps) {
           key={feature.name}
           icon={feature.icon as IconType}
           title={feature.title}
-          handlePress={() => navigation.navigate(feature.name as any)}
+          //@ts-ignore
+          handlePress={() => navigation.navigate(feature.name, { estateID })}
         />
       ))}
     </View>

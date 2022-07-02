@@ -44,7 +44,7 @@ export function Estate({ route }: EstateProps) {
       <EstateBanner address={address} apartments={apartments} floors={floors} />
       <Button onPress={handleAddPress} title="ערוך בניין" />
 
-      <EstateMenu />
+      <EstateMenu estateID={route.params.estateID} />
     </View>
   );
 }

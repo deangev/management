@@ -17,7 +17,7 @@ const routes = [
   },
   {
     name: 'estate-form',
-    title: 'צור בניין חדש',
+    title: 'בניין חדש',
     enableMainMenu: false,
   },
   {
@@ -31,6 +31,11 @@ const routes = [
     title: 'קריאות שירות',
     icon: 'service',
     enableMainMenu: true,
+  },
+  {
+    name: 'service-call-create-form',
+    title: 'קריאת שירות חדשה',
+    enableMainMenu: false,
   },
   {
     name: 'reports',

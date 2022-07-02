@@ -1,11 +1,11 @@
 input ServiceCallCreateInput {
     estateID: String!
-    apartment: String
+    apartment: Int
     description: String!
     destination: String!
     priority: String
     assignee: String
     note: String
     type: String
-    images: [String]
+    images: [String!]
 }

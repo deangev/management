@@ -4,6 +4,7 @@ import { Home } from '@management/pages/home';
 import { Estates } from '@management/pages/estates';
 import { Estate, EstateForm } from '@management/pages/estate';
 import { ServiceCalls } from '@management/pages/service-calls';
+import { ServiceCallCreateForm } from '@management/pages/service-calls';
 
 const routesComponentsDictionary = {
   home: Home,
@@ -12,6 +13,7 @@ const routesComponentsDictionary = {
   'estate-form': EstateForm,
   maintenance: EstateForm,
   'service-calls': ServiceCalls,
+  'service-call-create-form': ServiceCallCreateForm,
   reports: EstateForm,
   employees: EstateForm,
   suppliers: EstateForm,
