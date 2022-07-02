@@ -19,7 +19,7 @@ export function ServiceCallListItem(props: ServiceCallListItemProps) {
 
   const handleServiceCallPress = useCallback((serviceCallID: string) => {
     //@ts-ignore
-    navigation.navigate('serviceCall', {
+    navigation.navigate('service-call', {
       serviceCallID,
     });
   }, [navigation])
