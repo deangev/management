@@ -1,12 +1,15 @@
 import {
   catchAsync,
   deleteEmptyKeys,
+  getErrorResponse,
   restrictUpdate,
 } from '@management/core/utils';
 import { Request, Response } from 'express';
 import {
   CreateServiceCallRequestType,
+  DeleteServiceCallRequestType,
   GetServiceCallRequestType,
+  UpdateServiceCallRequestType,
 } from '@management/core/types';
 import ServiceCall from '../models/serviceCallModel';
 
@@ -71,52 +74,54 @@ export const getServiceCall = catchAsync(
   }
 );
 
-// export const updateServiceCall = catchAsync(
-//   async (req: UpdateEstateRequestType, res: Response) => {
-//     const { id: estateID } = req.params;
-//     const restrictedBody = restrictUpdate({ ...req.body }, [
-//       'address',
-//       'floors',
-//       'apartments',
-//     ]);
+export const updateServiceCall = catchAsync(
+  async (req: UpdateServiceCallRequestType, res: Response) => {
+    const { id: serviceCallID } = req.params;
 
-//     const getUpdateQuery = () => {
-//       const query = { $set: {} };
+    if (!serviceCallID) return getErrorResponse(400, 'No service call id provided')
 
-//       if (restrictedBody.address) {
-//         const address: any = restrictedBody.address;
-//         for (const k in address) {
-//           const key = `address.${k}`;
-//           query['$set'] = { ...query['$set'], [key]: address[k] };
-//         }
-//       }
+    const restrictedBody = deleteEmptyKeys(
+      restrictUpdate({ ...req.body }, [
+        'apartment',
+        'description',
+        'destination',
+        'priority',
+        'assignee',
+        'note',
+        'type',
+        'images',
+      ])
+    );
 
-//       if (restrictedBody.apartments)
-//         query['$set'] = {
-//           ...query['$set'],
-//           apartments: restrictedBody.apartments,
-//         };
-//       if (restrictedBody.floors)
-//         query['$set'] = { ...query['$set'], floors: restrictedBody.floors };
+    const query: { $set: typeof restrictedBody } = { $set: {} };
 
-//       return query;
-//     };
+    for (const key in restrictedBody) {
+      if (restrictedBody[key]) {
+        query['$set'][key] = restrictedBody[key];
+      }
+    }
 
-//     const updatedEstate = await Estate.findOneAndUpdate(
-//       { _id: estateID },
-//       getUpdateQuery(),
-//       { new: true, runValidators: true }
-//     );
-//     return res.status(200).json({ updatedEstate });
-//   }
-// );
+    if (!Object.keys(query['$set']).length) {
+      throw getErrorResponse(400, 'No fields to update')
+    }
+    const updatedEstate = await ServiceCall.findOneAndUpdate(
+      { _id: serviceCallID },
+      query,
+      { new: true, runValidators: true }
+    );
 
-// export const deleteEstate = catchAsync(
-//   async (req: DeleteEstateRequestType, res: Response) => {
-//     const { id: estateID } = req.params;
+    return res.status(200).json({ updatedEstate });
+  }
+);
 
-//     await Estate.findByIdAndDelete(estateID);
+export const deleteServiceCall = catchAsync(
+  async (req: DeleteServiceCallRequestType, res: Response) => {
+    const { id: serviceCallID } = req.params;
 
-//     res.status(204).json();
-//   }
-// );
+    if (!serviceCallID) throw getErrorResponse(400, 'No service call id provided')
+
+    await ServiceCall.findByIdAndDelete(serviceCallID);
+
+    res.status(204).json();
+  }
+);
