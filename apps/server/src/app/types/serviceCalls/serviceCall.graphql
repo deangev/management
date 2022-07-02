@@ -9,6 +9,4 @@ type ServiceCall {
   note: String
   type: String
   images: [String!]
-  updatedAt: String
-  createdAt: String
 }

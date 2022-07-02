@@ -1,10 +1,7 @@
 import React, { useState } from 'react';
 import { useMutation } from '@apollo/client';
 import { useNavigation } from '@react-navigation/native';
-import {
-  createServiceCallMutation,
-
-} from '@sagi/graphql-services'
+import { createServiceCallMutation } from '@sagi/graphql-services'
 import { View, TextInput, StyleSheet, Button, Text } from 'react-native';
 import { FormControl } from 'native-base';
 
@@ -21,7 +18,7 @@ export default function ServiceCallCreateForm(props: ServiceCallCreateFormProps)
   const { route } = props
   const navigation = useNavigation()
   const [createServiceCall] = useMutation(createServiceCallMutation)
-  
+
   const [apartment, setApartment] = useState('')
   const [description, setDescription] = useState('')
   const [destination, setDestination] = useState('')
@@ -41,8 +38,11 @@ export default function ServiceCallCreateForm(props: ServiceCallCreateFormProps)
         assignee,
         note,
         type,
-        images: []
+        images: ['abc']
       }
+
+      console.log(payload);
+      
 
       await createServiceCall({ variables: payload })
       navigation.goBack()
@@ -56,6 +56,14 @@ export default function ServiceCallCreateForm(props: ServiceCallCreateFormProps)
     <View>
       <FormControl>
         <Text>{`estateID: ${route.params.estateID}`}</Text>
+
+        <FormControl.Label style={styles.formFieldLabel}>דירה</FormControl.Label>
+        <TextInput
+          placeholder='דירה'
+          style={styles.textInput}
+          value={apartment}
+          onChangeText={setApartment} />
+
         <FormControl.Label style={styles.formFieldLabel}>תיאור</FormControl.Label>
         <TextInput
           placeholder='תיאור'
@@ -69,6 +77,34 @@ export default function ServiceCallCreateForm(props: ServiceCallCreateFormProps)
           style={styles.textInput}
           value={destination}
           onChangeText={setDestination} />
+
+        <FormControl.Label style={styles.formFieldLabel}>עדיפות</FormControl.Label>
+        <TextInput
+          placeholder='עדיפות'
+          style={styles.textInput}
+          value={priority}
+          onChangeText={setPriority} />
+
+        <FormControl.Label style={styles.formFieldLabel}>אחראי</FormControl.Label>
+        <TextInput
+          placeholder='אחראי'
+          style={styles.textInput}
+          value={assignee}
+          onChangeText={setAssignee} />
+
+        <FormControl.Label style={styles.formFieldLabel}>פתק</FormControl.Label>
+        <TextInput
+          placeholder='פתק'
+          style={styles.textInput}
+          value={note}
+          onChangeText={setNote} />
+
+        <FormControl.Label style={styles.formFieldLabel}>סוג</FormControl.Label>
+        <TextInput
+          placeholder='סוג'
+          style={styles.textInput}
+          value={type}
+          onChangeText={setType} />
 
       </FormControl>
 

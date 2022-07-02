@@ -6,19 +6,24 @@ const http = axios.create({
     baseURL: SERVICE_CALLS_API_URL,
 });
 
-type ServiceCallDataType = Pick<CreateServiceCallRequestType['body'], 'estateId' | 'type' | 'description' | 'destination'>
+type ServiceCallDataType = Omit<CreateServiceCallRequestType['body'], 'updatedAt' | 'createdAt'>
 
 export const createServiceCall = async (serviceCallData: ServiceCallDataType) => {
-    const { estateId, type, description, destination } = serviceCallData
+    const { estateId, apartment, description, destination, priority, assignee, note, type, images } = serviceCallData
 
     const createPayload = {
         estateId,
-        type,
+        apartment,
         description,
-        destination
+        destination,
+        priority,
+        assignee,
+        note,
+        type,
+        images
     }
 
-    const {data} = await http.post('/', createPayload)
+    const { data } = await http.post('/', createPayload)
     return data?.ServiceCall
-    
+
 };
