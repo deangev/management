@@ -1,9 +1,27 @@
 import { gql } from '@apollo/client';
 
+export const EstateServiceCallsQuery = gql`
+query estateServiceCalls ($estateID: String!) {
+  estateServiceCallsData(estateID: $estateID) {
+    serviceCalls {
+      _id
+      estateID
+      apartment
+      description
+      destination
+      priority
+      assignee
+      note
+      type
+    }
+    hits
+  }
+}`
+
 export const ServiceCallsQuery = gql`
   query ServiceCalls {
     serviceCallsData {
-      serviceCalls {
+      serviceCalls{
         _id
         estateID
         apartment
@@ -16,8 +34,7 @@ export const ServiceCallsQuery = gql`
       }
       hits
     }
-  }
-`;
+  }`
 
 export const ServiceCallQuery = gql`
   query ServiceCall($serviceCallID: String!) {
