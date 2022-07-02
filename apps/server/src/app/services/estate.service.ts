@@ -2,7 +2,6 @@ import { ESTATE_API_URL } from '@sagi/core/constants';
 import {
   AddressType,
   CreateEstateRequestType,
-  EstateType,
   GetEstateRequestType,
   UpdateEstateRequestType,
 } from '@sagi/core/types';

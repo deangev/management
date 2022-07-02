@@ -1,7 +1,7 @@
 export * from './lib/utils';
 
-export * from './lib/service/ServiceCallType';
-export * from './lib/service/RequestsTypes';
+export * from './lib/serviceCall/ServiceCallType';
+export * from './lib/serviceCall/RequestTypes';
 
 export * from './lib/maintenance/AirConditioningType';
 export * from './lib/maintenance/BellowsType';

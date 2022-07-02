@@ -1,7 +1,4 @@
-//TODO
-const MAIN_API_URL = 'http://localhost:3000/api';
-const ESTATE_API_URL = 'http://localhost:3001/api';
-const MAINTENANCE_API_URL = 'http://localhost:3002/api';
-const SERVICE_CALLS_API_URL = 'http://localhost:3003/api';
-
-export { MAIN_API_URL, MAINTENANCE_API_URL, ESTATE_API_URL, SERVICE_CALLS_API_URL };
+export const MAIN_API_URL = 'http://localhost:3000/api';
+export const ESTATE_API_URL = 'http://localhost:3001/api';
+export const MAINTENANCE_API_URL = 'http://localhost:3002/api';
+export const SERVICE_CALLS_API_URL = 'http://localhost:3003/api';
