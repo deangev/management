@@ -1,8 +1,8 @@
 import { SERVICE_CALLS_API_URL } from '@management/core/constants';
 import {
   CreateServiceCallRequestType,
+  GetServiceCallRequestType,
   ServiceCallType,
-  UpdateServiceCallRequestType,
 } from '@management/core/types';
 import axios from 'axios';
 
@@ -60,7 +60,7 @@ export const updateServiceCall = async (serviceCallData: ServiceCallType) => {
     images,
   } = serviceCallData;
 
-  const createPayload = {
+  const updatePayload = {
     estateID,
     apartment,
     description,
@@ -72,6 +72,23 @@ export const updateServiceCall = async (serviceCallData: ServiceCallType) => {
     images,
   };
 
-  const { data } = await http.post(`/${_id}`, createPayload);
+  const { data } = await http.post(`/${_id}`, updatePayload);
   return data?.ServiceCall;
+};
+
+export const getServiceCalls = async (_, _authHeader) => {
+  try {
+    const { data } = await http.get('/search');
+
+    return data;
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+export const getServiceCall = async (
+  serviceCallID: GetServiceCallRequestType['params']['id']
+) => {
+  const { data } = await http.get(`/${serviceCallID}`);
+  return data?.serviceCall;
 };

@@ -27,6 +27,12 @@ const routes = [
     enableMainMenu: false,
   },
   {
+    name: 'serviceCall',
+    title: 'קריאת שירות',
+    icon: 'service',
+    enableMainMenu: false
+  },
+  {
     name: 'service-calls',
     title: 'קריאות שירות',
     icon: 'service',
