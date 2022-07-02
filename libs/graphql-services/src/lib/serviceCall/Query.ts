@@ -18,3 +18,19 @@ export const ServiceCallsQuery = gql`
     }
   }
 `;
+
+export const ServiceCallQuery = gql`
+  query ServiceCall($serviceCallID: String!) {
+    serviceCallData(serviceCallID: $serviceCallID) {
+      _id
+      estateID
+      apartment
+      description
+      destination
+      priority
+      assignee
+      note
+      type
+    }
+  }
+`;

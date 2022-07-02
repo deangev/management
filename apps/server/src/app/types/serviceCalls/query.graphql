@@ -1,5 +1,6 @@
 type Query {
     serviceCallsData: ServiceCallsResponse!
+    serviceCallData(serviceCallID: String!): ServiceCall
 }
 
 type ServiceCallsResponse {

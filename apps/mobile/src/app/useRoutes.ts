@@ -3,7 +3,7 @@ import { routes } from '@management/core/routes';
 import { Home } from '@management/pages/home';
 import { Estates } from '@management/pages/estates';
 import { Estate, EstateForm } from '@management/pages/estate';
-import { ServiceCalls } from '@management/pages/service-calls';
+import { ServiceCall, ServiceCalls } from '@management/pages/service-calls';
 import { ServiceCallCreateForm } from '@management/pages/service-calls';
 
 const routesComponentsDictionary = {
@@ -12,6 +12,7 @@ const routesComponentsDictionary = {
   estate: Estate,
   'estate-form': EstateForm,
   maintenance: EstateForm,
+  serviceCall: ServiceCall,
   'service-calls': ServiceCalls,
   'service-call-create-form': ServiceCallCreateForm,
   reports: EstateForm,
