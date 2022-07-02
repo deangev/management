@@ -17,7 +17,8 @@ export const searchServiceCalls = catchAsync(
     );
     const query: any = {};
 
-    query.estateID = queryParams.estateID;
+    //TODO - should be moved to util if the search will be more complicated
+    if (queryParams.estateID) query.estateID = queryParams.estateID;
 
     const serviceCalls = await ServiceCall.find(query);
     if (!serviceCalls) {
