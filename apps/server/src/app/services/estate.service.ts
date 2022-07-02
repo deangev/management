@@ -2,7 +2,6 @@ import { ESTATE_API_URL } from '@management/core/constants';
 import {
   AddressType,
   CreateEstateRequestType,
-  EstateType,
   GetEstateRequestType,
   UpdateEstateRequestType,
 } from '@management/core/types';

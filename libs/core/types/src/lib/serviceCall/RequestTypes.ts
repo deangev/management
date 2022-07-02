@@ -1,5 +1,5 @@
 import { Request } from 'express';
-import { ServiceCallType } from '../../';
+import { ServiceCallType } from '../..';
 
 export interface GetServiceCallRequestType extends Request {
   params: { id: ServiceCallType['_id'] };

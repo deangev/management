@@ -1,0 +1,12 @@
+type ServiceCall {
+  _id: String!
+  estateId: String!
+  apartment: Int
+  description: String!
+  destination: String!
+  priority: String
+  assignee: String
+  note: String
+  type: String
+  images: [String]
+}
