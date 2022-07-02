@@ -18,7 +18,13 @@ export const searchEstates = catchAsync(async (req: Request, res: Response) => {
   let queryString = JSON.stringify(requestQuery)
   queryString = queryString.replace(/\b(gte|gt|lte|lt)\b/g, match => `$${match}`)
   
-  const estates = await Estate.find(JSON.parse(queryString));
+  let query = Estate.find(JSON.parse(queryString));
+
+  //sorting
+  if (req.query.sort) query = query.sort(req.query.sort)
+
+  const estates = await query
+
   if (!estates) throw getErrorResponse(400, 'estates not found');  
 
   res.status(200).json({ hits: estates.length, estates });
