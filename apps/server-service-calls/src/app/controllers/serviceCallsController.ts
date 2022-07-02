@@ -15,8 +15,11 @@ export const searchServiceCalls = catchAsync(
     const queryParams = deleteEmptyKeys(
       restrictUpdate(req.query, ['estateID'])
     );
+    const query: any = {};
 
-    const serviceCalls = await ServiceCall.find({});
+    query.estateID = queryParams.estateID;
+
+    const serviceCalls = await ServiceCall.find(query);
     if (!serviceCalls) {
       return res.status(400).json({ message: 'estates not found' });
     }
