@@ -1,5 +1,9 @@
 import Estate from '../models/EstateModel';
-import { catchAsync, getErrorResponse, restrictUpdate } from '@sagi/core/utils';
+import {
+  catchAsync,
+  getErrorResponse,
+  restrictUpdate,
+} from '@management/core/utils';
 import { Request, Response } from 'express';
 import {
   AddressType,
@@ -7,7 +11,7 @@ import {
   DeleteEstateRequestType,
   GetEstateRequestType,
   UpdateEstateRequestType,
-} from '@sagi/core/types';
+} from '@management/core/types';
 
 export const searchEstates = catchAsync(async (req: Request, res: Response) => {
   const estates = await Estate.find();

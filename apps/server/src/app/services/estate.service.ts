@@ -1,12 +1,12 @@
-import { ESTATE_API_URL } from '@sagi/core/constants';
+import { ESTATE_API_URL } from '@management/core/constants';
 import {
   AddressType,
   CreateEstateRequestType,
   EstateType,
   GetEstateRequestType,
   UpdateEstateRequestType,
-} from '@sagi/core/types';
-import { deleteEmptyKeys, isEmpty } from '@sagi/core/utils';
+} from '@management/core/types';
+import { deleteEmptyKeys, isEmpty } from '@management/core/utils';
 import axios from 'axios';
 
 const http = axios.create({

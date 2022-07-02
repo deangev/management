@@ -1,10 +1,10 @@
 import { useQuery } from '@apollo/client';
 import { useNavigation } from '@react-navigation/native';
-import { IconType } from '@sagi/core/icons';
-import { routes } from '@sagi/core/routes';
-import { EstateType } from '@sagi/core/types';
-import { MenuIconItem } from '@sagi/core/ui-components';
-import { EstateQuery } from '@sagi/graphql-services';
+import { IconType } from '@management/core/icons';
+import { routes } from '@management/core/routes';
+import { EstateType } from '@management/core/types';
+import { MenuIconItem } from '@management/core/ui-components';
+import { EstateQuery } from '@management/graphql-services';
 import React, { useCallback, useMemo } from 'react';
 
 import { View, Text, StyleSheet, Button } from 'react-native';
@@ -21,7 +21,6 @@ export interface EstateProps {
 interface QueryType {
   estateData: EstateType;
 }
-
 
 export function Estate({ route }: EstateProps) {
   const { data } = useQuery<QueryType>(EstateQuery, {
@@ -49,6 +48,5 @@ export function Estate({ route }: EstateProps) {
     </View>
   );
 }
-
 
 export default Estate;

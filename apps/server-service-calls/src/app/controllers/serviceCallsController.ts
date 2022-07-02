@@ -1,18 +1,21 @@
-import { catchAsync, restrictUpdate } from '@sagi/core/utils';
+import {
+  catchAsync,
+  deleteEmptyKeys,
+  restrictUpdate,
+} from '@management/core/utils';
 import { Request, Response } from 'express';
 import {
   CreateServiceCallRequestType,
   GetServiceCallRequestType,
-} from '@sagi/core/types';
+} from '@management/core/types';
 import ServiceCall from '../models/serviceCallModel';
 
 export const searchServiceCalls = catchAsync(
   async (req: Request, res: Response) => {
-    const restrictedBody = restrictUpdate({ ...req.body }, [
-      'address',
-      'floors',
-      'apartments',
-    ]);
+    const queryParams = deleteEmptyKeys(
+      restrictUpdate(req.query, ['estateID'])
+    );
+
     const serviceCalls = await ServiceCall.find({});
     if (!serviceCalls) {
       return res.status(400).json({ message: 'estates not found' });
@@ -25,7 +28,7 @@ export const searchServiceCalls = catchAsync(
 export const createServiceCall = catchAsync(
   async (req: CreateServiceCallRequestType, res: Response) => {
     const {
-      estateId,
+      estateID,
       apartment,
       assignee,
       description,
@@ -36,23 +39,8 @@ export const createServiceCall = catchAsync(
       type,
     } = req.body;
 
-    if (!estateId) {
-      return res.status(400).json({ message: 'please provide an assignee' });
-    }
-    if (!apartment) {
-      return res.status(400).json({ message: 'please provide an assignee' });
-    }
-
-    if (!description) {
-      return res.status(400).json({ message: 'please provide a description' });
-    }
-
-    if (!destination) {
-      return res.status(400).json({ message: 'please provide a destination' });
-    }
-
     const newServiceCall = await ServiceCall.create({
-      estateId,
+      estateID,
       apartment,
       assignee,
       description,
