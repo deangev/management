@@ -1,9 +1,10 @@
 type Query {
+    estateServiceCallsData(estateID: String!): ServiceCallsResponse!
     serviceCallsData: ServiceCallsResponse!
-    serviceCallData(serviceCallID: String!): ServiceCall
+    serviceCallData(serviceCallID: String!): ServiceCall!
 }
 
 type ServiceCallsResponse {
-    serviceCalls: [ServiceCall]
+    serviceCalls: [ServiceCall!]
     hits: Int
 }

@@ -1,6 +1,6 @@
+import axios from 'axios'
 import { SERVICE_CALLS_API_URL } from "@management/core/constants";
 import { CreateServiceCallRequestType, GetServiceCallRequestType } from "@management/core/types";
-import axios from 'axios'
 
 const http = axios.create({
   baseURL: SERVICE_CALLS_API_URL,
@@ -28,10 +28,9 @@ export const createServiceCall = async (serviceCallData: ServiceCallDataType) =>
 
 };
 
-export const getServiceCalls = async (_, _authHeader) => {
+export const getServiceCalls = async (_, _authHeader, estateID?: string) => {
   try {
-    const { data } = await http.get('/search');
-
+    const { data } = await http.get('/search', { params: { estateID } });
     return data;
   } catch (err) {
     console.log(err);
