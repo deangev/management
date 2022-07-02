@@ -1,7 +1,7 @@
 import { useNavigation } from '@react-navigation/native';
-import { IconType } from '@sagi/core/icons';
-import { routes } from '@sagi/core/routes';
-import { MenuIconItem } from '@sagi/core/ui-components';
+import { IconType } from '@management/core/icons';
+import { routes } from '@management/core/routes';
+import { MenuIconItem } from '@management/core/ui-components';
 import React, { useCallback, useMemo } from 'react';
 
 import { View, Text, StyleSheet } from 'react-native';

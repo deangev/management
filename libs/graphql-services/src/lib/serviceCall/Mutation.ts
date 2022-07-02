@@ -2,7 +2,7 @@ import { gql } from '@apollo/client';
 
 export const createServiceCallMutation = gql`
   mutation CreateServiceCall(
-    $estateId: String!
+    $estateID: String!
     $apartment: Int
     $description: String!
     $destination: String!
@@ -14,7 +14,7 @@ export const createServiceCallMutation = gql`
   ) {
     createServiceCall(
       serviceCallData: {
-        estateId: $estateId
+        estateID: $estateID
         apartment: $apartment
         description: $description
         destination: $destination
@@ -26,7 +26,7 @@ export const createServiceCallMutation = gql`
       }
     ) {
       _id
-      estateId
+      estateID
       apartment
       description
       destination

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useMutation } from '@apollo/client';
 import { useNavigation } from '@react-navigation/native';
-import { createServiceCallMutation } from '@sagi/graphql-services'
+import { createServiceCallMutation } from '@management/graphql-services';
 import { View, TextInput, StyleSheet, Button, Text } from 'react-native';
 import { FormControl } from 'native-base';
 
@@ -9,103 +9,116 @@ import { FormControl } from 'native-base';
 export interface ServiceCallCreateFormProps {
   route: {
     params: {
-      estateID: string
-    }
-  }
+      estateID: string;
+    };
+  };
 }
 
-export default function ServiceCallCreateForm(props: ServiceCallCreateFormProps) {
-  const { route } = props
-  const navigation = useNavigation()
-  const [createServiceCall] = useMutation(createServiceCallMutation)
+export default function ServiceCallCreateForm(
+  props: ServiceCallCreateFormProps
+) {
+  const { route } = props;
+  const navigation = useNavigation();
+  const [createServiceCall] = useMutation(createServiceCallMutation);
 
-  const [apartment, setApartment] = useState('')
-  const [description, setDescription] = useState('')
-  const [destination, setDestination] = useState('')
-  const [priority, setPriority] = useState('')
-  const [assignee, setAssignee] = useState('')
-  const [note, setNote] = useState('')
-  const [type, setType] = useState('')
+  const [apartment, setApartment] = useState('');
+  const [description, setDescription] = useState('');
+  const [destination, setDestination] = useState('');
+  const [priority, setPriority] = useState('');
+  const [assignee, setAssignee] = useState('');
+  const [note, setNote] = useState('');
+  const [type, setType] = useState('');
 
   const handleCreatePress = async () => {
     try {
       const payload = {
-        estateId: route.params.estateID,
-        apartment,
+        estateID: route.params.estateID,
+        apartment: apartment && Number(apartment),
         description,
         destination,
         priority,
         assignee,
         note,
         type,
-        images: ['abc']
-      }
+        images: ['abc'],
+      };
 
-      console.log(payload);
-      
-
-      await createServiceCall({ variables: payload })
-      navigation.goBack()
-
+      await createServiceCall({ variables: payload });
+      navigation.goBack();
     } catch (err) {
-      console.error(err)
+      console.error(err);
     }
-  }
+  };
 
   return (
     <View>
       <FormControl>
         <Text>{`estateID: ${route.params.estateID}`}</Text>
 
-        <FormControl.Label style={styles.formFieldLabel}>דירה</FormControl.Label>
+        <FormControl.Label style={styles.formFieldLabel}>
+          דירה
+        </FormControl.Label>
         <TextInput
-          placeholder='דירה'
+          placeholder="דירה"
           style={styles.textInput}
           value={apartment}
-          onChangeText={setApartment} />
+          onChangeText={setApartment}
+          keyboardType="numeric"
+        />
 
-        <FormControl.Label style={styles.formFieldLabel}>תיאור</FormControl.Label>
+        <FormControl.Label style={styles.formFieldLabel}>
+          תיאור
+        </FormControl.Label>
         <TextInput
-          placeholder='תיאור'
+          placeholder="תיאור"
           style={styles.textInput}
           value={description}
-          onChangeText={setDescription} />
+          onChangeText={setDescription}
+        />
 
         <FormControl.Label style={styles.formFieldLabel}>יעד</FormControl.Label>
         <TextInput
-          placeholder='יעד לביצוע'
+          placeholder="יעד לביצוע"
           style={styles.textInput}
           value={destination}
-          onChangeText={setDestination} />
+          onChangeText={setDestination}
+        />
 
-        <FormControl.Label style={styles.formFieldLabel}>עדיפות</FormControl.Label>
+        <FormControl.Label style={styles.formFieldLabel}>
+          עדיפות
+        </FormControl.Label>
         <TextInput
-          placeholder='עדיפות'
+          placeholder="עדיפות"
           style={styles.textInput}
           value={priority}
-          onChangeText={setPriority} />
+          onChangeText={setPriority}
+        />
 
-        <FormControl.Label style={styles.formFieldLabel}>אחראי</FormControl.Label>
+        <FormControl.Label style={styles.formFieldLabel}>
+          אחראי
+        </FormControl.Label>
         <TextInput
-          placeholder='אחראי'
+          placeholder="אחראי"
           style={styles.textInput}
           value={assignee}
-          onChangeText={setAssignee} />
+          onChangeText={setAssignee}
+        />
 
         <FormControl.Label style={styles.formFieldLabel}>פתק</FormControl.Label>
         <TextInput
-          placeholder='פתק'
+          placeholder="פתק"
           style={styles.textInput}
           value={note}
-          onChangeText={setNote} />
+          onChangeText={setNote}
+        />
 
         <FormControl.Label style={styles.formFieldLabel}>סוג</FormControl.Label>
         <TextInput
-          placeholder='סוג'
+          placeholder="סוג"
           style={styles.textInput}
           value={type}
-          onChangeText={setType} />
-
+          onChangeText={setType}
+        />
       </FormControl>
 
       <Button title="צור" onPress={handleCreatePress} />
@@ -121,6 +134,6 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   formFieldLabel: {
-    direction: 'rtl'
-  }
+    direction: 'rtl',
+  },
 });

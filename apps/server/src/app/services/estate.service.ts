@@ -1,11 +1,11 @@
-import { ESTATE_API_URL } from '@sagi/core/constants';
+import { ESTATE_API_URL } from '@management/core/constants';
 import {
   AddressType,
   CreateEstateRequestType,
   GetEstateRequestType,
   UpdateEstateRequestType,
-} from '@sagi/core/types';
-import { deleteEmptyKeys, isEmpty } from '@sagi/core/utils';
+} from '@management/core/types';
+import { deleteEmptyKeys, isEmpty } from '@management/core/utils';
 import axios from 'axios';
 
 const http = axios.create({
@@ -13,15 +13,19 @@ const http = axios.create({
 });
 
 export const getEstates = async (_, _authHeader) => {
-  const { data } = await http.get('/search');
+  try {
+    const { data } = await http.get('/search');
 
-  return data;
+    return data;
+  } catch (err) {
+    console.log(err);
+  }
 };
 
 export const getEstate = async (
-  estateId: GetEstateRequestType['params']['id']
+  estateID: GetEstateRequestType['params']['id']
 ) => {
-  const { data } = await http.get(`/${estateId}`);
+  const { data } = await http.get(`/${estateID}`);
   return data?.estate;
 };
 
@@ -64,8 +68,8 @@ export const updateEstate = async (estateData: UpdateEstateType) => {
   return data.updatedEstate;
 };
 
-export const deleteEstate = async (estateId: string) => {
-  const { data } = await http.put('/', estateId);
+export const deleteEstate = async (estateID: string) => {
+  const { data } = await http.put('/', estateID);
   return data;
 };
 

@@ -1,5 +1,5 @@
 input ServiceCallCreateInput {
-    estateId: String!
+    estateID: String!
     apartment: Int
     description: String!
     destination: String!

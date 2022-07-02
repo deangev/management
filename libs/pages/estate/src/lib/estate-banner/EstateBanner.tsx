@@ -1,4 +1,4 @@
-import { EstateType } from '@sagi/core/types';
+import { EstateType } from '@management/core/types';
 import React from 'react';
 
 import { View, Text, StyleSheet } from 'react-native';

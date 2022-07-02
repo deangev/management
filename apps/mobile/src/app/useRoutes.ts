@@ -1,22 +1,22 @@
 import React from 'react';
-import { routes } from '@sagi/core/routes';
-import { Home } from '@sagi/pages/home';
-import { Estates } from '@sagi/pages/estates';
-import { Estate, EstateForm } from '@sagi/pages/estate';
-import { ServiceCalls } from '@sagi/pages/service-calls';
-import { ServiceCallCreateForm } from '@sagi/pages/service-calls'
+import { routes } from '@management/core/routes';
+import { Home } from '@management/pages/home';
+import { Estates } from '@management/pages/estates';
+import { Estate, EstateForm } from '@management/pages/estate';
+import { ServiceCalls } from '@management/pages/service-calls';
+import { ServiceCallCreateForm } from '@management/pages/service-calls';
 
 const routesComponentsDictionary = {
-  'home': Home,
-  'estates': Estates,
-  'estate': Estate,
+  home: Home,
+  estates: Estates,
+  estate: Estate,
   'estate-form': EstateForm,
-  'maintenance': EstateForm,
+  maintenance: EstateForm,
   'service-calls': ServiceCalls,
   'service-call-create-form': ServiceCallCreateForm,
-  'reports': EstateForm,
-  'employees': EstateForm,
-  'suppliers': EstateForm,
+  reports: EstateForm,
+  employees: EstateForm,
+  suppliers: EstateForm,
   'daily-schedule': EstateForm,
 };
 
@@ -25,7 +25,7 @@ const useRoutes = () => {
     ...route,
     component:
       routesComponentsDictionary[
-      route.name as keyof typeof routesComponentsDictionary
+        route.name as keyof typeof routesComponentsDictionary
       ],
   }));
   return ingestedRoutes;

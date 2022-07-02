@@ -1,5 +1,5 @@
-import { SERVICE_CALLS_API_URL } from "@sagi/core/constants";
-import { CreateServiceCallRequestType } from "@sagi/core/types";
+import { SERVICE_CALLS_API_URL } from "@management/core/constants";
+import { CreateServiceCallRequestType } from "@management/core/types";
 import axios from 'axios'
 
 const http = axios.create({
@@ -9,10 +9,10 @@ const http = axios.create({
 type ServiceCallDataType = Omit<CreateServiceCallRequestType['body'], 'updatedAt' | 'createdAt'>
 
 export const createServiceCall = async (serviceCallData: ServiceCallDataType) => {
-    const { estateId, apartment, description, destination, priority, assignee, note, type, images } = serviceCallData
+    const { estateID, apartment, description, destination, priority, assignee, note, type, images } = serviceCallData
 
     const createPayload = {
-        estateId,
+        estateID,
         apartment,
         description,
         destination,

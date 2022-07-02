@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
 import MainMenuItem from './main-menu-item/MainMenuItem';
-import { routes } from '@sagi/core/routes';
+import { routes } from '@management/core/routes';
 import { MainMenuType } from '../types/MainMenuType';
 
 /* eslint-disable-next-line */

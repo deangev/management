@@ -1,6 +1,6 @@
 export interface ServiceCallType {
   _id: string;
-  estateId: string;
+  estateID: string;
   apartment?: number;
   description: string;
   destination: string;
@@ -9,6 +9,6 @@ export interface ServiceCallType {
   note: string;
   type: 'maintenance';
   images: string[];
-  updatedAt: Date;
-  createdAt: Date;
+  updatedAt?: Date;
+  createdAt?: Date;
 }

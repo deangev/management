@@ -1,7 +1,7 @@
-import React from 'react'
+import React from 'react';
 import { useNavigation } from '@react-navigation/native';
-import { EstateType } from '@sagi/core/types';
-import { Icon } from '@sagi/core/ui-components';
+import { EstateType } from '@management/core/types';
+import { Icon } from '@management/core/ui-components';
 import { Box, Text } from 'native-base';
 import { useCallback } from 'react';
 import { StyleSheet, TouchableOpacity } from 'react-native';
@@ -20,10 +20,10 @@ export function EstatesItem({
 }: EstatesItemProps) {
   const navigation = useNavigation();
   const handleEstatePress = useCallback(
-    (estateId: string) => {
+    (estateID: string) => {
       //@ts-ignore
       navigation.navigate('estate', {
-        estateId,
+        estateID,
       });
     },
     [navigation]

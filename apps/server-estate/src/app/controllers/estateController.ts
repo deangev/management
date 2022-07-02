@@ -1,5 +1,9 @@
 import Estate from '../models/EstateModel';
-import { catchAsync, getErrorResponse, restrictUpdate } from '@sagi/core/utils';
+import {
+  catchAsync,
+  getErrorResponse,
+  restrictUpdate,
+} from '@management/core/utils';
 import { Request, Response } from 'express';
 import {
   AddressType,
@@ -7,7 +11,7 @@ import {
   DeleteEstateRequestType,
   GetEstateRequestType,
   UpdateEstateRequestType,
-} from '@sagi/core/types';
+} from '@management/core/types';
 
 export const searchEstates = catchAsync(async (req: Request, res: Response) => {
   const estates = await Estate.find();
@@ -49,37 +53,36 @@ export const getEstate = catchAsync(
 export const updateEstate = catchAsync(
   async (req: UpdateEstateRequestType, res: Response) => {
     const { id: estateID } = req.params;
+
+    if (!estateID) return getErrorResponse(400, 'No estate id provided')
+
     const restrictedBody = restrictUpdate({ ...req.body }, [
       'address',
       'floors',
       'apartments',
     ]);
 
-    const getUpdateQuery = () => {
-      const query: { $set: typeof restrictedBody } = { $set: {} };
+    const query: { $set: typeof restrictedBody } = { $set: {} };
 
-      if (restrictedBody.address) {
-        const address: any = restrictedBody.address;
-        for (const k in address) {
-          const key = `address.${k}`;
-          query['$set'][key] = address[k];
-        }
+    if (restrictedBody.address) {
+      const address:  any = restrictedBody.address;
+      for (const k in address) {
+        const key = `address.${k}`;
+        query['$set'][key] = address[k];
       }
+    }
 
-      if (restrictedBody.apartments) {
-        query['$set'].apartments = restrictedBody.apartments;
-      }
+    if (restrictedBody.apartments) {
+      query['$set'].apartments = restrictedBody.apartments;
+    }
 
-      if (restrictedBody.floors) {
-        query['$set'].floors = restrictedBody.floors;
-      }
-
-      return query;
-    };
+    if (restrictedBody.floors) {
+      query['$set'].floors = restrictedBody.floors;
+    }
 
     const updatedEstate = await Estate.findOneAndUpdate(
       { _id: estateID },
-      getUpdateQuery(),
+      query,
       { new: true, runValidators: true }
     );
     return res.status(200).json({ updatedEstate });
@@ -90,6 +93,7 @@ export const deleteEstate = catchAsync(
   async (req: DeleteEstateRequestType, res: Response) => {
     const { id: estateID } = req.params;
 
+    if (!estateID) throw getErrorResponse(400, 'No estate id provided')
     await Estate.findByIdAndDelete(estateID);
 
     res.status(204).json();

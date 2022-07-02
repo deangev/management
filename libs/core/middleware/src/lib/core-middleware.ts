@@ -1,4 +1,4 @@
-import { catchAsync } from '@sagi/core/utils';
+import { catchAsync } from '@management/core/utils';
 import { Request, Response, NextFunction } from 'express';
 import { verifyToken } from './utils';
 

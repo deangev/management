@@ -25,8 +25,8 @@ export const EstatesQuery = gql`
 `;
 
 export const EstateQuery = gql`
-  query Estate($estateId: String!) {
-    estateData(estateId: $estateId) {
+  query Estate($estateID: String!) {
+    estateData(estateID: $estateID) {
       _id
       address {
         city
