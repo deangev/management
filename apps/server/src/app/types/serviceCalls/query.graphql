@@ -1,0 +1,8 @@
+type Query {
+    serviceCallsData: ServiceCallsResponse!
+}
+
+type ServiceCallsResponse {
+    serviceCalls: [ServiceCall]
+    hit: Int
+}

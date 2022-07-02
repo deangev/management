@@ -27,3 +27,14 @@ export const createServiceCall = async (serviceCallData: ServiceCallDataType) =>
     return data?.ServiceCall
 
 };
+
+export const getServiceCalls = async (_, _authHeader) => {
+    try {
+      const { data } = await http.get('/search');
+  
+      return data;
+    } catch (err) {
+      console.log(err);
+    }
+  };
+  
