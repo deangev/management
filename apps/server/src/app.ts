@@ -21,14 +21,7 @@ const schema = makeExecutableSchema({
 
 const app = new ApolloServer({
   schema,
-  formatError: (err) => {
-    try {
-      const errorAxios = err.extensions.exception as AxiosError;
-      return errorAxios.response.data;
-    } catch (error) {
-      return error;
-    }
-  },
+  formatError: (err) => err,
   context: ({ req, res }) => {
     const token = req.headers.authorization || '';
 

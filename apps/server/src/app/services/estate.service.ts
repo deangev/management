@@ -14,9 +14,13 @@ const http = axios.create({
 });
 
 export const getEstates = async (_, _authHeader) => {
-  const { data } = await http.get('/search');
+  try {
+    const { data } = await http.get('/search');
 
-  return data;
+    return data;
+  } catch (err) {
+    console.log(err);
+  }
 };
 
 export const getEstate = async (
