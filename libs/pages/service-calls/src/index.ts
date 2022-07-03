@@ -1,3 +1,3 @@
-export { default as ServiceCalls } from './lib/service-calls/ServiceCalls';
-export { default as ServiceCallCreateForm } from './lib/ServiceCallCreateForm/ServiceCallCreateForm'
-export {default as ServiceCall} from './lib/serviceCall/ServiceCall'
+export { default as ServiceCallsList } from './lib/service-calls-list/ServiceCallsList';
+export { default as ServiceCallWizard } from './lib/service-call-wizard/ServiceCallWizard';
+export { default as ServiceCall } from './lib/service-call/ServiceCall';

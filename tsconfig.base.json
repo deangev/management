@@ -16,7 +16,9 @@
     "baseUrl": ".",
     "paths": {
       "@management/core/assets": ["libs/core/assets/src/index.ts"],
+      "@management/core/components": ["libs/core/components/src/index.ts"],
       "@management/core/constants": ["libs/core/constants/src/index.ts"],
+      "@management/core/hooks": ["libs/core/hooks/src/index.ts"],
       "@management/core/icons": ["libs/core/icons/src/index.ts"],
       "@management/core/middleware": ["libs/core/middleware/src/index.ts"],
       "@management/core/models": ["libs/core/models/src/index.ts"],
@@ -28,7 +30,6 @@
       "@management/core/utils": ["libs/core/utils/src/index.ts"],
       "@management/graphql-services": ["libs/graphql-services/src/index.ts"],
       "@management/pages/estate": ["libs/pages/estate/src/index.ts"],
-      "@management/pages/estates": ["libs/pages/estates/src/index.ts"],
       "@management/pages/home": ["libs/pages/home/src/index.ts"],
       "@management/pages/service-calls": [
         "libs/pages/service-calls/src/index.ts"

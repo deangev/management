@@ -4,7 +4,7 @@ import { MenuIconItem } from '@management/core/ui-components';
 import { useNavigation } from '@react-navigation/native';
 
 export interface MainMenuItemProps {
-  name: any;
+  name: string;
   title: string;
   icon: IconType;
 }
@@ -12,6 +12,7 @@ export interface MainMenuItemProps {
 export function MainMenuItem({ name, title, icon }: MainMenuItemProps) {
   const navigation = useNavigation();
   const handlePress = useCallback(() => {
+    //@ts-ignore
     navigation.navigate(name);
   }, [navigation, name]);
 

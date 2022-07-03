@@ -16,7 +16,7 @@ const routes = [
     enableMainMenu: false,
   },
   {
-    name: 'estate-form',
+    name: 'estate-wizard',
     title: 'בניין חדש',
     enableMainMenu: false,
   },
@@ -39,7 +39,7 @@ const routes = [
     enableMainMenu: true,
   },
   {
-    name: 'service-call-create-form',
+    name: 'service-call-wizard',
     title: 'קריאת שירות חדשה',
     enableMainMenu: false,
   },

@@ -3,7 +3,9 @@
   "version": 2,
   "projects": {
     "core-assets": "libs/core/assets",
+    "core-components": "libs/core/components",
     "core-constants": "libs/core/constants",
+    "core-hooks": "libs/core/hooks",
     "core-icons": "libs/core/icons",
     "core-middleware": "libs/core/middleware",
     "core-models": "libs/core/models",
@@ -15,7 +17,6 @@
     "mobile": "apps/mobile",
     "mobile-e2e": "apps/mobile-e2e",
     "pages-estate": "libs/pages/estate",
-    "pages-estates": "libs/pages/estates",
     "pages-home": "libs/pages/home",
     "pages-service-calls": "libs/pages/service-calls",
     "server": "apps/server",

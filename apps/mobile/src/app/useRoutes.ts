@@ -1,24 +1,24 @@
 import React from 'react';
 import { routes } from '@management/core/routes';
 import { Home } from '@management/pages/home';
-import { Estates } from '@management/pages/estates';
-import { Estate, EstateForm } from '@management/pages/estate';
-import { ServiceCall, ServiceCalls } from '@management/pages/service-calls';
-import { ServiceCallCreateForm } from '@management/pages/service-calls';
+import { EstatesList } from '@management/pages/estate';
+import { Estate, EstateWizard } from '@management/pages/estate';
+import { ServiceCall, ServiceCallsList } from '@management/pages/service-calls';
+import { ServiceCallWizard } from '@management/pages/service-calls';
 
 const routesComponentsDictionary = {
   'home': Home,
-  estates: Estates,
+  estates: EstatesList,
   estate: Estate,
-  'estate-form': EstateForm,
-  maintenance: EstateForm,
+  'estate-wizard': EstateWizard,
+  maintenance: EstateWizard,
   'service-call': ServiceCall,
-  'service-calls': ServiceCalls,
-  'service-call-create-form': ServiceCallCreateForm,
-  reports: EstateForm,
-  employees: EstateForm,
-  suppliers: EstateForm,
-  'daily-schedule': EstateForm,
+  'service-calls': ServiceCallsList,
+  'service-call-wizard': ServiceCallWizard,
+  reports: EstateWizard,
+  employees: EstateWizard,
+  suppliers: EstateWizard,
+  'daily-schedule': EstateWizard,
 };
 
 const useRoutes = () => {
