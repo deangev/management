@@ -17,17 +17,28 @@ export interface ServiceCallsProps {
   };
 }
 
+type ServiceCallData = {
+  serviceCallsData: { serviceCalls: ServiceCallType[] };
+};
+
+type EstateServiceCallData = {
+  estateServiceCallsData: { serviceCalls: ServiceCallType[] };
+};
+
 export default function ServiceCalls(props: ServiceCallsProps) {
   const { route } = props;
   const navigation = useNavigation();
 
-  const [getServiceCalls, { data }] = useLazyQuery(ServiceCallsQuery, {
-    fetchPolicy: 'no-cache',
-  });
-  const [getEstateServiceCalls, { data: estateData }] = useLazyQuery(
-    EstateServiceCallsQuery,
-    { fetchPolicy: 'no-cache' }
+  const [getServiceCalls, { data }] = useLazyQuery<ServiceCallData>(
+    ServiceCallsQuery,
+    {
+      fetchPolicy: 'no-cache',
+    }
   );
+  const [getEstateServiceCalls, { data: estateData }] =
+    useLazyQuery<EstateServiceCallData>(EstateServiceCallsQuery, {
+      fetchPolicy: 'no-cache',
+    });
 
   useEffect(() => {
     if (route.params?.estateID)
@@ -43,7 +54,8 @@ export default function ServiceCalls(props: ServiceCallsProps) {
     );
   }, [navigation, route.params]);
 
-  const renderList = (data: any) => {
+  const renderList = (data: ServiceCallType[]) => {
+    if (!data.length) return null;
     return (
       <VirtualizedList
         data={data}
@@ -62,13 +74,8 @@ export default function ServiceCalls(props: ServiceCallsProps) {
     <View>
       <Button onPress={handleCreateServiceCallPress} title="צור קריאת שירות" />
 
-      {!!data?.serviceCallsData.serviceCalls &&
-        renderList(data.serviceCallsData.serviceCalls as ServiceCallType[])}
-
-      {!!estateData?.estateServiceCallsData.serviceCalls &&
-        renderList(
-          estateData.estateServiceCallsData.serviceCalls as ServiceCallType[]
-        )}
+      {renderList(data?.serviceCallsData.serviceCalls || [])}
+      {renderList(estateData?.estateServiceCallsData.serviceCalls || [])}
     </View>
   );
 }

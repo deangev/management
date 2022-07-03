@@ -68,7 +68,7 @@ export const getServiceCall = catchAsync(
 
     const serviceCall = await ServiceCall.findById(serviceCallID);
     if (!serviceCall)
-      return res.status(400).json({ message: 'estate not found' });
+      return res.status(400).json({ message: 'Service call not found' });
 
     return res.status(200).json({ serviceCall });
   }

@@ -3,19 +3,20 @@ import { SERVICE_CALLS_API_URL } from '@management/core/constants';
 import {
   CreateServiceCallRequestType,
   GetServiceCallRequestType,
+  ServiceCallType,
 } from '@management/core/types';
 
 const http = axios.create({
   baseURL: SERVICE_CALLS_API_URL,
 });
 
-type ServiceCallDataType = Omit<
+type ServiceCallCreateDataType = Omit<
   CreateServiceCallRequestType['body'],
   'updatedAt' | 'createdAt'
 >;
 
 export const createServiceCall = async (
-  serviceCallData: ServiceCallDataType
+  serviceCallData: ServiceCallCreateDataType
 ) => {
   const {
     estateID,
@@ -42,6 +43,36 @@ export const createServiceCall = async (
   };
 
   const { data } = await http.post('/', createPayload);
+  return data?.ServiceCall;
+};
+
+export const updateServiceCall = async (serviceCallData: ServiceCallType) => {
+  const {
+    _id,
+    estateID,
+    apartment,
+    description,
+    destination,
+    priority,
+    assignee,
+    note,
+    type,
+    images,
+  } = serviceCallData;
+
+  const updatePayload = {
+    estateID,
+    apartment,
+    description,
+    destination,
+    priority,
+    assignee,
+    note,
+    type,
+    images,
+  };
+
+  const { data } = await http.post(`/${_id}`, updatePayload);
   return data?.ServiceCall;
 };
 
