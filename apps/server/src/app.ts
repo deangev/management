@@ -3,15 +3,14 @@ import { makeExecutableSchema } from '@graphql-tools/schema';
 import { mergeResolvers, mergeTypeDefs } from '@graphql-tools/merge';
 import * as path from 'path';
 import { loadFilesSync } from '@graphql-tools/load-files';
-import { estateResolvers, serviceCallsResolvers } from './app/resolvers';
-import { AxiosError } from 'axios';
+import { estateResolvers, serviceCallsResolvers, workerResolvers } from './app/resolvers';
 
 const typesArray = loadFilesSync(
   path.join(__dirname, '../../../apps/server/src/app/**/*.graphql')
 );
 const typeDefs = mergeTypeDefs(typesArray);
 
-const resolversArray = [estateResolvers, serviceCallsResolvers];
+const resolversArray = [estateResolvers, serviceCallsResolvers, workerResolvers];
 const resolvers = mergeResolvers(resolversArray);
 
 const schema = makeExecutableSchema({

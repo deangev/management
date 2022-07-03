@@ -28,12 +28,12 @@
         "libs/core/ui-components/src/index.ts"
       ],
       "@management/core/utils": ["libs/core/utils/src/index.ts"],
-      "@management/graphql-services": ["libs/graphql-services/src/index.ts"],
       "@management/features/estate": ["libs/features/estate/src/index.ts"],
       "@management/features/home": ["libs/features/home/src/index.ts"],
       "@management/features/service-calls": [
         "libs/features/service-calls/src/index.ts"
-      ]
+      ],
+      "@management/graphql-services": ["libs/graphql-services/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

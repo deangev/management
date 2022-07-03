@@ -1,0 +1,5 @@
+type Worker {
+  _id: String!
+  name: String!
+  phoneNumber: String!
+}
