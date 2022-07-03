@@ -52,7 +52,9 @@ export default function ServiceCallCreateForm(
     try {
       const payload = {
         estateID,
-        apartment: apartment && Number(apartment),
+        apartment: apartment
+          ? typeof apartment === 'string' && Number(apartment)
+          : null,
         description,
         destination,
         priority,

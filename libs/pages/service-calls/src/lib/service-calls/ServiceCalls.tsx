@@ -41,9 +41,11 @@ export default function ServiceCalls(props: ServiceCallsProps) {
     });
 
   useEffect(() => {
-    if (route.params?.estateID)
+    if (route.params?.estateID) {
       getEstateServiceCalls({ variables: { estateID: route.params.estateID } });
-    else getServiceCalls();
+    } else {
+      getServiceCalls();
+    }
   }, [getEstateServiceCalls, getServiceCalls, route.params]);
 
   const handleCreateServiceCallPress = useCallback(() => {
@@ -69,6 +71,20 @@ export default function ServiceCalls(props: ServiceCallsProps) {
       />
     );
   };
+
+  useEffect(() => {
+    const unsubscribe = navigation.addListener('focus', () => {
+      if (route.params?.estateID) {
+        getEstateServiceCalls({
+          variables: { estateID: route.params.estateID },
+        });
+      } else {
+        getServiceCalls();
+      }
+    });
+
+    return unsubscribe;
+  }, [navigation, getEstateServiceCalls, getServiceCalls, route.params]);
 
   return (
     <View>

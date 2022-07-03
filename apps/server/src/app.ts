@@ -21,7 +21,10 @@ const schema = makeExecutableSchema({
 
 const app = new ApolloServer({
   schema,
-  formatError: (err) => err,
+  formatError: (err) => {
+    console.log(err)
+    return err
+  },
   context: ({ req, res }) => {
     const token = req.headers.authorization || '';
 
