@@ -15,12 +15,12 @@ const link = new HttpLink({
 const errorLink = onError(({ graphQLErrors, networkError }) => {
   if (graphQLErrors) console.log(graphQLErrors);
 
-  graphQLErrors.forEach(({ message, locations, path }) =>
+  if (networkError) console.log(`[Network error]: ${networkError}`);
+  graphQLErrors?.forEach(({ message, locations, path }) =>
     console.log(
       `[GraphQL error]: Message: ${message}, Location: line - ${locations?.[0]?.line}, column: ${locations?.[0]?.column} , Path: ${path}`
     )
   );
-  if (networkError) console.log(`[Network error]: ${networkError}`);
 });
 
 const client = new ApolloClient({

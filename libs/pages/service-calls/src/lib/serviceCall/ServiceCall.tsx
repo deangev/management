@@ -32,7 +32,7 @@ export function ServiceCall(props: ServiceCallProps) {
 
   return (
     <View>
-      <Button onPress={handleEditPress} title="ערוך בניין" />
+      <Button onPress={handleEditPress} title="ערוך קריאת שירות" />
 
       <Text>Welcome to serviceCall!</Text>
       <Text>{props.route.params.serviceCallID}</Text>
