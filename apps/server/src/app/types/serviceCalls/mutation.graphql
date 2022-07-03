@@ -1,4 +1,4 @@
 type Mutation {
   createServiceCall(serviceCallData: ServiceCallCreateInput): ServiceCall!
-  updateServiceCall(serviceCallData: ServiceCallUpdateInput): ServiceCall!
+  updateServiceCall(serviceCallData: ServiceCallUpdateInput!): ServiceCall!
 }
