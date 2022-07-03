@@ -1,0 +1,9 @@
+type Query {
+    workersData: WorkersResponse!
+    workerData(workerID: String!): Worker!
+}
+
+type WorkersResponse {
+    workers: [Worker!]
+    hits: Int
+}

@@ -1,0 +1,4 @@
+type Mutation {
+  createWorker(workerData: WorkerCreateInput!): Worker!
+  updateWorker(workerData: WorkerUpdateInput!): Worker!
+}

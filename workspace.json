@@ -13,15 +13,16 @@
     "core-types": "libs/core/types",
     "core-ui-components": "libs/core/ui-components",
     "core-utils": "libs/core/utils",
-    "graphql-services": "libs/graphql-services",
-    "mobile": "apps/mobile",
-    "mobile-e2e": "apps/mobile-e2e",
     "features-estate": "libs/features/estate",
     "features-home": "libs/features/home",
     "features-service-calls": "libs/features/service-calls",
+    "graphql-services": "libs/graphql-services",
+    "mobile": "apps/mobile",
+    "mobile-e2e": "apps/mobile-e2e",
     "server": "apps/server",
     "server-estate": "apps/server-estate",
     "server-maintenance": "apps/server-maintenance",
-    "server-service-calls": "apps/server-service-calls"
+    "server-service-calls": "apps/server-service-calls",
+    "server-workers": "apps/server-workers"
   }
 }

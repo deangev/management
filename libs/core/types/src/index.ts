@@ -1,8 +1,10 @@
 export * from './lib/utils';
 
+// service call
 export * from './lib/serviceCall/ServiceCallType';
 export * from './lib/serviceCall/RequestTypes';
 
+// maintenance
 export * from './lib/maintenance/AirConditioningType';
 export * from './lib/maintenance/BellowsType';
 export * from './lib/maintenance/CleaningType';
@@ -29,7 +31,13 @@ export * from './lib/maintenance/SprinklerType';
 export * from './lib/maintenance/TelephoneInternetTVType';
 export * from './lib/maintenance/WaterPumpType';
 export * from './lib/maintenance/WaterSewageType';
+
+// estate
 export * from './lib/estate/AddressType';
 export * from './lib/estate/ContactType';
 export * from './lib/estate/EstateType';
 export * from './lib/estate/RequestsTypes';
+
+// worker
+export * from './lib/workers/WorkerType';
+export * from './lib/workers/RequestTypes';

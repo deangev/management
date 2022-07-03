@@ -1,0 +1,4 @@
+input WorkerCreateInput {
+    name: String!
+    phoneNumber: String!
+}
