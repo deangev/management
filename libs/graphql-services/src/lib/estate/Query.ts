@@ -24,7 +24,7 @@ export const EstatesQuery = gql`
   }
 `;
 
-export const EstatesQueryMinimal = gql`
+export const EstatesAddressQuery = gql`
   query Estates {
     estatesData {
       estates {

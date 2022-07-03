@@ -3,7 +3,7 @@ import { useMutation, useQuery } from '@apollo/client';
 import { useNavigation } from '@react-navigation/native';
 import {
   createServiceCallMutation,
-  EstatesQueryMinimal,
+  EstatesAddressQuery,
   updateServiceCallMutation,
 } from '@management/graphql-services';
 import { View, TextInput, StyleSheet, Button, Text } from 'react-native';
@@ -28,7 +28,7 @@ export default function ServiceCallWizard(props: ServiceCallWizardProps) {
   const navigation = useNavigation();
   const [createServiceCall] = useMutation(createServiceCallMutation);
   const [updateServiceCall] = useMutation(updateServiceCallMutation);
-  const { data } = useQuery<EstatesData>(EstatesQueryMinimal, { fetchPolicy: 'no-cache' })
+  const { data } = useQuery<EstatesData>(EstatesAddressQuery, { fetchPolicy: 'no-cache' })
 
   const [estateID, setEstateID] = useState(
     props.route.params.estateID || ''
