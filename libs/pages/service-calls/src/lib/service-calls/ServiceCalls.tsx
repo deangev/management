@@ -1,11 +1,8 @@
 import React, { useCallback, useEffect } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { Button, View, VirtualizedList } from 'react-native';
-import { useLazyQuery } from '@apollo/client';
-import {
-  EstateServiceCallsQuery,
-  ServiceCallsQuery,
-} from '@management/graphql-services';
+import { useQuery } from '@apollo/client';
+import { ServiceCallsQuery } from '@management/graphql-services';
 import { ServiceCallType } from '@management/core/types';
 import ServiceCallListItem from '../serviceCallListItem/ServiceCallListItem';
 
@@ -21,38 +18,30 @@ type ServiceCallData = {
   serviceCallsData: { serviceCalls: ServiceCallType[] };
 };
 
-type EstateServiceCallData = {
-  estateServiceCallsData: { serviceCalls: ServiceCallType[] };
-};
-
 export default function ServiceCalls(props: ServiceCallsProps) {
   const { route } = props;
   const navigation = useNavigation();
 
-  const [getServiceCalls, { data }] = useLazyQuery<ServiceCallData>(
-    ServiceCallsQuery,
-    {
-      fetchPolicy: 'no-cache',
-    }
-  );
-  const [getEstateServiceCalls, { data: estateData }] =
-    useLazyQuery<EstateServiceCallData>(EstateServiceCallsQuery, {
-      fetchPolicy: 'no-cache',
-    });
+  const { data, refetch } = useQuery<ServiceCallData>(ServiceCallsQuery, {
+    variables: { estateID: route.params?.estateID || null },
+    fetchPolicy: 'no-cache',
+  });
 
   useEffect(() => {
-    if (route.params?.estateID) {
-      getEstateServiceCalls({ variables: { estateID: route.params.estateID } });
-    } else {
-      getServiceCalls();
-    }
-  }, [getEstateServiceCalls, getServiceCalls, route.params]);
+    const unsubscribe = navigation.addListener('focus', () => {
+      if (refetch) {
+        refetch();
+      }
+    });
+
+    return unsubscribe;
+  }, [navigation, refetch]);
 
   const handleCreateServiceCallPress = useCallback(() => {
     return navigation.navigate(
       //@ts-ignore
       'service-call-create-form',
-      route.params?.estateID && { estateID: route.params.estateID }
+      { estateID: route.params?.estateID }
     );
   }, [navigation, route.params]);
 
@@ -72,26 +61,11 @@ export default function ServiceCalls(props: ServiceCallsProps) {
     );
   };
 
-  useEffect(() => {
-    const unsubscribe = navigation.addListener('focus', () => {
-      if (route.params?.estateID) {
-        getEstateServiceCalls({
-          variables: { estateID: route.params.estateID },
-        });
-      } else {
-        getServiceCalls();
-      }
-    });
-
-    return unsubscribe;
-  }, [navigation, getEstateServiceCalls, getServiceCalls, route.params]);
-
   return (
     <View>
       <Button onPress={handleCreateServiceCallPress} title="צור קריאת שירות" />
 
       {renderList(data?.serviceCallsData.serviceCalls || [])}
-      {renderList(estateData?.estateServiceCallsData.serviceCalls || [])}
     </View>
   );
 }

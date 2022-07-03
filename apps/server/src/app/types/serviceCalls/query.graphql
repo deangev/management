@@ -1,6 +1,5 @@
 type Query {
-    estateServiceCallsData(estateID: String!): ServiceCallsResponse!
-    serviceCallsData: ServiceCallsResponse!
+    serviceCallsData(estateID: String): ServiceCallsResponse!
     serviceCallData(serviceCallID: String!): ServiceCall!
 }
 

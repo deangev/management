@@ -49,6 +49,7 @@ export function EstateForm({ route }: EstateFormProps) {
       });
     }
   }, [navigation, route.params?.estate]);
+  
   const handleSubmitEstate = async () => {
     try {
       const payload = {

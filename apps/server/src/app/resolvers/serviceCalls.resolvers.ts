@@ -6,8 +6,7 @@ import {
 
 const resolvers = {
   Query: {
-    estateServiceCallsData: (_, args, ctx) => getServiceCalls(args.estateID),
-    serviceCallsData: (_, _args, ctx) => getServiceCalls(null),
+    serviceCallsData: (_, args, ctx) => getServiceCalls(args.estateID),
     serviceCallData: (_, args, ctx) => getServiceCall(args.serviceCallID),
   },
   Mutation: {
