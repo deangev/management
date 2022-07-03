@@ -85,7 +85,7 @@ export default function ServiceCallWizard(props: ServiceCallWizardProps) {
     ) 
 
     return <Select placeholder='בחר בניין' onValueChange={setEstateID}>
-      {data?.estatesData.estates && data.estatesData.estates.map(e => {
+      {data?.estatesData.estates?.map(e => {
         const { address: { city, street, number, entry }, _id } = e
         const label = `${city}, ${street} ${number}${entry ? ` entry ${entry}` : ''}`
         return <SelectItem label={label} value={_id} />
