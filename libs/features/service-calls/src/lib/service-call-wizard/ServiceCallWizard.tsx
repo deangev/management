@@ -76,27 +76,22 @@ export default function ServiceCallWizard(props: ServiceCallWizardProps) {
     }
   };
 
-  const serviceCallWizardHeader = () => {
-    if (estateID) return (
-      <>
-      <Text>{`estateID: ${estateID}`}</Text>
-      <Button title='נקה בניין' onPress={() => setEstateID('')} />
-      </>
-    ) 
-
-    return <Select placeholder='בחר בניין' onValueChange={setEstateID}>
-      {data?.estatesData.estates?.map(e => {
-        const { address: { city, street, number, entry }, _id } = e
-        const label = `${city}, ${street} ${number}${entry ? ` entry ${entry}` : ''}`
-        return <SelectItem label={label} value={_id} />
-      })}
-    </Select>
-  }
-
   return (
     <View>
       <FormControl>
-        {serviceCallWizardHeader()}
+
+        {estateID
+          ? <>
+            <Text>{`estateID: ${estateID}`}</Text>
+            <Button title='נקה בניין' onPress={() => setEstateID('')} />
+          </>
+          : <Select placeholder='בחר בניין' onValueChange={setEstateID}>
+            {data?.estatesData.estates?.map(e => {
+              const { address: { city, street, number, entry }, _id } = e
+              const label = `${city}, ${street} ${number}${entry ? ` entry ${entry}` : ''}`
+              return <SelectItem label={label} value={_id} />
+            })}
+          </Select>}
 
         <FormControl.Label style={styles.formFieldLabel}>
           דירה
