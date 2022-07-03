@@ -2,11 +2,9 @@ import React from 'react';
 import { useQuery } from '@apollo/client';
 import { ServiceCallType } from '@management/core/types';
 import { ServiceCallQuery } from '@management/graphql-services';
-
 import { View, Text, Button } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
-/* eslint-disable-next-line */
 export interface ServiceCallProps {
   route: {
     params: { serviceCallID: string };
@@ -32,7 +30,7 @@ export function ServiceCall(props: ServiceCallProps) {
 
   return (
     <View>
-      <Button onPress={handleEditPress} title="ערוך בניין" />
+      <Button onPress={handleEditPress} title="ערוך קריאת שירות" />
 
       <Text>Welcome to serviceCall!</Text>
       <Text>{props.route.params.serviceCallID}</Text>

@@ -7,12 +7,12 @@ import { ServiceCall, ServiceCalls } from '@management/pages/service-calls';
 import { ServiceCallCreateForm } from '@management/pages/service-calls';
 
 const routesComponentsDictionary = {
-  home: Home,
+  'home': Home,
   estates: Estates,
   estate: Estate,
   'estate-form': EstateForm,
   maintenance: EstateForm,
-  serviceCall: ServiceCall,
+  'service-call': ServiceCall,
   'service-calls': ServiceCalls,
   'service-call-create-form': ServiceCallCreateForm,
   reports: EstateForm,

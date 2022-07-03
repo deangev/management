@@ -52,7 +52,9 @@ export default function ServiceCallCreateForm(
     try {
       const payload = {
         estateID,
-        apartment: apartment && Number(apartment),
+        apartment: apartment
+          ? typeof apartment === 'string' && Number(apartment)
+          : null,
         description,
         destination,
         priority,
@@ -62,11 +64,9 @@ export default function ServiceCallCreateForm(
         images: ['abc'],
       };
 
-      if (estateID) {
-        await createServiceCall({ variables: payload });
-      } else {
-        await updateServiceCall({ variables: payload });
-      }
+      const submitFn = estateID ? createServiceCall : updateServiceCall;
+      await submitFn({ variables: payload });
+      
       navigation.goBack();
     } catch (err) {
       console.error(err);

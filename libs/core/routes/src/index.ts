@@ -27,7 +27,7 @@ const routes = [
     enableMainMenu: false,
   },
   {
-    name: 'serviceCall',
+    name: 'service-call',
     title: 'קריאת שירות',
     icon: 'service',
     enableMainMenu: false

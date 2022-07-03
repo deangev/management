@@ -6,7 +6,6 @@ import { ServiceCallsQuery } from '@management/graphql-services';
 import { ServiceCallType } from '@management/core/types';
 import ServiceCallListItem from '../serviceCallListItem/ServiceCallListItem';
 
-/* eslint-disable-next-line */
 export interface ServiceCallsProps {
   route: {
     params: {
@@ -15,25 +14,18 @@ export interface ServiceCallsProps {
   };
 }
 
-const serviceCallMock = {
-  _id: '62c007ea79eb9685763c005c',
-  estateID: '62b978d0f2e42cb6b0015d13',
-  apartment: 6,
-  description: 'נזילה',
-  destination: '2022-08-24T17:07:11.513Z',
-  priority: 'medium',
-  assignee: 'שגיא',
-  type: 'maintenance',
-  images: [],
-  createdAt: '2022-07-02T08:55:06.671Z',
-  updatedAt: '2022-07-02T08:55:06.671Z',
+type ServiceCallData = {
+  serviceCallsData: { serviceCalls: ServiceCallType[] };
 };
 
 export default function ServiceCalls(props: ServiceCallsProps) {
-  const navigation = useNavigation()
-  const { data, refetch } = useQuery(ServiceCallsQuery, { fetchPolicy: 'no-cache' });
-
   const { route } = props;
+  const navigation = useNavigation();
+
+  const { data, refetch } = useQuery<ServiceCallData>(ServiceCallsQuery, {
+    variables: { estateID: route.params?.estateID || null },
+    fetchPolicy: 'no-cache',
+  });
 
   useEffect(() => {
     const unsubscribe = navigation.addListener('focus', () => {
@@ -49,28 +41,33 @@ export default function ServiceCalls(props: ServiceCallsProps) {
     return navigation.navigate(
       //@ts-ignore
       'service-call-create-form',
-      { serviceCall: serviceCallMock }
-      // route.params?.estateID && { estateID: route.params.estateID }
+      { estateID: route.params?.estateID }
     );
-  }, [navigation]);
+  }, [navigation, route.params]);
+
+  const renderList = (data: ServiceCallType[]) => {
+    if (!data.length) return null;
+    return (
+      <VirtualizedList
+        data={data}
+        initialNumToRender={4}
+        renderItem={({ item, index }) => (
+          <ServiceCallListItem item={item} index={index} />
+        )}
+        keyExtractor={(item) => item.key}
+        getItemCount={(data) => data.length}
+        getItem={getItem}
+      />
+    );
+  };
 
   return (
     <View>
       <Button onPress={handleCreateServiceCallPress} title="צור קריאת שירות" />
-      {!!data?.serviceCallsData.serviceCalls && (
-        <VirtualizedList
-          data={data.serviceCallsData.serviceCalls as ServiceCallType[]}
-          initialNumToRender={4}
-          renderItem={({ item, index }) => (
-            <ServiceCallListItem item={item} index={index} />
-          )}
-          keyExtractor={(item) => item.key}
-          getItemCount={(data) => data.length}
-          getItem={getItem}
-        />
-      )}
+
+      {renderList(data?.serviceCallsData.serviceCalls || [])}
     </View>
-  )
+  );
 }
 
 const getItem = (data: ServiceCallType[], index: number) => ({

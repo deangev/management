@@ -1,13 +1,18 @@
-import { createServiceCall, getServiceCall, getServiceCalls } from "../services/serviceCalls.service";
-  
-  const resolvers = {
-    Query: {
-      serviceCallsData: (_, _args, ctx) => getServiceCalls(null, ctx.authHeader),
-      serviceCallData: (_, args, ctx) => getServiceCall(args.serviceCallID),
-    },
-    Mutation: {
-      createServiceCall: (_, args, ctx) => createServiceCall(args.serviceCallData),
-    },
-  };
+import {
+  createServiceCall,
+  getServiceCall,
+  getServiceCalls,
+} from '../services/serviceCalls.service';
 
-export default resolvers
+const resolvers = {
+  Query: {
+    serviceCallsData: (_, args, ctx) => getServiceCalls(args.estateID),
+    serviceCallData: (_, args, ctx) => getServiceCall(args.serviceCallID),
+  },
+  Mutation: {
+    createServiceCall: (_, args, ctx) =>
+      createServiceCall(args.serviceCallData),
+  },
+};
+
+export default resolvers;

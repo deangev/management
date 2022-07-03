@@ -2,11 +2,9 @@ import React, { useCallback } from 'react';
 import { ServiceCallType } from '@management/core/types';
 import { Icon } from '@management/core/ui-components';
 import { Box } from 'native-base';
-
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
-/* eslint-disable-next-line */
 export interface ServiceCallListItemProps {
   item: { serviceCall: ServiceCallType }
   index: number
@@ -14,12 +12,11 @@ export interface ServiceCallListItemProps {
 
 export function ServiceCallListItem(props: ServiceCallListItemProps) {
   const { item: { serviceCall }, index } = props
-
   const navigation = useNavigation()
 
   const handleServiceCallPress = useCallback((serviceCallID: string) => {
     //@ts-ignore
-    navigation.navigate('serviceCall', {
+    navigation.navigate('service-call', {
       serviceCallID,
     });
   }, [navigation])
