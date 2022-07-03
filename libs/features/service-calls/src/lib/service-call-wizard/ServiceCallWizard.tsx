@@ -1,15 +1,14 @@
-import React, { useMemo, useState } from 'react';
-import { useMutation, useQuery } from '@apollo/client';
+import React, { useState } from 'react';
+import { useMutation } from '@apollo/client';
 import { useNavigation } from '@react-navigation/native';
 import {
   createServiceCallMutation,
-  EstatesAddressQuery,
   updateServiceCallMutation,
 } from '@management/graphql-services';
 import { View, TextInput, StyleSheet, Button, Text } from 'react-native';
 import { FormControl } from 'native-base';
-import { EstateType, ServiceCallType } from '@management/core/types';
-import { Select, SelectItem } from '@management/core/ui-components';
+import { ServiceCallType } from '@management/core/types';
+import { SelectEstate } from './select-estate/SelectEstate';
 
 export interface ServiceCallWizardProps {
   route: {
@@ -20,15 +19,10 @@ export interface ServiceCallWizardProps {
   };
 }
 
-type EstatesData = {
-  estatesData: { estates: Pick<EstateType, '_id' | 'address'>[] };
-};
-
 export default function ServiceCallWizard(props: ServiceCallWizardProps) {
   const navigation = useNavigation();
   const [createServiceCall] = useMutation(createServiceCallMutation);
   const [updateServiceCall] = useMutation(updateServiceCallMutation);
-  const { data } = useQuery<EstatesData>(EstatesAddressQuery, { fetchPolicy: 'no-cache' })
 
   const [estateID, setEstateID] = useState(
     props.route.params.estateID || ''
@@ -85,13 +79,8 @@ export default function ServiceCallWizard(props: ServiceCallWizardProps) {
             <Text>{`estateID: ${estateID}`}</Text>
             <Button title='נקה בניין' onPress={() => setEstateID('')} />
           </>
-          : <Select placeholder='בחר בניין' onValueChange={setEstateID}>
-            {data?.estatesData.estates?.map(e => {
-              const { address: { city, street, number, entry }, _id } = e
-              const label = `${city}, ${street} ${number}${entry ? ` entry ${entry}` : ''}`
-              return <SelectItem label={label} value={_id} />
-            })}
-          </Select>}
+          : <SelectEstate setEstateID={setEstateID} />
+        }
 
         <FormControl.Label style={styles.formFieldLabel}>
           דירה
