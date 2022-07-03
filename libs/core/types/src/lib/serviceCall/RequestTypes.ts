@@ -14,5 +14,5 @@ export interface CreateServiceCallRequestType extends Request {
 }
 export interface UpdateServiceCallRequestType extends Request {
   params: { id: ServiceCallType['_id'] };
-  body: Omit<ServiceCallType, '_id'>;
+  body: ServiceCallType;
 }

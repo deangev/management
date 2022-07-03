@@ -30,7 +30,7 @@ export function Estate({ route }: EstateProps) {
 
   if (!data) return <View></View>;
 
-  const handleAddPress = () => {
+  const handleEditPress = () => {
     //@ts-ignore
     navigation.navigate('estate-form', {
       estate: data.estateData,
@@ -42,7 +42,7 @@ export function Estate({ route }: EstateProps) {
   return (
     <View>
       <EstateBanner address={address} apartments={apartments} floors={floors} />
-      <Button onPress={handleAddPress} title="ערוך בניין" />
+      <Button onPress={handleEditPress} title="ערוך בניין" />
 
       <EstateMenu estateID={route.params.estateID} />
     </View>

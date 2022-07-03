@@ -1,15 +1,19 @@
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import { useMutation } from '@apollo/client';
 import { useNavigation } from '@react-navigation/native';
-import { createServiceCallMutation } from '@management/graphql-services';
+import {
+  createServiceCallMutation,
+  updateServiceCallMutation,
+} from '@management/graphql-services';
 import { View, TextInput, StyleSheet, Button, Text } from 'react-native';
 import { FormControl } from 'native-base';
+import { ServiceCallType } from '@management/core/types';
 
-/* eslint-disable-next-line */
 export interface ServiceCallCreateFormProps {
   route: {
     params: {
-      estateID: string;
+      estateID?: string;
+      serviceCall?: ServiceCallType;
     };
   };
 }
@@ -17,22 +21,37 @@ export interface ServiceCallCreateFormProps {
 export default function ServiceCallCreateForm(
   props: ServiceCallCreateFormProps
 ) {
-  const { route } = props;
   const navigation = useNavigation();
   const [createServiceCall] = useMutation(createServiceCallMutation);
+  const [updateServiceCall] = useMutation(updateServiceCallMutation);
 
-  const [apartment, setApartment] = useState('');
-  const [description, setDescription] = useState('');
-  const [destination, setDestination] = useState('');
-  const [priority, setPriority] = useState('');
-  const [assignee, setAssignee] = useState('');
-  const [note, setNote] = useState('');
-  const [type, setType] = useState('');
+  const [apartment, setApartment] = useState(
+    props.route.params.serviceCall?.apartment || ''
+  );
+  const [description, setDescription] = useState(
+    props.route.params.serviceCall?.description || ''
+  );
+  const [destination, setDestination] = useState(
+    props.route.params.serviceCall?.destination || ''
+  );
+  const [priority, setPriority] = useState(
+    props.route.params.serviceCall?.priority || ''
+  );
+  const [assignee, setAssignee] = useState(
+    props.route.params.serviceCall?.assignee || ''
+  );
+  const [note, setNote] = useState(props.route.params.serviceCall?.note || '');
+  const [type, setType] = useState(props.route.params.serviceCall?.type || '');
 
-  const handleCreatePress = async () => {
+  const estateID = useMemo(() => {
+    const { estateID, serviceCall } = props?.route?.params || {};
+    return serviceCall?.estateID || estateID;
+  }, [props.route]);
+
+  const handlePress = async () => {
     try {
       const payload = {
-        estateID: route.params.estateID,
+        estateID,
         apartment: apartment && Number(apartment),
         description,
         destination,
@@ -43,7 +62,11 @@ export default function ServiceCallCreateForm(
         images: ['abc'],
       };
 
-      await createServiceCall({ variables: payload });
+      if (estateID) {
+        await createServiceCall({ variables: payload });
+      } else {
+        await updateServiceCall({ variables: payload });
+      }
       navigation.goBack();
     } catch (err) {
       console.error(err);
@@ -53,7 +76,7 @@ export default function ServiceCallCreateForm(
   return (
     <View>
       <FormControl>
-        <Text>{`estateID: ${route.params.estateID}`}</Text>
+        <Text>{`estateID: ${estateID}`}</Text>
 
         <FormControl.Label style={styles.formFieldLabel}>
           דירה
@@ -61,7 +84,7 @@ export default function ServiceCallCreateForm(
         <TextInput
           placeholder="דירה"
           style={styles.textInput}
-          value={apartment}
+          value={String(apartment)}
           onChangeText={setApartment}
           keyboardType="numeric"
         />
@@ -121,7 +144,7 @@ export default function ServiceCallCreateForm(
         />
       </FormControl>
 
-      <Button title="צור" onPress={handleCreatePress} />
+      <Button title="צור" onPress={handlePress} />
     </View>
   );
 }

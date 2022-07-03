@@ -36,4 +36,46 @@ export const createServiceCallMutation = gql`
       type
       images
     }
-  }`
+  }
+`;
+
+export const updateServiceCallMutation = gql`
+  mutation UpdateServiceCall(
+    $_id: String!
+    $estateID: String
+    $apartment: Int
+    $assignee: String
+    $description: String
+    $destination: String
+    $images: [String!]
+    $note: String
+    $priority: String
+    $type: String
+  ) {
+    createServiceCall(
+      serviceCallData: {
+        _id: $_id
+        estateID: $estateID
+        apartment: $apartment
+        assignee: $assignee
+        description: $description
+        destination: $destination
+        images: $images
+        note: $note
+        priority: $priority
+        type: $type
+      }
+    ) {
+      _id
+      estateID
+      apartment
+      description
+      destination
+      priority
+      assignee
+      note
+      type
+      images
+    }
+  }
+`;
