@@ -32,7 +32,6 @@ export function ServiceCall(props: ServiceCallProps) {
     <View>
       <Button onPress={handleEditPress} title="ערוך קריאת שירות" />
 
-      <Text>Welcome to serviceCall!</Text>
       <Text>{props.route.params.serviceCallID}</Text>
       <Text>{data?.serviceCallData.type}</Text>
       <Text>{data?.serviceCallData.description}</Text>

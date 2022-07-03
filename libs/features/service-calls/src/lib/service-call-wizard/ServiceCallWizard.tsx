@@ -1,13 +1,15 @@
 import React, { useMemo, useState } from 'react';
-import { useMutation } from '@apollo/client';
+import { useMutation, useQuery } from '@apollo/client';
 import { useNavigation } from '@react-navigation/native';
 import {
   createServiceCallMutation,
+  EstatesQueryMinimal,
   updateServiceCallMutation,
 } from '@management/graphql-services';
 import { View, TextInput, StyleSheet, Button, Text } from 'react-native';
 import { FormControl } from 'native-base';
-import { ServiceCallType } from '@management/core/types';
+import { EstateType, ServiceCallType } from '@management/core/types';
+import { Select, SelectItem } from '@management/core/ui-components';
 
 export interface ServiceCallWizardProps {
   route: {
@@ -18,13 +20,19 @@ export interface ServiceCallWizardProps {
   };
 }
 
-export default function ServiceCallWizard(
-  props: ServiceCallWizardProps
-) {
+type EstatesData = {
+  estatesData: { estates: Pick<EstateType, '_id' | 'address'>[] };
+};
+
+export default function ServiceCallWizard(props: ServiceCallWizardProps) {
   const navigation = useNavigation();
   const [createServiceCall] = useMutation(createServiceCallMutation);
   const [updateServiceCall] = useMutation(updateServiceCallMutation);
+  const { data } = useQuery<EstatesData>(EstatesQueryMinimal, { fetchPolicy: 'no-cache' })
 
+  const [estateID, setEstateID] = useState(
+    props.route.params.estateID || ''
+  )
   const [apartment, setApartment] = useState(
     props.route.params.serviceCall?.apartment || ''
   );
@@ -42,11 +50,6 @@ export default function ServiceCallWizard(
   );
   const [note, setNote] = useState(props.route.params.serviceCall?.note || '');
   const [type, setType] = useState(props.route.params.serviceCall?.type || '');
-
-  const estateID = useMemo(() => {
-    const { estateID, serviceCall } = props?.route?.params || {};
-    return serviceCall?.estateID || estateID;
-  }, [props.route]);
 
   const handlePress = async () => {
     try {
@@ -66,17 +69,34 @@ export default function ServiceCallWizard(
 
       const submitFn = estateID ? createServiceCall : updateServiceCall;
       await submitFn({ variables: payload });
-      
+
       navigation.goBack();
     } catch (err) {
       console.error(err);
     }
   };
 
+  const serviceCallWizardHeader = () => {
+    if (estateID) return (
+      <>
+      <Text>{`estateID: ${estateID}`}</Text>
+      <Button title='נקה בניין' onPress={() => setEstateID('')} />
+      </>
+    ) 
+
+    return <Select placeholder='בחר בניין' onValueChange={setEstateID}>
+      {data?.estatesData.estates && data.estatesData.estates.map(e => {
+        const { address: { city, street, number, entry }, _id } = e
+        const label = `${city}, ${street} ${number}${entry ? ` entry ${entry}` : ''}`
+        return <SelectItem label={label} value={_id} />
+      })}
+    </Select>
+  }
+
   return (
     <View>
       <FormControl>
-        <Text>{`estateID: ${estateID}`}</Text>
+        {serviceCallWizardHeader()}
 
         <FormControl.Label style={styles.formFieldLabel}>
           דירה

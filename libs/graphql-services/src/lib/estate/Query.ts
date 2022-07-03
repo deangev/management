@@ -24,6 +24,22 @@ export const EstatesQuery = gql`
   }
 `;
 
+export const EstatesQueryMinimal = gql`
+  query Estates {
+    estatesData {
+      estates {
+        _id
+        address {
+          city
+          street
+          number
+          entry
+        }
+      }
+    }
+  }
+`
+
 export const EstateQuery = gql`
   query Estate($estateID: String!) {
     estateData(estateID: $estateID) {
