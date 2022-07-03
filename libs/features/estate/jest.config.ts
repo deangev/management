@@ -1,5 +1,5 @@
 module.exports = {
-  displayName: 'pages-estate',
+  displayName: 'features-estate',
   preset: 'react-native',
   testRunner: 'jest-jasmine2',
   resolver: '@nrwl/jest/plugins/resolver',

@@ -29,10 +29,10 @@
       ],
       "@management/core/utils": ["libs/core/utils/src/index.ts"],
       "@management/graphql-services": ["libs/graphql-services/src/index.ts"],
-      "@management/pages/estate": ["libs/pages/estate/src/index.ts"],
-      "@management/pages/home": ["libs/pages/home/src/index.ts"],
-      "@management/pages/service-calls": [
-        "libs/pages/service-calls/src/index.ts"
+      "@management/features/estate": ["libs/features/estate/src/index.ts"],
+      "@management/features/home": ["libs/features/home/src/index.ts"],
+      "@management/features/service-calls": [
+        "libs/features/service-calls/src/index.ts"
       ]
     }
   },

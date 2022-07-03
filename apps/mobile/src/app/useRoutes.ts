@@ -1,10 +1,10 @@
 import React from 'react';
 import { routes } from '@management/core/routes';
-import { Home } from '@management/pages/home';
-import { EstatesList } from '@management/pages/estate';
-import { Estate, EstateWizard } from '@management/pages/estate';
-import { ServiceCall, ServiceCallsList } from '@management/pages/service-calls';
-import { ServiceCallWizard } from '@management/pages/service-calls';
+import { Home } from '@management/features/home';
+import { EstatesList } from '@management/features/estate';
+import { Estate, EstateWizard } from '@management/features/estate';
+import { ServiceCall, ServiceCallsList } from '@management/features/service-calls';
+import { ServiceCallWizard } from '@management/features/service-calls';
 
 const routesComponentsDictionary = {
   'home': Home,

@@ -1,5 +1,5 @@
 module.exports = {
-  displayName: 'pages-service-calls',
+  displayName: 'features-service-calls',
   preset: 'react-native',
   testRunner: 'jest-jasmine2',
   resolver: '@nrwl/jest/plugins/resolver',
