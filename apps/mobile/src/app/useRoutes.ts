@@ -3,11 +3,15 @@ import { routes } from '@management/core/routes';
 import { Home } from '@management/features/home';
 import { EstatesList } from '@management/features/estate';
 import { Estate, EstateWizard } from '@management/features/estate';
-import { ServiceCall, ServiceCallsList } from '@management/features/service-calls';
+import {
+  ServiceCall,
+  ServiceCallsList,
+} from '@management/features/service-calls';
 import { ServiceCallWizard } from '@management/features/service-calls';
+import { Worker, WorkerList, WorkerWizard } from '@management/features/worker';
 
 const routesComponentsDictionary = {
-  'home': Home,
+  home: Home,
   estates: EstatesList,
   estate: Estate,
   'estate-wizard': EstateWizard,
@@ -16,7 +20,9 @@ const routesComponentsDictionary = {
   'service-calls': ServiceCallsList,
   'service-call-wizard': ServiceCallWizard,
   reports: EstateWizard,
-  employees: EstateWizard,
+  workers: WorkerList,
+  worker: Worker,
+  'worker-wizard': WorkerWizard,
   suppliers: EstateWizard,
   'daily-schedule': EstateWizard,
 };

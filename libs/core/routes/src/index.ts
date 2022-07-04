@@ -50,10 +50,22 @@ const routes = [
     enableMainMenu: true,
   },
   {
-    name: 'employees',
+    name: 'workers',
     title: 'עובדים',
     icon: 'workers',
     enableMainMenu: true,
+  },
+  {
+    name: 'worker',
+    title: 'עובד',
+    icon: 'workers',
+    enableMainMenu: false,
+  },
+  {
+    name: 'worker-wizard',
+    title: 'עובד חדש',
+    icon: 'workers',
+    enableMainMenu: false,
   },
   {
     name: 'suppliers',
