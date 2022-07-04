@@ -1,8 +1,8 @@
 export * from './lib/utils';
 
 // service call
-export * from './lib/serviceCall/ServiceCallType';
-export * from './lib/serviceCall/RequestTypes';
+export * from './lib/service-call/ServiceCallType';
+export * from './lib/service-call/RequestTypes';
 
 // maintenance
 export * from './lib/maintenance/AirConditioningType';
