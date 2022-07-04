@@ -1,11 +1,11 @@
 import React from 'react';
 import { render } from '@testing-library/react-native';
 
-import Estate from './Estate';
+import { SelectItem } from './SelectItem';
 
-describe('Estate', () => {
+describe('SelectItem', () => {
   it('should render successfully', () => {
-    const { container } = render(<Estate />);
+    const { container } = render(<SelectItem label='abc' value='abc' />);
     expect(container).toBeTruthy();
   });
 });

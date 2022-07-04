@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react';
+import React, { useState } from 'react';
 import { useMutation } from '@apollo/client';
 import { useNavigation } from '@react-navigation/native';
 import {
@@ -8,6 +8,7 @@ import {
 import { View, TextInput, StyleSheet, Button, Text } from 'react-native';
 import { FormControl } from 'native-base';
 import { ServiceCallType } from '@management/core/types';
+import { SelectEstate } from './select-estate/SelectEstate';
 
 export interface ServiceCallWizardProps {
   route: {
@@ -18,13 +19,14 @@ export interface ServiceCallWizardProps {
   };
 }
 
-export default function ServiceCallWizard(
-  props: ServiceCallWizardProps
-) {
+export default function ServiceCallWizard(props: ServiceCallWizardProps) {
   const navigation = useNavigation();
   const [createServiceCall] = useMutation(createServiceCallMutation);
   const [updateServiceCall] = useMutation(updateServiceCallMutation);
 
+  const [estateID, setEstateID] = useState(
+    props.route.params.estateID || ''
+  )
   const [apartment, setApartment] = useState(
     props.route.params.serviceCall?.apartment || ''
   );
@@ -42,11 +44,6 @@ export default function ServiceCallWizard(
   );
   const [note, setNote] = useState(props.route.params.serviceCall?.note || '');
   const [type, setType] = useState(props.route.params.serviceCall?.type || '');
-
-  const estateID = useMemo(() => {
-    const { estateID, serviceCall } = props?.route?.params || {};
-    return serviceCall?.estateID || estateID;
-  }, [props.route]);
 
   const handlePress = async () => {
     try {
@@ -66,7 +63,7 @@ export default function ServiceCallWizard(
 
       const submitFn = estateID ? createServiceCall : updateServiceCall;
       await submitFn({ variables: payload });
-      
+
       navigation.goBack();
     } catch (err) {
       console.error(err);
@@ -76,7 +73,14 @@ export default function ServiceCallWizard(
   return (
     <View>
       <FormControl>
-        <Text>{`estateID: ${estateID}`}</Text>
+
+        {estateID
+          ? <>
+            <Text>{`estateID: ${estateID}`}</Text>
+            <Button title='נקה בניין' onPress={() => setEstateID('')} />
+          </>
+          : <SelectEstate setEstateID={setEstateID} />
+        }
 
         <FormControl.Label style={styles.formFieldLabel}>
           דירה
