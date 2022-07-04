@@ -5,7 +5,3 @@ export interface WaterType {
   private_counters_location: string;
   note: string;
 }
-
-export interface SewageType {
-  note: string;
-}
