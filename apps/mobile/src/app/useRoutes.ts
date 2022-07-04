@@ -9,6 +9,11 @@ import {
 } from '@management/features/service-calls';
 import { ServiceCallWizard } from '@management/features/service-calls';
 import { Worker, WorkerList, WorkerWizard } from '@management/features/worker';
+import {
+  Supplier,
+  SupplierList,
+  SupplierWizard,
+} from '@management/features/supplier';
 
 const routesComponentsDictionary = {
   home: Home,
@@ -23,7 +28,9 @@ const routesComponentsDictionary = {
   workers: WorkerList,
   worker: Worker,
   'worker-wizard': WorkerWizard,
-  suppliers: EstateWizard,
+  suppliers: SupplierList,
+  supplier: Supplier,
+  'supplier-wizard': SupplierWizard,
   'daily-schedule': EstateWizard,
 };
 

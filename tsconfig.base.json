@@ -33,6 +33,7 @@
       "@management/features/service-calls": [
         "libs/features/service-calls/src/index.ts"
       ],
+      "@management/features/supplier": ["libs/features/supplier/src/index.ts"],
       "@management/features/worker": ["libs/features/worker/src/index.ts"],
       "@management/graphql-services": ["libs/graphql-services/src/index.ts"]
     }

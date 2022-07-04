@@ -16,6 +16,7 @@
     "features-estate": "libs/features/estate",
     "features-home": "libs/features/home",
     "features-service-calls": "libs/features/service-calls",
+    "features-supplier": "libs/features/supplier",
     "features-worker": "libs/features/worker",
     "graphql-services": "libs/graphql-services",
     "mobile": "apps/mobile",

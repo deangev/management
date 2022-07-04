@@ -30,7 +30,7 @@ const routes = [
     name: 'service-call',
     title: 'קריאת שירות',
     icon: 'service',
-    enableMainMenu: false
+    enableMainMenu: false,
   },
   {
     name: 'service-calls',
@@ -72,6 +72,18 @@ const routes = [
     title: 'ספקים',
     icon: 'package',
     enableMainMenu: true,
+  },
+  {
+    name: 'supplier',
+    title: 'ספק',
+    icon: 'package',
+    enableMainMenu: false,
+  },
+  {
+    name: 'supplier-wizard',
+    title: 'ספק חדש',
+    icon: 'package',
+    enableMainMenu: false,
   },
   {
     name: 'daily-schedule',
