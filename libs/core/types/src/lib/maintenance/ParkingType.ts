@@ -6,5 +6,4 @@ export interface ParkingLotType {
   open_by: string;
   shared: boolean;
   note: string;
-//   פירוט חניות /// TODO
 }

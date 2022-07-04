@@ -1,0 +1,9 @@
+type Query {
+    suppliersData: SuppliersResponse!
+    supplierData(supplierID: String!): Supplier!
+}
+
+type SuppliersResponse {
+    suppliers: [Supplier!]
+    hits: Int
+}

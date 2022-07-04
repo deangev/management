@@ -1,0 +1,4 @@
+input SupplierCreateInput {
+  name: String!
+  phoneNumber: String!
+}

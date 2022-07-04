@@ -17,8 +17,6 @@ export * from './lib/maintenance/GardeningType';
 export * from './lib/maintenance/GasType';
 export * from './lib/maintenance/GeneratorType';
 export * from './lib/maintenance/HeatingType';
-export * from './lib/maintenance/HolidayType';
-export * from './lib/maintenance/HousingCultureType';
 export * from './lib/maintenance/InsuranceType';
 export * from './lib/maintenance/ParkingType';
 export * from './lib/maintenance/PestControlType';
@@ -41,3 +39,7 @@ export * from './lib/estate/RequestsTypes';
 // worker
 export * from './lib/workers/WorkerType';
 export * from './lib/workers/RequestTypes';
+
+// supplier
+export * from './lib/suppliers/SupplierType';
+export * from './lib/suppliers/RequestTypes';

@@ -1,0 +1,4 @@
+type Mutation {
+  createSupplier(supplierData: SupplierCreateInput!): Supplier!
+  updateSupplier(supplierData: SupplierUpdateInput!): Supplier!
+}

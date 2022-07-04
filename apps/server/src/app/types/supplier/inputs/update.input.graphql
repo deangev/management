@@ -1,0 +1,5 @@
+input SupplierUpdateInput {
+  _id: String!
+  name: String
+  phoneNumber: String
+}

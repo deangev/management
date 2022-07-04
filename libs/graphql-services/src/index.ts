@@ -4,3 +4,5 @@ export * from './lib/serviceCall/Mutation';
 export * from './lib/serviceCall/Query';
 export * from './lib/worker/Query';
 export * from './lib/worker/Mutation';
+export * from './lib/supplier/Query';
+export * from './lib/supplier/Mutation';

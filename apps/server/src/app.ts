@@ -3,14 +3,24 @@ import { makeExecutableSchema } from '@graphql-tools/schema';
 import { mergeResolvers, mergeTypeDefs } from '@graphql-tools/merge';
 import * as path from 'path';
 import { loadFilesSync } from '@graphql-tools/load-files';
-import { estateResolvers, serviceCallsResolvers, workerResolvers } from './app/resolvers';
+import {
+  estateResolvers,
+  serviceCallsResolvers,
+  workerResolvers,
+  supplierResolvers,
+} from './app/resolvers';
 
 const typesArray = loadFilesSync(
   path.join(__dirname, '../../../apps/server/src/app/**/*.graphql')
 );
 const typeDefs = mergeTypeDefs(typesArray);
 
-const resolversArray = [estateResolvers, serviceCallsResolvers, workerResolvers];
+const resolversArray = [
+  estateResolvers,
+  serviceCallsResolvers,
+  workerResolvers,
+  supplierResolvers,
+];
 const resolvers = mergeResolvers(resolversArray);
 
 const schema = makeExecutableSchema({
@@ -21,8 +31,8 @@ const schema = makeExecutableSchema({
 const app = new ApolloServer({
   schema,
   formatError: (err) => {
-    console.log(err)
-    return err
+    console.log(err);
+    return err;
   },
   context: ({ req, res }) => {
     const token = req.headers.authorization || '';

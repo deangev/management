@@ -24,6 +24,7 @@
     "server-estate": "apps/server-estate",
     "server-maintenance": "apps/server-maintenance",
     "server-service-calls": "apps/server-service-calls",
+    "server-suppliers": "apps/server-suppliers",
     "server-workers": "apps/server-workers"
   }
 }
