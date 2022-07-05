@@ -1,5 +1,5 @@
 import { IconType } from '@management/core/icons';
-import React from 'react';
+import React, { memo } from 'react';
 
 import { Text, TouchableOpacity, StyleSheet } from 'react-native';
 import Icon from '../icon/Icon';
@@ -10,14 +10,16 @@ export interface MenuIconItemProps {
   title: string;
 }
 
-export function MenuIconItem({ handlePress, icon, title }: MenuIconItemProps) {
-  return (
-    <TouchableOpacity style={style.container} onPress={handlePress}>
-      <Icon icon={icon} size={40} />
-      <Text style={style.title}>{title}</Text>
-    </TouchableOpacity>
-  );
-}
+export const MenuIconItem = memo(
+  ({ handlePress, icon, title }: MenuIconItemProps) => {
+    return (
+      <TouchableOpacity style={style.container} onPress={handlePress}>
+        <Icon icon={icon} size={40} />
+        <Text style={style.title}>{title}</Text>
+      </TouchableOpacity>
+    );
+  }
+);
 
 const style = StyleSheet.create({
   container: {
