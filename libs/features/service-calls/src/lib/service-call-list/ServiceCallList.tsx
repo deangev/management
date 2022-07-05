@@ -8,7 +8,7 @@ import ServiceCallListItem from './service-call-list-item/ServiceCallListItem';
 import { VirtualizedList } from '@management/core/ui-components';
 import { useRefetchListener } from '@management/core/hooks';
 
-export interface ServiceCallsListProps {
+export interface ServiceCallListProps {
   route: {
     params: {
       estateID: string;
@@ -20,9 +20,9 @@ type ServiceCallData = {
   serviceCallsData: { serviceCalls: ServiceCallType[] };
 };
 
-export default function ServiceCallsList({
+export default function ServiceCallList({
   route: { params },
-}: ServiceCallsListProps) {
+}: ServiceCallListProps) {
   const navigation = useNavigation();
 
   const { data, refetch } = useQuery<ServiceCallData>(ServiceCallsQuery, {

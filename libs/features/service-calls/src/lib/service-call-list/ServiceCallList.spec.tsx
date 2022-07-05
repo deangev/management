@@ -1,11 +1,11 @@
 import React from 'react';
 import { render } from '@testing-library/react-native';
 
-import EstatesList from './EstatesList';
+import ServiceCallList from './ServiceCallList';
 
-describe('EstatesList', () => {
+describe('ServiceCallList', () => {
   it('should render successfully', () => {
-    const { container } = render(<EstatesList />);
+    const { container } = render(<ServiceCallList />);
     expect(container).toBeTruthy();
   });
 });

@@ -6,9 +6,9 @@ import { EstateType } from '@management/core/types';
 import { EstatesQuery } from '@management/graphql-services';
 import { useRefetchListener } from '@management/core/hooks';
 import { VirtualizedList } from '@management/core/ui-components';
-import EstatesListItem, {
-  EstatesListItemProps,
-} from './estates-list-item/EstatesListItem';
+import EstateListItem, {
+  EstateListItemProps,
+} from './estate-list-item/EstateListItem';
 
 type EstateData = {
   estatesData: {
@@ -16,7 +16,7 @@ type EstateData = {
   };
 };
 
-export function EstatesList() {
+export function EstateList() {
   const navigation = useNavigation();
   const { data, refetch } = useQuery<EstateData>(EstatesQuery, {
     fetchPolicy: 'no-cache',
@@ -35,8 +35,8 @@ export function EstatesList() {
       {!!data?.estatesData.estates && (
         <VirtualizedList
           data={data.estatesData.estates}
-          renderItem={({ item }: EstatesListItemProps) => (
-            <EstatesListItem key={item.item._id} item={item} />
+          renderItem={({ item }: EstateListItemProps) => (
+            <EstateListItem key={item.item._id} item={item} />
           )}
         />
       )}
@@ -44,4 +44,4 @@ export function EstatesList() {
   );
 }
 
-export default EstatesList;
+export default EstateList;

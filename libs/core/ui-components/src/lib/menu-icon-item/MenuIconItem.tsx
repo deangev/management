@@ -5,7 +5,7 @@ import { Text, TouchableOpacity, StyleSheet } from 'react-native';
 import Icon from '../icon/Icon';
 
 export interface MenuIconItemProps {
-  handlePress: () => void;
+  handlePress: any;
   icon: IconType;
   title: string;
 }
@@ -13,10 +13,8 @@ export interface MenuIconItemProps {
 export function MenuIconItem({ handlePress, icon, title }: MenuIconItemProps) {
   return (
     <TouchableOpacity style={style.container} onPress={handlePress}>
-      <Text>
-        <Icon icon={icon} size={40} />
-      </Text>
-      <Text>{title}</Text>
+      <Icon icon={icon} size={40} />
+      <Text style={style.title}>{title}</Text>
     </TouchableOpacity>
   );
 }
@@ -29,6 +27,9 @@ const style = StyleSheet.create({
     width: '33%',
     marginTop: 16,
     marginBottom: 16,
+  },
+  title: {
+    textAlign: 'center',
   },
 });
 
