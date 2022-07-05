@@ -1,0 +1,117 @@
+[
+  {
+    "name": "air-conditioner",
+    "title": "מיזוג אוויר",
+    "icon": "air-conditioner"
+  },
+  {
+    "name": "bellows",
+    "title": "מפוח",
+    "icon": "wind"
+  },
+  {
+    "name": "cleaning",
+    "title": "נקיון",
+    "icon": "cleaning"
+  },
+  {
+    "name": "intercom",
+    "title": "אינטרקום",
+    "icon": "intercom"
+  },
+  {
+    "name": "elevator",
+    "title": "מעלית",
+    "icon": "elevator"
+  },
+  {
+    "name": "fire-cabinet",
+    "title": "ארון כיבוי אש",
+    "icon": "fire"
+  },
+  {
+    "name": "garbage",
+    "title": "אשפה",
+    "icon": "dump"
+  },
+  {
+    "name": "gardening",
+    "title": "גינון",
+    "icon": "flower"
+  },
+  {
+    "name": "gas",
+    "title": "גז",
+    "icon": "gas"
+  },
+  {
+    "name": "generator",
+    "title": "גנרטור",
+    "icon": "generator"
+  },
+  {
+    "name": "heating",
+    "title": "חימום",
+    "icon": "heating"
+  },
+  {
+    "name": "insurance",
+    "title": "ביטוח",
+    "icon": "document"
+  },
+  {
+    "name": "parking",
+    "title": "חניה",
+    "icon": "parking"
+  },
+  {
+    "name": "pest-controll",
+    "title": "הדברה",
+    "icon": "pest"
+  },
+  {
+    "name": "reservoir",
+    "title": "מאגר מים",
+    "icon": "well"
+  },
+  {
+    "name": "roof",
+    "title": "גג",
+    "icon": "roof"
+  },
+  {
+    "name": "security",
+    "title": "אבטחה",
+    "icon": "security"
+  },
+  {
+    "name": "shelter",
+    "title": "מקלט",
+    "icon": "safe"
+  },
+  {
+    "name": "signposting",
+    "title": "שילוט",
+    "icon": "clipboard"
+  },
+  {
+    "name": "sprinkler",
+    "title": "ספרינקלר",
+    "icon": "sprinkler"
+  },
+  {
+    "name": "telephone-internet-tv",
+    "title": "אינטרנט, טלפון וטלוויזיה",
+    "icon": "wifi"
+  },
+  {
+    "name": "water-pump",
+    "title": "משאבת מים",
+    "icon": "pump"
+  },
+  {
+    "name": "water",
+    "title": "מים",
+    "icon": "water"
+  }
+]

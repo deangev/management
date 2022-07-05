@@ -5,18 +5,18 @@ import { ListItem } from '@management/core/ui-components';
 import { Text } from 'native-base';
 import { useCallback } from 'react';
 
-export interface EstatesListItemProps {
+export interface EstateListItemProps {
   item: { item: EstateType };
 }
 
-export function EstatesListItem({
+export function EstateListItem({
   item: {
     item: {
       _id,
       address: { city, street, number },
     },
   },
-}: EstatesListItemProps) {
+}: EstateListItemProps) {
   const navigation = useNavigation();
   const handleEstatePress = useCallback(() => {
     //@ts-ignore
@@ -34,4 +34,4 @@ export function EstatesListItem({
   );
 }
 
-export default EstatesListItem;
+export default EstateListItem;

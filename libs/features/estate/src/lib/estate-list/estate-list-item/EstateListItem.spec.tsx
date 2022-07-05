@@ -1,10 +1,10 @@
 import { render } from '@testing-library/react';
 
-import EstatesListItem from './EstatesListItem';
+import EstateListItem from './EstateListItem';
 
-describe('EstatesListItem', () => {
+describe('EstateListItem', () => {
   it('should render successfully', () => {
-    const { baseElement } = render(<EstatesListItem />);
+    const { baseElement } = render(<EstateListItem />);
     expect(baseElement).toBeTruthy();
   });
 });

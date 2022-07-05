@@ -1,11 +1,11 @@
 import React from 'react';
 import { render } from '@testing-library/react-native';
 
-import ServiceCallsList from './ServiceCallsList';
+import EstateMenuItem from './EstateMenuItem';
 
-describe('ServiceCallsList', () => {
+describe('EstateMenuItem', () => {
   it('should render successfully', () => {
-    const { container } = render(<ServiceCallsList />);
+    const { container } = render(<EstateMenuItem />);
     expect(container).toBeTruthy();
   });
 });
